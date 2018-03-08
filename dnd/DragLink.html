@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Drag link</title>
+</head>
+<body>
+  <p>Drag test: Link </p>
+  <div id="target1" draggable="true"> Test 1: <a href="https://www.google.com/"> This is a Link </a> in div with dragable = true</div>
+  <div>Test 1a: <a id="target1a" href="https://www.google.com/" draggable="true"> This is a Link with dragable = true in</a> </div>
+  <div>Test 1b: <div><a id="target1b" href="https://www.google.com/" draggable="true"> This is a Link with dragable = true in div</a> </div></div>
+  Test 1c: <div draggable="true"><a id="target1c" href="https://www.google.com/"> This is a Link in draggable div</a> </div>
+
+  <p>Test 2: <a id="target2" href="https://www.google.com/" draggable="true">This is a link</a></p>
+  
+  Test 3: image:
+  <div><img id="target3" src="https://www.google.ca/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png"  draggable="true" ></div>
+     
+
+  <p>Test 4: <a id="target4" href="https://www.google.com/" draggable="true">dragstart preventDefault</a></p>
+
+  <p>Test 5: <a id="target5" href="https://www.google.com/" draggable="true">dragstart && context menu preventDefault</a></div>
+
+  <p>drop area:</p>
+  <div><textarea id='droptarget1'></textarea></div>
+  <div><input id = "droptarget2"></div>
+  <div id="log"></div>
+</body>
+</html>
