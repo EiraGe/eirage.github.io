@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+<style>
+div {
+    width: 350px;
+    height: 70px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+}
+</style>
+<script>
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+  
+function touchevent(e){
+  if (prevent.checked) {
+    e.preventDefault();
+    }
+}
+  
+function removeAll() {
+  document.removeEventListener("touchmove", touchevent, {passive:false});
+  document.removeEventListener("touchstart", touchevent, {passive:false});
+}
+function move(str){
+  removeAll();
+  document.addEventListener("touchmove", touchevent, {passive:false});
+}
+  
+function down(str){
+  removeAll();
+  document.addEventListener("touchstart", touchevent, {passive:false});
+}
+
+</script>
+</head>
+<body>
+  <button ontouchstart="removeAll()">remove all</button>
+  <button ontouchstart="down(false)">touchstart</button>  
+  <button ontouchstart="move(false)">touchmove</button>
+  <input type="checkbox" id="prevent"> <label for="prevent">preventDefault</label>
+  
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <img id="drag1" src="https://www.google.ca/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png" draggable="true" ondragstart="drag(event)" >
+</div>
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="div5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="div6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="div7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="div8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br>
+
+</body>
+</html>
