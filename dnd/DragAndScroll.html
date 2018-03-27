@@ -12,7 +12,6 @@ div {
 }
 </style>
 <script>
-
 function allowDrop(ev) {
     ev.preventDefault();
 }
@@ -34,17 +33,18 @@ function touchevent(e){
 }
   
 function removeAll() {
-  document.removeEventListener("touchmove", touchevent, {passive:false});
-  document.removeEventListener("touchstart", touchevent, {passive:false});
-}
-function move(str){
-  removeAll();
-  document.addEventListener("touchmove", touchevent, {passive:false});
+  document.removeEventListener("touchmove", touchevent);
+  document.removeEventListener("touchstart", touchevent);
 }
   
+function move(str){
+  removeAll();
+  document.addEventListener("touchmove", touchevent, {passive:passive.checked});
+}  
+
 function down(str){
   removeAll();
-  document.addEventListener("touchstart", touchevent, {passive:false});
+  document.addEventListener("touchstart", touchevent, {passive:passive.checked});
 }
 
 </script>
@@ -53,6 +53,9 @@ function down(str){
   <button ontouchstart="removeAll()">remove all</button>
   <button ontouchstart="down(false)">touchstart</button>  
   <button ontouchstart="move(false)">touchmove</button>
+  <br>
+  <input type="checkbox" id="passive" checked> <label for="passive">passive</label>
+  <br>
   <input type="checkbox" id="prevent"> <label for="prevent">preventDefault</label>
   
 <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
@@ -65,7 +68,6 @@ function down(str){
 <div id="div6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 <div id="div7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 <div id="div8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-<br>
-
+<div id="div9" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 </body>
 </html>
