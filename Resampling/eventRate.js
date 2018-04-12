@@ -4,7 +4,7 @@ var eventCount = 0;
 var startTime;
 var canvas;
 var frameCounter;
-var colorCounter = 0;
+var colorCounter = {};
 const colors = ["rgba(255, 0, 0, 0.5)", "rgba(255, 128, 0, 0.5)", "rgba(255, 255, 0, 0.5)", "rgba(128, 255, 0, 0.5)",
                 "rgba(0, 255, 0, 0.5)", "rgba(0, 255, 128, 0.5)", "rgba(0, 255, 255, 0.5)", " rgba(0, 128, 255, 0.5)",
                 "rgba(0, 0, 255, 0.5)", "rgba(128, 0, 255, 0.5)", "rgba(255, 0, 255, 0.5)", "rgba(255, 0, 128, 0.5)"]
@@ -26,10 +26,13 @@ function drawPoints(points, isCoalesced) {
 
     context.arc(points[i].x * scale, points[i].y * scale, radius * scale, 0, 2 * 3.14159, false);
     context.closePath();
+    if (!(points[i].id in colorCounter))
+      colorCounter[points[i].id] = 0;
     if (isCoalesced)
-       context.fillStyle = colors[colorCounter];
-    else
-       context.fillStyle = colors[colorCounter = (colorCounter + 2)  % 12];
+      context.fillStyle = colors[colorCounter[points[i].id]];
+    else {
+      context.fillStyle = colors[colorCounter[points[i].id] = (colorCounter[points[i].id] + 2)  % 12];
+    }
     context.fill();
   }
 }
@@ -73,42 +76,36 @@ function endDraw()
   startTime = undefined;
 }
 
-function addCoalescedPoint(x, y)
+function addCoalescedPoint(x, y, id)
 {
-  coalescedPoints.push({x:x, y:y});
+  coalescedPoints.push({x:x, y:y, id:id});
 }
 
-function addPoint(x, y)
+function addPoint(x, y, id)
 {
   eventCount++;
-  points.push({x:x, y:y});
+  points.push({x:x, y:y, id:id});
 }
 
 window.onload = function() {
   canvas = document.getElementById('canvas');
-  if (window.PointerEvent) {
-    
+  if (window.PointerEvent) {    
     startDraw();
     canvas.addEventListener('pointerdown', function(e) {
-        if (e.button == 0 && e.isPrimary)
-           Clear();
-        // startDraw();
-        addPoint(e.pageX, e.pageY);
-        e.preventDefault();
-      // }
+      addPoint(e.pageX, e.pageY, e.pointerId);
+      e.preventDefault();
     });
     canvas.addEventListener('pointermove', function(e) {
-        if (e.getCoalescedEvents) {
-          e.getCoalescedEvents().forEach(function(ce) {
-            addCoalescedPoint(ce.pageX, ce.pageY);
-          });
-        }
-        addPoint(e.pageX, e.pageY);
-        e.preventDefault();
-      // }
+      if (e.getCoalescedEvents) {
+        e.getCoalescedEvents().forEach(function(ce) {
+          addCoalescedPoint(ce.pageX, ce.pageY, e.pointerId);
+        });
+      }
+      addPoint(e.pageX, e.pageY, e.pointerId);
+      e.preventDefault();
     });
     canvas.addEventListener('pointerup', function(e) {
-        e.preventDefault();
+      e.preventDefault();
     });
     canvas.addEventListener('touchstart', function(e) {
       e.preventDefault();
@@ -131,4 +128,5 @@ function InitializeCanvas() {
 function Clear() {
   endDraw();
   startDraw();
+  colorCounter = {}
 }
