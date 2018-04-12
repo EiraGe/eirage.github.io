@@ -26,33 +26,35 @@ function drop(ev) {
     ev.target.appendChild(document.getElementById(data));
 }
   
-function touchevent(e){
+function handler(e){
   if (prevent.checked) {
     e.preventDefault();
     }
 }
   
 function removeAll() {
-  document.removeEventListener("touchmove", touchevent);
-  document.removeEventListener("touchstart", touchevent);
+  document.removeEventListener("touchmove", handler);
+  document.removeEventListener("touchstart", handler);
+  document.removeEventListener("pointerdown", handler);
+  document.removeEventListener("pointermove", handler);
 }
   
-function move(str){
+function listener(eventType){
   removeAll();
-  document.addEventListener("touchmove", touchevent, {passive:passive.checked});
+  document.addEventListener(eventType, handler, {passive:passive.checked});
 }  
 
-function down(str){
-  removeAll();
-  document.addEventListener("touchstart", touchevent, {passive:passive.checked});
-}
 
 </script>
 </head>
 <body>
   <button ontouchstart="removeAll()">remove all</button>
-  <button ontouchstart="down(false)">touchstart</button>  
-  <button ontouchstart="move(false)">touchmove</button>
+  <br>
+  <button ontouchstart="listener('touchstart')">add touchstart Listener</button>
+  <button ontouchstart="listener('touchmove')">add touchmove Listener</button>
+  <br>
+  <button ontouchstart="listener('pointerdown')">add pointerdown Listener</button>
+  <button ontouchstart="listener('pointermove')">add pointermove Listener</button>
   <br>
   <input type="checkbox" id="passive" checked> <label for="passive">passive</label>
   <br>

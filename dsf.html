@@ -1,0 +1,17 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body> 
+  <script>
+    function Get() {
+      var print = document.getElementById("device-pixel-radio");
+      print.innerHTML = "devicePixelRatio = " + window.devicePixelRatio;
+    }
+  </script>
+  <div><button onclick="Get()">Get</button></div>
+  <div id="device-pixel-radio"></div>
+</body>
+</html>
