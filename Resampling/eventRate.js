@@ -4,6 +4,10 @@ var eventCount = 0;
 var startTime;
 var canvas;
 var frameCounter;
+var colorCounter = 0;
+const colors = ["rgba(255, 0, 0, 0.5)", "rgba(255, 128, 0, 0.5)", "rgba(255, 255, 0, 0.5)", "rgba(128, 255, 0, 0.5)",
+                "rgba(0, 255, 0, 0.5)", "rgba(0, 255, 128, 0.5)", "rgba(0, 255, 255, 0.5)", " rgba(0, 128, 255, 0.5)",
+                "rgba(0, 0, 255, 0.5)", "rgba(128, 0, 255, 0.5)", "rgba(255, 0, 255, 0.5)", "rgba(255, 0, 128, 0.5)"]
 
 function GetContext() {
   return document.getElementById("canvas").getContext("2d"); 
@@ -23,9 +27,9 @@ function drawPoints(points, isCoalesced) {
     context.arc(points[i].x * scale, points[i].y * scale, radius * scale, 0, 2 * 3.14159, false);
     context.closePath();
     if (isCoalesced)
-      context.fillStyle = 'rgba(100,0,0,0.5)';
+       context.fillStyle = colors[colorCounter];
     else
-      context.fillStyle = 'rgba(0,0,100,0.5)';
+       context.fillStyle = colors[colorCounter = (colorCounter + 1) % 12];
     context.fill();
   }
 }
