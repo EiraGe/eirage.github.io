@@ -29,7 +29,7 @@ function drawPoints(points, isCoalesced) {
     if (isCoalesced)
        context.fillStyle = colors[colorCounter];
     else
-       context.fillStyle = colors[colorCounter = (colorCounter + 1) % 12];
+       context.fillStyle = colors[colorCounter = (colorCounter + 2)  % 12];
     context.fill();
   }
 }
@@ -87,19 +87,17 @@ function addPoint(x, y)
 window.onload = function() {
   canvas = document.getElementById('canvas');
   if (window.PointerEvent) {
-    var primaryButtonDown = false;
     
     startDraw();
     canvas.addEventListener('pointerdown', function(e) {
-      // if (e.button == 0 && e.isPrimary) {
-        primaryButtonDown = true;
+        if (e.button == 0 && e.isPrimary)
+           Clear();
         // startDraw();
         addPoint(e.pageX, e.pageY);
         e.preventDefault();
       // }
     });
     canvas.addEventListener('pointermove', function(e) {
-      // if (primaryButtonDown && e.isPrimary) {
         if (e.getCoalescedEvents) {
           e.getCoalescedEvents().forEach(function(ce) {
             addCoalescedPoint(ce.pageX, ce.pageY);
@@ -110,11 +108,7 @@ window.onload = function() {
       // }
     });
     canvas.addEventListener('pointerup', function(e) {
-      // if (e.button == 0 && e.isPrimary) {
-        // endDraw();
-        primaryButtonDown = true;
         e.preventDefault();
-      // }
     });
     canvas.addEventListener('touchstart', function(e) {
       e.preventDefault();
