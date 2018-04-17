@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+  <body>
+    <p><a href="#" id="reqPointerLock">Request pointer lock</a></p>
+    <p>
+      <label><input id="mousemove" type="checkbox"> mousemove</label>
+      <label><input id="pointermove" type="checkbox"> pointermove</label>
+    </p>
+    <p>
+      <label><input id="outputPausedCheckbox" type="button" disabled> </label>
+      Press any key to <span id="pauseOutput">pause</span> output, and reset movementXSum/movementYSum.
+    </p>
+    <p><label><input id="disableScrollCheckbox" type="checkbox"> Disable Scrolling</label></p>
+    <table>
+      <tr>
+        <td>
+          <pre>eventType,</pre>
+        </td>
+        <td align="right">
+          <pre>event#,</pre>
+        </td>
+        <td align="right">
+          <pre>screenX,</pre>
+        </td>
+        <td align="right">
+          <pre>movementX,</pre>
+        </td>
+        <td align="right">
+          <pre>movementXSum,</pre>
+        </td>
+        <td align="right">
+          <pre>screenY,</pre>
+        </td>
+        <td align="right">
+          <pre>movementY,</pre>
+        </td>
+        <td align="right">
+          <pre>movementYSum,</pre>
+        </td>
+        <td align="right">
+          <pre>stateChange</pre>
+        </td>
+      </tr>    
+      <tr>
+        <td>
+          <pre id="eventTypeOutput"></pre>
+        </td>
+        <td align="right">
+          <pre id="counterOutput"></pre>
+        </td>
+        <td align="right">
+          <pre id="screenXOutput"></pre>
+        </td>
+        <td align="right">
+          <pre id="movementXOutput"></pre>
+        </td>
+        <td align="right">
+          <pre id="movementXSumOutput"></pre>
+        </td>
+        <td align="right">
+          <pre id="screenYOutput"></pre>
+        </td>
+        <td align="right">
+          <pre id="movementYOutput"></pre>
+        </td>
+        <td align="right">
+          <pre id="movementYSumOutput"></pre>
+        </td>
+        <td align="right">
+          <pre id="stateOutput"></pre>
+        </td>
+      </tr>    
+    </table>
+    <script>
+      "use strict";
+      let maxLogSize = 200;
+      let outputEnabled = true;
+      let eventCounter = 0;
+      let movementXSum = 0;
+      let movementYSum = 0;
+      
+      // Init the size of page so that scroll bars do not adjust.
+      let preElements = document.getElementsByTagName("pre");
+      for (let i = 0; i < preElements.length; i++) {
+        if (!preElements[i].innerText) 
+          preElements[i].innerText = ".\n".repeat(maxLogSize);
+      }
+
+      function pushStringToTopOfPreElement(value, element) {        
+        if (!outputEnabled)
+          return;
+        let a = element.innerText.split("\n"); 
+        a.unshift(value);
+        a = a.slice(0, maxLogSize);
+        element.innerText = a.join("\n");      
+      }
+
+      function logEvent(e) {
+        if ((mousemove.checked && e.type == "mousemove") || (!mousemove.checked && e.type == "pointermove")) {
+          movementXSum += e.movementX;
+          movementYSum += e.movementY;
+        } else if (mousemove.checked && e.type == "pointermove")
+        pushStringToTopOfPreElement(e.type,eventTypeOutput);
+        pushStringToTopOfPreElement(eventCounter, counterOutput);
+        pushStringToTopOfPreElement(e.screenX, screenXOutput);
+        pushStringToTopOfPreElement(e.movementX, movementXOutput);
+        pushStringToTopOfPreElement(movementXSum, movementXSumOutput);
+        pushStringToTopOfPreElement(e.screenY, screenYOutput);
+        pushStringToTopOfPreElement(e.movementY, movementYOutput);
+        pushStringToTopOfPreElement(movementYSum, movementYSumOutput);
+        pushStringToTopOfPreElement(document.pointerLockElement ? "locked" : "unlocked", stateOutput);
+      }
+
+      document.addEventListener('keydown', function() {
+        movementXSum = 0;
+        movementYSum = 0;
+        outputEnabled = !outputEnabled;
+        pauseOutput.innerText = outputEnabled ? "pause" : "unpause";
+        outputPausedCheckbox.checked = !outputEnabled;
+      });
+
+      document.addEventListener('mousemove', function(e) {
+        if (mousemove.checked)
+          logEvent(e);
+      });
+
+      document.addEventListener('pointermove', function(e) {
+        if (pointermove.checked)
+          logEvent(e);
+      });
+
+
+      document.addEventListener('pointerlockchange', function(e) {
+        eventCounter++;
+        pushStringToTopOfPreElement(Date.now()/1000, timeOutput);
+        pushStringToTopOfPreElement(eventCounter, counterOutput);
+        pushStringToTopOfPreElement(".", screenXOutput);
+        pushStringToTopOfPreElement(".", movementXOutput);
+        pushStringToTopOfPreElement(movementXSum, movementXSumOutput);
+        pushStringToTopOfPreElement(".", screenYOutput);
+        pushStringToTopOfPreElement(".", movementYOutput);
+        pushStringToTopOfPreElement(movementYSum, movementYSumOutput);
+        pushStringToTopOfPreElement("change: " + (document.pointerLockElement ? "locked" : "unlocked"), stateOutput);
+      });
+
+      document.getElementById('reqPointerLock').addEventListener('click', function() {
+        document.body.requestPointerLock();
+      });
+
+      disableScrollCheckbox.onchange = () => {
+        document.body.style.overflow = disableScrollCheckbox.checked ? "hidden" : "";
+      }
+    </script>
+  </body>
+</html>
