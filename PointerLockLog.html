@@ -1,14 +1,17 @@
 <!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+</head>
 <html>
+  <meta charset="utf-8">
   <body>
     <p><a href="#" id="reqPointerLock">Request pointer lock</a></p>
+
+    <p><button onclick="GetDsf()">Get device-pixel-radio</button> <div id="device-pixel-radio"></div></p>
     <p>
-      <label><input id="mousemove" type="checkbox"> mousemove</label>
+      <label><input id="mousemove" type="checkbox" checked> mousemove</label>
       <label><input id="pointermove" type="checkbox"> pointermove</label>
-    </p>
-    <p>
-      <label><input id="outputPausedCheckbox" type="button" disabled> </label>
-      Press any key to <span id="pauseOutput">pause</span> output, and reset movementXSum/movementYSum.
     </p>
     <p><label><input id="disableScrollCheckbox" type="checkbox"> Disable Scrolling</label></p>
     <table>
@@ -17,7 +20,7 @@
           <pre>eventType,</pre>
         </td>
         <td align="right">
-          <pre>event#,</pre>
+          <pre>clientX,</pre>
         </td>
         <td align="right">
           <pre>screenX,</pre>
@@ -27,6 +30,9 @@
         </td>
         <td align="right">
           <pre>movementXSum,</pre>
+        </td>
+        <td align="right">
+          <pre>clientY,</pre>
         </td>
         <td align="right">
           <pre>screenY,</pre>
@@ -46,7 +52,7 @@
           <pre id="eventTypeOutput"></pre>
         </td>
         <td align="right">
-          <pre id="counterOutput"></pre>
+          <pre id="clientXOutput"></pre>
         </td>
         <td align="right">
           <pre id="screenXOutput"></pre>
@@ -56,6 +62,9 @@
         </td>
         <td align="right">
           <pre id="movementXSumOutput"></pre>
+        </td>
+        <td align="right">
+          <pre id="clientYOutput"></pre>
         </td>
         <td align="right">
           <pre id="screenYOutput"></pre>
@@ -96,28 +105,22 @@
       }
 
       function logEvent(e) {
+        console.log(e.type);
         if ((mousemove.checked && e.type == "mousemove") || (!mousemove.checked && e.type == "pointermove")) {
           movementXSum += e.movementX;
           movementYSum += e.movementY;
-        } else if (mousemove.checked && e.type == "pointermove")
-        pushStringToTopOfPreElement(e.type,eventTypeOutput);
-        pushStringToTopOfPreElement(eventCounter, counterOutput);
+        }
+        pushStringToTopOfPreElement(e.type, eventTypeOutput);
+        pushStringToTopOfPreElement(e.clientX, clientXOutput);
         pushStringToTopOfPreElement(e.screenX, screenXOutput);
         pushStringToTopOfPreElement(e.movementX, movementXOutput);
         pushStringToTopOfPreElement(movementXSum, movementXSumOutput);
+        pushStringToTopOfPreElement(e.clientY, clientYOutput);
         pushStringToTopOfPreElement(e.screenY, screenYOutput);
         pushStringToTopOfPreElement(e.movementY, movementYOutput);
         pushStringToTopOfPreElement(movementYSum, movementYSumOutput);
         pushStringToTopOfPreElement(document.pointerLockElement ? "locked" : "unlocked", stateOutput);
       }
-
-      document.addEventListener('keydown', function() {
-        movementXSum = 0;
-        movementYSum = 0;
-        outputEnabled = !outputEnabled;
-        pauseOutput.innerText = outputEnabled ? "pause" : "unpause";
-        outputPausedCheckbox.checked = !outputEnabled;
-      });
 
       document.addEventListener('mousemove', function(e) {
         if (mousemove.checked)
@@ -133,7 +136,6 @@
       document.addEventListener('pointerlockchange', function(e) {
         eventCounter++;
         pushStringToTopOfPreElement(Date.now()/1000, timeOutput);
-        pushStringToTopOfPreElement(eventCounter, counterOutput);
         pushStringToTopOfPreElement(".", screenXOutput);
         pushStringToTopOfPreElement(".", movementXOutput);
         pushStringToTopOfPreElement(movementXSum, movementXSumOutput);
@@ -149,6 +151,11 @@
 
       disableScrollCheckbox.onchange = () => {
         document.body.style.overflow = disableScrollCheckbox.checked ? "hidden" : "";
+      }
+
+      function GetDsf() {
+        var print = document.getElementById("device-pixel-radio");
+        print.innerHTML = "devicePixelRatio = " + window.devicePixelRatio;
       }
     </script>
   </body>
