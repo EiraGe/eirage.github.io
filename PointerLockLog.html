@@ -12,6 +12,9 @@
     <p>
       <label><input id="mousemove" type="checkbox" checked> mousemove</label>
       <label><input id="pointermove" type="checkbox"> pointermove</label>
+      <label><input id="mouseevents" type="checkbox"> mouseevents</label>
+      <label><input id="pointerevents" type="checkbox"> pointerevents</label>
+
     </p>
     <p><label><input id="disableScrollCheckbox" type="checkbox"> Disable Scrolling</label></p>
     <table>
@@ -87,6 +90,9 @@
       let eventCounter = 0;
       let movementXSum = 0;
       let movementYSum = 0;
+      let MEList = ["mouseenter", "mouseleave", "mouseover", "mouseout", "mousemove", "mousedown", "mouseup"];
+      let PEList = ["pointerenter", "pointerleave", "pointerover", "pointerout", "pointermove", "pointerdown",
+                "pointerup", "gotpointercapture", "lostpointercapture"];
       
       // Init the size of page so that scroll bars do not adjust.
       let preElements = document.getElementsByTagName("pre");
@@ -105,40 +111,47 @@
       }
 
       function logEvent(e) {
-        console.log(e.type);
-        if ((mousemove.checked && e.type == "mousemove") || (!mousemove.checked && e.type == "pointermove")) {
-          movementXSum += e.movementX;
-          movementYSum += e.movementY;
+        if ((mouseevents.checked && MEList.includes(e.type)) ||
+            (mousemove.checked && e.type == "mousemove") ||
+            (pointerevents.checked && PEList.includes(e.type)) ||
+            (pointermove.checked && e.type == "pointermove")) {
+          if (((mousemove.checked || mouseevents.checked) && e.type == "mousemove") ||
+              (!(mousemove.checked || mouseevents.checked) && e.type == "pointermove")) {
+            movementXSum += e.movementX;
+            movementYSum += e.movementY;
+          }
+          pushStringToTopOfPreElement(e.type, eventTypeOutput);
+          pushStringToTopOfPreElement(e.clientX, clientXOutput);
+          pushStringToTopOfPreElement(e.screenX, screenXOutput);
+          pushStringToTopOfPreElement(e.movementX, movementXOutput);
+          pushStringToTopOfPreElement(movementXSum, movementXSumOutput);
+          pushStringToTopOfPreElement(e.clientY, clientYOutput);
+          pushStringToTopOfPreElement(e.screenY, screenYOutput);
+          pushStringToTopOfPreElement(e.movementY, movementYOutput);
+          pushStringToTopOfPreElement(movementYSum, movementYSumOutput);
+          pushStringToTopOfPreElement(document.pointerLockElement ? "locked" : "unlocked", stateOutput);
         }
-        pushStringToTopOfPreElement(e.type, eventTypeOutput);
-        pushStringToTopOfPreElement(e.clientX, clientXOutput);
-        pushStringToTopOfPreElement(e.screenX, screenXOutput);
-        pushStringToTopOfPreElement(e.movementX, movementXOutput);
-        pushStringToTopOfPreElement(movementXSum, movementXSumOutput);
-        pushStringToTopOfPreElement(e.clientY, clientYOutput);
-        pushStringToTopOfPreElement(e.screenY, screenYOutput);
-        pushStringToTopOfPreElement(e.movementY, movementYOutput);
-        pushStringToTopOfPreElement(movementYSum, movementYSumOutput);
-        pushStringToTopOfPreElement(document.pointerLockElement ? "locked" : "unlocked", stateOutput);
       }
 
-      document.addEventListener('mousemove', function(e) {
-        if (mousemove.checked)
+      MEList.forEach(function(eventName) {
+        document.addEventListener(eventName, function(e) {
           logEvent(e);
-      });
+        });
+      })
 
-      document.addEventListener('pointermove', function(e) {
-        if (pointermove.checked)
+      PEList.forEach(function(eventName) {
+        document.addEventListener(eventName, function(e) {
           logEvent(e);
-      });
-
+        });
+      })
 
       document.addEventListener('pointerlockchange', function(e) {
-        eventCounter++;
-        pushStringToTopOfPreElement(Date.now()/1000, timeOutput);
+        pushStringToTopOfPreElement("pointerlockchange", eventTypeOutput);
+        pushStringToTopOfPreElement(".", clientXOutput);
         pushStringToTopOfPreElement(".", screenXOutput);
         pushStringToTopOfPreElement(".", movementXOutput);
         pushStringToTopOfPreElement(movementXSum, movementXSumOutput);
+        pushStringToTopOfPreElement(".", clientYOutput);
         pushStringToTopOfPreElement(".", screenYOutput);
         pushStringToTopOfPreElement(".", movementYOutput);
         pushStringToTopOfPreElement(movementYSum, movementYSumOutput);
