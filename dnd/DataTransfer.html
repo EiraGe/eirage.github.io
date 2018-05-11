@@ -31,6 +31,10 @@ function drop(dropevent) {
 </script>
 </head>
 <body>
+<div>
+Format: Set:<input type="text" id = "set" value = "text"> Get:<input type="text" id = "get" value = "text">
+</div>
+
 <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
     <span id="drag" draggable="true" ondragstart="drag(event)">drag me to the other box</span>
 </div>
