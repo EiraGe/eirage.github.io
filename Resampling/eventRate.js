@@ -110,6 +110,10 @@ window.onload = function() {
     canvas.addEventListener('touchstart', function(e) {
       e.preventDefault();
     });
+    canvas.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      Clear();
+    })
   }
   InitializeCanvas();
 }
