@@ -93,6 +93,7 @@
       let MEList = ["mouseenter", "mouseleave", "mouseover", "mouseout", "mousemove", "mousedown", "mouseup"];
       let PEList = ["pointerenter", "pointerleave", "pointerover", "pointerout", "pointermove", "pointerdown",
                 "pointerup", "gotpointercapture", "lostpointercapture"];
+      let Others = ['click', 'dblclick', 'auxclick', 'contextmenu', 'mousewheel', 'wheel'];
       
       // Init the size of page so that scroll bars do not adjust.
       let preElements = document.getElementsByTagName("pre");
@@ -114,7 +115,8 @@
         if ((mouseevents.checked && MEList.includes(e.type)) ||
             (mousemove.checked && e.type == "mousemove") ||
             (pointerevents.checked && PEList.includes(e.type)) ||
-            (pointermove.checked && e.type == "pointermove")) {
+            (pointermove.checked && e.type == "pointermove") ||
+            ((pointerevents.checked || mouseevents.checked) && Others.includes(e.type))) {
           if (((mousemove.checked || mouseevents.checked) && e.type == "mousemove") ||
               (!(mousemove.checked || mouseevents.checked) && e.type == "pointermove")) {
             movementXSum += e.movementX;
@@ -140,6 +142,12 @@
       })
 
       PEList.forEach(function(eventName) {
+        document.addEventListener(eventName, function(e) {
+          logEvent(e);
+        });
+      })
+
+      Others.forEach(function(eventName) {
         document.addEventListener(eventName, function(e) {
           logEvent(e);
         });
