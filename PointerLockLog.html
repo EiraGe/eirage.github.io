@@ -49,6 +49,9 @@
         <td align="right">
           <pre>stateChange</pre>
         </td>
+        <td align="right">
+          <pre>coalescedEventCount</pre>
+        </td>
       </tr>    
       <tr>
         <td>
@@ -80,6 +83,9 @@
         </td>
         <td align="right">
           <pre id="stateOutput"></pre>
+        </td>
+        <td align="right">
+          <pre id="coalescedCountOutput"></pre>
         </td>
       </tr>    
     </table>
@@ -132,6 +138,7 @@
           pushStringToTopOfPreElement(e.movementY, movementYOutput);
           pushStringToTopOfPreElement(movementYSum, movementYSumOutput);
           pushStringToTopOfPreElement(document.pointerLockElement ? "locked" : "unlocked", stateOutput);
+          pushStringToTopOfPreElement((e.type == "pointermove" && e.getCoalescedEvents) ? e.getCoalescedEvents().length : "." , coalescedCountOutput);
         }
       }
 
