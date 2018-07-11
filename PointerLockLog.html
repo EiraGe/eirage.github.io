@@ -54,7 +54,7 @@
           <pre>stateChange</pre>
         </td>
         <td align="right">
-          <pre>coalescedEventCount</pre>
+          <pre>coalescedEvents</pre>
         </td>
       </tr>    
       <tr id="log">
@@ -135,12 +135,14 @@
               (!(mousemove.checked || mouseevents.checked) && e.type == "pointermove")) {
             movementXSum += e.movementX;
             movementYSum += e.movementY;
-            if (lastX != 0 && e.screenX - lastX != e.movementX)
-              colorX = "red"
-            if (lastY != 0 && e.screenY - lastY != e.movementY)
-              colorY = "red"
-            lastX = e.screenX
-            lastY = e.screenY
+            if (! document.pointerLockElement) {
+              if (lastX != 0 && e.screenX - lastX != e.movementX)
+                colorX = "red"
+              if (lastY != 0 && e.screenY - lastY != e.movementY)
+                colorY = "red"
+              lastX = e.screenX
+              lastY = e.screenY
+            }
           }
           pushStringToTopOfPreElement(e.type, eventTypeOutput);
           pushStringToTopOfPreElement(e.clientX, clientXOutput);
