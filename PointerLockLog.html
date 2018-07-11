@@ -17,6 +17,7 @@
       <label><input id="pointermove" type="checkbox"> pointermove</label>
       <label><input id="mouseevents" type="checkbox"> mouseevents</label>
       <label><input id="pointerevents" type="checkbox"> pointerevents</label>
+      <label><input id="coalescedEvent" type="checkbox"> coalescedEvent</label>
 
     </p>
     <p><label><input id="disableScrollCheckbox" type="checkbox"> Disable Scrolling</label></p>
@@ -128,13 +129,8 @@
         element.innerHTML = a.join("\n");
       }
 
-      function logEvent(e) {
-        if ((mouseevents.checked && MEList.includes(e.type)) ||
-            (mousemove.checked && e.type == "mousemove") ||
-            (pointerevents.checked && PEList.includes(e.type)) ||
-            (pointermove.checked && e.type == "pointermove") ||
-            ((pointerevents.checked || mouseevents.checked) && Others.includes(e.type))) {
-          var colorX, colorY;
+      function UpdateLog(e, iscoalescedEvent) {
+        var colorX, colorY;
           if (((mousemove.checked || mouseevents.checked) && e.type == "mousemove") ||
               (!(mousemove.checked || mouseevents.checked) && e.type == "pointermove")) {
             movementXSum += e.movementX;
@@ -156,7 +152,25 @@
           pushStringToTopOfPreElement(e.movementY, movementYOutput, colorY);
           pushStringToTopOfPreElement(movementYSum, movementYSumOutput);
           pushStringToTopOfPreElement(document.pointerLockElement ? "locked" : "unlocked", stateOutput);
-          pushStringToTopOfPreElement((e.type == "pointermove" && e.getCoalescedEvents) ? e.getCoalescedEvents().length : "." , coalescedCountOutput);
+          if (!iscoalescedEvent)
+            pushStringToTopOfPreElement((e.type == "pointermove" && e.getCoalescedEvents) ? e.getCoalescedEvents().length : "." , coalescedCountOutput);
+          else 
+            pushStringToTopOfPreElement("Yes", coalescedCountOutput);
+      }
+
+      function logEvent(e) {
+        if ((mouseevents.checked && MEList.includes(e.type)) ||
+            (mousemove.checked && e.type == "mousemove") ||
+            (pointerevents.checked && PEList.includes(e.type)) ||
+            (pointermove.checked && e.type == "pointermove") ||
+            ((pointerevents.checked || mouseevents.checked) && Others.includes(e.type))) {
+          if (e.type == "pointermove" && coalescedEvent.checked) {
+            e.getCoalescedEvents().forEach(function(ce) {
+              UpdateLog(ce, true);
+            });
+          } else {
+            UpdateLog(e)
+          }
         }
       }
 

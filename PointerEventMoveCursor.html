@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html><head>
+  <style type="text/css">
+    body {
+        background: grey;
+        -webkit-user-select: none;
+    }
+    #container {
+        border: solid black 1px;
+        background: white;
+
+        position: absolute;
+        top: 10px;
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+    }
+    #HTMLCursor {
+        border: solid black 1px;
+        background: yellow;
+        display: inline;
+        position: fixed;
+        pointer-events: none;
+        z-index: 1;
+    }
+    #resetPos {
+        border: solid black 1px;
+        background: pink;
+        position: relative;
+    }
+    #logoutput {
+      height: 150px;
+      overflow: auto;
+    }
+  </style>
+
+  <script type="text/javascript">
+    documentPointerMoveCallCounter = 0;
+    coalescedCalls = 0
+
+    function log(x) {
+      logoutput.insertAdjacentHTML("beforeEnd", "<div>" + x + "</div>");
+      logoutput.scrollTop = logoutput.scrollHeight - logoutput.clientHeight;
+    }
+
+    function init() {
+      var HTMLCursor = document.getElementById("HTMLCursor");
+      var resetPos = document.getElementById("resetPos");
+      function moveHTMLCursorTo(x, y) {
+        HTMLCursor.style.left = x + "px";
+        HTMLCursor.style.top = y + "px";
+      }
+      function moveHTMLCursorToCenter() {
+        moveHTMLCursorTo(window.innerWidth / 2, window.innerHeight / 2);
+      }
+      moveHTMLCursorToCenter();
+      function moveHTMLCursorBy(x, y) {
+        let zoom = 1;//window.devicePixelRatio;
+        moveHTMLCursorTo(
+            HTMLCursor.getBoundingClientRect().left + parseInt(x) / zoom,
+            HTMLCursor.getBoundingClientRect().top + parseInt(y) / zoom);
+      }
+
+      function Update(e) {
+        moveHTMLCursorBy(e.movementX, e.movementY);
+        displaytext.innerHTML =
+          "  document pointermove listener:<br>" +
+          "  Raw: " + e.screenX + ", " + e.screenY +
+          "  Cursor: "
+          + HTMLCursor.getBoundingClientRect().left + ", "
+          + HTMLCursor.getBoundingClientRect().top +
+          "  Movement: " + e.movementX + ", " + e.movementY +
+          ", calls: " + documentPointerMoveCallCounter;
+        if (coalescedEvent.checked)
+          displaytext.innerHTML += ", coalescedMoveCalls: " + coalescedCalls;
+      }
+
+      document.addEventListener("pointermove", function (e) {
+        documentPointerMoveCallCounter++;
+        if (coalescedEvent.checked && e.getCoalescedEvents) {
+          e.getCoalescedEvents().forEach(function(ce) {
+            coalescedCalls ++;
+            Update(ce);
+          });
+        } else {
+          Update(e);
+        }
+      });
+      document.addEventListener("keypress", function (e) {
+        if (e.keyCode != 116) {
+          e.preventDefault();
+          moveHTMLCursorToCenter();
+        }
+      });
+
+      resetPos.addEventListener("click", function (e) {
+        moveHTMLCursorTo(e.clientX, e.clientY);
+        displaytext.innerHTML = displaytext.innerHTML + "  mousedown";
+        documentPointerMoveCallCounter = 0;
+        coalescedCalls = 0
+      });
+
+      // Color background when we are the iframe.
+      if (window.top !== window)
+        document.getElementById('container').style.backgroundColor="tan";
+  }
+  </script>
+</head>
+
+<body onload="init()" title="This tooltip should not be shown if the mouse is locked.">
+  <div id="container">
+    <form name="displaytext">...<br>...</form>
+    <div id="isLocked">document.pointerLockElement unlocked</div>
+    <label><input id="coalescedEvent" type="checkbox"> coalescedEvent</label>
+    <div id="resetPos">
+      Press a key, or Click here to reset HTMLCursor position.
+    </div><br>
+    </table>
+  </div>
+  <div id="HTMLCursor">HTMLCursor</div><br>
+</body>
+</html>
