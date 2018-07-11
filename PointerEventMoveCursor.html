@@ -62,8 +62,8 @@
       function moveHTMLCursorBy(x, y) {
         let zoom = 1;//window.devicePixelRatio;
         moveHTMLCursorTo(
-            HTMLCursor.getBoundingClientRect().left + parseInt(x) / zoom,
-            HTMLCursor.getBoundingClientRect().top + parseInt(y) / zoom);
+            HTMLCursor.getBoundingClientRect().left + x / zoom,
+            HTMLCursor.getBoundingClientRect().top + y / zoom);
       }
 
       function Update(e) {
