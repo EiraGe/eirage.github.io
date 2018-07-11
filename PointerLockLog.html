@@ -8,7 +8,10 @@
   <body>
     <p><a href="#" id="reqPointerLock">Request pointer lock</a></p>
 
-    <p><button onclick="GetDsf()">Get device-pixel-radio</button> <div id="device-pixel-radio"></div></p>
+    <p>
+      <button onclick="ClearLogAndMovementSum()">Clear Log</button>
+      <button onclick="GetDsf()">Get device-pixel-radio</button> <span id="device-pixel-radio"></span>
+    </p>
     <p>
       <label><input id="mousemove" type="checkbox" checked> mousemove</label>
       <label><input id="pointermove" type="checkbox"> pointermove</label>
@@ -53,7 +56,7 @@
           <pre>coalescedEventCount</pre>
         </td>
       </tr>    
-      <tr>
+      <tr id="log">
         <td>
           <pre id="eventTypeOutput"></pre>
         </td>
@@ -90,31 +93,39 @@
       </tr>    
     </table>
     <script>
-      "use strict";
       let maxLogSize = 200;
-      let outputEnabled = true;
-      let eventCounter = 0;
-      let movementXSum = 0;
-      let movementYSum = 0;
       let MEList = ["mouseenter", "mouseleave", "mouseover", "mouseout", "mousemove", "mousedown", "mouseup"];
       let PEList = ["pointerenter", "pointerleave", "pointerover", "pointerout", "pointermove", "pointerdown",
                 "pointerup", "gotpointercapture", "lostpointercapture"];
       let Others = ['click', 'dblclick', 'auxclick', 'contextmenu', 'mousewheel', 'wheel'];
+      let lastX = 0;
+      let lastY = 0;
+      let movementXSum = 0;
+      let movementYSum = 0;
+
       
-      // Init the size of page so that scroll bars do not adjust.
-      let preElements = document.getElementsByTagName("pre");
-      for (let i = 0; i < preElements.length; i++) {
-        if (!preElements[i].innerText) 
+      ClearLogAndMovementSum();
+
+      function ClearLogAndMovementSum() {
+        console.log("Clear");
+        movementXSum = 0;
+        movementYSum = 0;
+        lastX = 0;
+        lastY = 0;
+        // Init the size of page so that scroll bars do not adjust.
+        let preElements = document.getElementById("log").getElementsByTagName("pre");
+        for (let i = 0; i < preElements.length; i++) {
           preElements[i].innerText = ".\n".repeat(maxLogSize);
+        }
       }
 
-      function pushStringToTopOfPreElement(value, element) {        
-        if (!outputEnabled)
-          return;
-        let a = element.innerText.split("\n"); 
+      function pushStringToTopOfPreElement(value, element, color) {
+        let a = element.innerHTML.split("\n");
+        if (color == "red")
+          value = "<span style=\"color:red\">" + value + "</span>"
         a.unshift(value);
         a = a.slice(0, maxLogSize);
-        element.innerText = a.join("\n");      
+        element.innerHTML = a.join("\n");
       }
 
       function logEvent(e) {
@@ -123,19 +134,26 @@
             (pointerevents.checked && PEList.includes(e.type)) ||
             (pointermove.checked && e.type == "pointermove") ||
             ((pointerevents.checked || mouseevents.checked) && Others.includes(e.type))) {
+          var colorX, colorY;
           if (((mousemove.checked || mouseevents.checked) && e.type == "mousemove") ||
               (!(mousemove.checked || mouseevents.checked) && e.type == "pointermove")) {
             movementXSum += e.movementX;
             movementYSum += e.movementY;
+            if (lastX != 0 && e.screenX - lastX != e.movementX)
+              colorX = "red"
+            if (lastY != 0 && e.screenY - lastY != e.movementY)
+              colorY = "red"
+            lastX = e.screenX
+            lastY = e.screenY
           }
           pushStringToTopOfPreElement(e.type, eventTypeOutput);
           pushStringToTopOfPreElement(e.clientX, clientXOutput);
           pushStringToTopOfPreElement(e.screenX, screenXOutput);
-          pushStringToTopOfPreElement(e.movementX, movementXOutput);
+          pushStringToTopOfPreElement(e.movementX, movementXOutput, colorX);
           pushStringToTopOfPreElement(movementXSum, movementXSumOutput);
           pushStringToTopOfPreElement(e.clientY, clientYOutput);
           pushStringToTopOfPreElement(e.screenY, screenYOutput);
-          pushStringToTopOfPreElement(e.movementY, movementYOutput);
+          pushStringToTopOfPreElement(e.movementY, movementYOutput, colorY);
           pushStringToTopOfPreElement(movementYSum, movementYSumOutput);
           pushStringToTopOfPreElement(document.pointerLockElement ? "locked" : "unlocked", stateOutput);
           pushStringToTopOfPreElement((e.type == "pointermove" && e.getCoalescedEvents) ? e.getCoalescedEvents().length : "." , coalescedCountOutput);
@@ -183,7 +201,7 @@
 
       function GetDsf() {
         var print = document.getElementById("device-pixel-radio");
-        print.innerHTML = "devicePixelRatio = " + window.devicePixelRatio;
+        print.innerText = "devicePixelRatio = " + window.devicePixelRatio;
       }
     </script>
   </body>
