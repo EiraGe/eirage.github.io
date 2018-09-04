@@ -61,7 +61,7 @@ function endDraw()
   startTime = undefined;
 }
 
-function addPredicPoitednt(x, y, id)
+function addPredictedPoint(x, y, id)
 {
   predictedPoints.push({x:x, y:y, id:id});
 }
