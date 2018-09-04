@@ -1,5 +1,5 @@
 var points = [];
-var PredictedPoints = [];
+var predictedPoints = [];
 var eventCount = 0;
 var startTime;
 var canvas;
@@ -38,41 +38,26 @@ function drawPoints(points, isPredicted) {
 }
 
 function onFrame()
-{
-  frameCounter++;
-  if (!startTime || frameCounter % parseInt(document.getElementById('throttle').value) == 0) {
+{ 
+  if (startTime) {
     drawPoints(points, false);
-    drawPoints(PredictedPoints, true);
+    drawPoints(predictedPoints, true);
     points = [];
-    PredictedPoints = [];
+    predictedPoints = [];
 
-    var extraWork = parseInt(document.getElementById('work').value);
-    if (extraWork > 0) {
-      var start = Date.now();
-      while(Date.now() - start < extraWork) {
-        ;
-      }
-    }
-  }
-
-  if (startTime)
     window.requestAnimationFrame(onFrame);
+  }
 }
 
 function startDraw()
 {
   startTime = performance.now();
-  eventCount = 0;
-  frameCounter = 0;
   canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
   window.requestAnimationFrame(onFrame);
 }
 
 function endDraw()
 {
-  var duration = performance.now() - startTime;
-  var rate = Math.round(eventCount / duration * 1000);
-  document.getElementById('rate').textContent = rate;
   startTime = undefined;
 }
 
@@ -83,7 +68,6 @@ function addPredicPoitednt(x, y, id)
 
 function addPoint(x, y, id)
 {
-  eventCount++;
   points.push({x:x, y:y, id:id});
 }
 
