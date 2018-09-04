@@ -5,9 +5,9 @@ var startTime;
 var canvas;
 var frameCounter;
 var colorCounter = {};
-const colors = ["rgba(255, 0, 0, 0.5)", "rgba(255, 128, 0, 0.5)", "rgba(255, 255, 0, 0.5)", "rgba(128, 255, 0, 0.5)",
-                "rgba(0, 255, 0, 0.5)", "rgba(0, 255, 128, 0.5)", "rgba(0, 255, 255, 0.5)", " rgba(0, 128, 255, 0.5)",
-                "rgba(0, 0, 255, 0.5)", "rgba(128, 0, 255, 0.5)", "rgba(255, 0, 255, 0.5)", "rgba(255, 0, 128, 0.5)"]
+const colors = ["rgba(255, 0, 0, ", "rgba(255, 128, 0, ", "rgba(255, 255, 0, ", "rgba(128, 255, 0, ",
+                "rgba(0, 255, 0, ", "rgba(0, 255, 128, ", "rgba(0, 255, 255, ", " rgba(0, 128, 255, ",
+                "rgba(0, 0, 255, ", "rgba(128, 0, 255, ", "rgba(255, 0, 255, ", "rgba(255, 0, 128, "]
 
 function GetContext() {
   return document.getElementById("canvas").getContext("2d"); 
@@ -29,9 +29,9 @@ function drawPoints(points, isPredicted) {
     if (!(points[i].id in colorCounter))
       colorCounter[points[i].id] = 0;
     if (isPredicted)
-      context.fillStyle = colors[colorCounter[points[i].id]];
+      context.fillStyle = colors[colorCounter[points[i].id]] + "1.0)";
     else {
-      context.fillStyle = colors[colorCounter[points[i].id] = (colorCounter[points[i].id] + 2)  % 12];
+      context.fillStyle = colors[colorCounter[points[i].id] = (colorCounter[points[i].id] + 2)  % 12] + "0.3)";
     }
     context.fill();
   }
