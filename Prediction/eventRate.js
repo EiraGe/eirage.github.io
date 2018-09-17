@@ -29,9 +29,9 @@ function drawPoints(points, isPredicted) {
     if (!(points[i].id in colorCounter))
       colorCounter[points[i].id] = 0;
     if (isPredicted)
-      context.fillStyle = colors[colorCounter[points[i].id]] + "1.0)";
+      context.fillStyle = colors[colorCounter[points[i].id]] + "0.5)";
     else {
-      context.fillStyle = colors[colorCounter[points[i].id] = (colorCounter[points[i].id] + 2)  % 12] + "0.3)";
+      context.fillStyle = colors[colorCounter[points[i].id] = (colorCounter[points[i].id] + 2)  % 12] + "0.8)";
     }
     context.fill();
   }
