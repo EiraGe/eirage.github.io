@@ -20,7 +20,10 @@
       <label><input id="coalescedEvent" type="checkbox"> coalescedEvent</label>
 
     </p>
-    <p><label><input id="disableScrollCheckbox" type="checkbox"> Disable Scrolling</label></p>
+    <p>
+      <label><input id="disableScrollCheckbox" type="checkbox"> Disable Scrolling</label>
+      <label><input id="touchstartPreventDefault" type="checkbox"> touchstart preventDefault</label>
+    </p>
     <table>
       <tr>
         <td>
@@ -219,6 +222,19 @@
         var print = document.getElementById("device-pixel-radio");
         print.innerText = "devicePixelRatio = " + window.devicePixelRatio;
       }
+
+      function PreventDefault(event) {
+        event.preventDefault()
+      }
+
+      touchstartPreventDefault.onpointerdown = function() {
+        if (!touchstartPreventDefault.checked) {
+          document.addEventListener("touchstart", PreventDefault, {passive:false});
+        } else {
+          document.removeEventListener("touchstart", PreventDefault, {passive:false});
+        }
+      }
+
     </script>
   </body>
 </html>
