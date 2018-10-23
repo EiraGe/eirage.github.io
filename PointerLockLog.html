@@ -6,235 +6,239 @@
 <html>
   <meta charset="utf-8">
   <body>
-    <p><a href="#" id="reqPointerLock">Request pointer lock</a></p>
+    <div id="title">
+      <p><a href="#" id="reqPointerLock">Request pointer lock</a></p>
 
-    <p>
-      <button onclick="ClearLogAndMovementSum()">Clear Log</button>
-      <button onclick="GetDsf()">Get device-pixel-radio</button> <span id="device-pixel-radio"></span>
-    </p>
-    <p>
-      <label><input id="mousemove" type="checkbox" checked> mousemove</label>
-      <label><input id="pointermove" type="checkbox"> pointermove</label>
-      <label><input id="mouseevents" type="checkbox"> mouseevents</label>
-      <label><input id="pointerevents" type="checkbox"> pointerevents</label>
-      <label><input id="coalescedEvent" type="checkbox"> coalescedEvent</label>
+      <p>
+        <button onclick="ClearLogAndMovementSum()">Clear Log</button>
+        <button onclick="GetDsf()">Get device-pixel-radio</button> <span id="device-pixel-radio"></span>
+      </p>
+      <p>
+        <label><input id="mousemove" type="checkbox" checked> mousemove</label>
+        <label><input id="pointermove" type="checkbox"> pointermove</label>
+        <label><input id="mouseevents" type="checkbox"> mouseevents</label>
+        <label><input id="pointerevents" type="checkbox"> pointerevents</label>
+        <label><input id="coalescedEvent" type="checkbox"> coalescedEvent</label>
 
-    </p>
-    <p>
-      <label><input id="disableScrollCheckbox" type="checkbox"> Disable Scrolling</label>
-      <label><input id="touchstartPreventDefault" type="checkbox"> touchstart preventDefault</label>
-    </p>
-    <table>
-      <tr>
-        <td>
-          <pre>eventType,</pre>
-        </td>
-        <td align="right">
-          <pre>clientX,</pre>
-        </td>
-        <td align="right">
-          <pre>screenX,</pre>
-        </td>
-        <td align="right">
-          <pre>movementX,</pre>
-        </td>
-        <td align="right">
-          <pre>movementXSum,</pre>
-        </td>
-        <td align="right">
-          <pre>clientY,</pre>
-        </td>
-        <td align="right">
-          <pre>screenY,</pre>
-        </td>
-        <td align="right">
-          <pre>movementY,</pre>
-        </td>
-        <td align="right">
-          <pre>movementYSum,</pre>
-        </td>
-        <td align="right">
-          <pre>stateChange</pre>
-        </td>
-        <td align="right">
-          <pre>coalescedEvents</pre>
-        </td>
-      </tr>    
-      <tr id="log">
-        <td>
-          <pre id="eventTypeOutput"></pre>
-        </td>
-        <td align="right">
-          <pre id="clientXOutput"></pre>
-        </td>
-        <td align="right">
-          <pre id="screenXOutput"></pre>
-        </td>
-        <td align="right">
-          <pre id="movementXOutput"></pre>
-        </td>
-        <td align="right">
-          <pre id="movementXSumOutput"></pre>
-        </td>
-        <td align="right">
-          <pre id="clientYOutput"></pre>
-        </td>
-        <td align="right">
-          <pre id="screenYOutput"></pre>
-        </td>
-        <td align="right">
-          <pre id="movementYOutput"></pre>
-        </td>
-        <td align="right">
-          <pre id="movementYSumOutput"></pre>
-        </td>
-        <td align="right">
-          <pre id="stateOutput"></pre>
-        </td>
-        <td align="right">
-          <pre id="coalescedCountOutput"></pre>
-        </td>
-      </tr>    
-    </table>
-    <script>
-      let maxLogSize = 200;
-      let MEList = ["mouseenter", "mouseleave", "mouseover", "mouseout", "mousemove", "mousedown", "mouseup"];
-      let PEList = ["pointerenter", "pointerleave", "pointerover", "pointerout", "pointermove", "pointerdown",
-                "pointerup", "gotpointercapture", "lostpointercapture"];
-      let Others = ['click', 'dblclick', 'auxclick', 'contextmenu', 'mousewheel', 'wheel'];
-      let lastX = 0;
-      let lastY = 0;
-      let movementXSum = 0;
-      let movementYSum = 0;
-
-      
-      ClearLogAndMovementSum();
-
-      function ClearLogAndMovementSum() {
-        console.log("Clear");
-        movementXSum = 0;
-        movementYSum = 0;
-        lastX = 0;
-        lastY = 0;
-        // Init the size of page so that scroll bars do not adjust.
-        let preElements = document.getElementById("log").getElementsByTagName("pre");
-        for (let i = 0; i < preElements.length; i++) {
-          preElements[i].innerText = ".\n".repeat(maxLogSize);
-        }
-      }
-
-      function pushStringToTopOfPreElement(value, element, color) {
-        let a = element.innerHTML.split("\n");
-        if (color == "red")
-          value = "<span style=\"color:red\">" + value + "</span>"
-        a.unshift(value);
-        a = a.slice(0, maxLogSize);
-        element.innerHTML = a.join("\n");
-      }
-
-      function UpdateLog(e, iscoalescedEvent) {
-        var colorX, colorY;
-          if (((mousemove.checked || mouseevents.checked) && e.type == "mousemove") ||
-              (!(mousemove.checked || mouseevents.checked) && e.type == "pointermove")) {
-            movementXSum += e.movementX;
-            movementYSum += e.movementY;
-            if (! document.pointerLockElement) {
-              if (lastX != 0 && e.screenX - lastX != e.movementX)
-                colorX = "red"
-              if (lastY != 0 && e.screenY - lastY != e.movementY)
-                colorY = "red"
-              lastX = e.screenX
-              lastY = e.screenY
-            }
-          }
-          pushStringToTopOfPreElement(e.type, eventTypeOutput);
-          pushStringToTopOfPreElement(e.clientX, clientXOutput);
-          pushStringToTopOfPreElement(e.screenX, screenXOutput);
-          pushStringToTopOfPreElement(e.movementX, movementXOutput, colorX);
-          pushStringToTopOfPreElement(movementXSum, movementXSumOutput);
-          pushStringToTopOfPreElement(e.clientY, clientYOutput);
-          pushStringToTopOfPreElement(e.screenY, screenYOutput);
-          pushStringToTopOfPreElement(e.movementY, movementYOutput, colorY);
-          pushStringToTopOfPreElement(movementYSum, movementYSumOutput);
-          pushStringToTopOfPreElement(document.pointerLockElement ? "locked" : "unlocked", stateOutput);
-          if (!iscoalescedEvent)
-            pushStringToTopOfPreElement((e.type == "pointermove" && e.getCoalescedEvents) ? e.getCoalescedEvents().length : "." , coalescedCountOutput);
-          else 
-            pushStringToTopOfPreElement("Yes", coalescedCountOutput);
-      }
-
-      function logEvent(e) {
-        if ((mouseevents.checked && MEList.includes(e.type)) ||
-            (mousemove.checked && e.type == "mousemove") ||
-            (pointerevents.checked && PEList.includes(e.type)) ||
-            (pointermove.checked && e.type == "pointermove") ||
-            ((pointerevents.checked || mouseevents.checked) && Others.includes(e.type))) {
-          if (e.type == "pointermove" && coalescedEvent.checked) {
-            e.getCoalescedEvents().forEach(function(ce) {
-              UpdateLog(ce, true);
-            });
-          } else {
-            UpdateLog(e)
-          }
-        }
-      }
-
-      MEList.forEach(function(eventName) {
-        document.addEventListener(eventName, function(e) {
-          logEvent(e);
-        });
-      })
-
-      PEList.forEach(function(eventName) {
-        document.addEventListener(eventName, function(e) {
-          logEvent(e);
-        });
-      })
-
-      Others.forEach(function(eventName) {
-        document.addEventListener(eventName, function(e) {
-          logEvent(e);
-        });
-      })
-
-      document.addEventListener('pointerlockchange', function(e) {
-        pushStringToTopOfPreElement("pointerlockchange", eventTypeOutput);
-        pushStringToTopOfPreElement(".", clientXOutput);
-        pushStringToTopOfPreElement(".", screenXOutput);
-        pushStringToTopOfPreElement(".", movementXOutput);
-        pushStringToTopOfPreElement(movementXSum, movementXSumOutput);
-        pushStringToTopOfPreElement(".", clientYOutput);
-        pushStringToTopOfPreElement(".", screenYOutput);
-        pushStringToTopOfPreElement(".", movementYOutput);
-        pushStringToTopOfPreElement(movementYSum, movementYSumOutput);
-        pushStringToTopOfPreElement("change: " + (document.pointerLockElement ? "locked" : "unlocked"), stateOutput);
-      });
-
-      document.getElementById('reqPointerLock').addEventListener('click', function() {
-        document.body.requestPointerLock();
-      });
-
-      disableScrollCheckbox.onchange = () => {
-        document.body.style.overflow = disableScrollCheckbox.checked ? "hidden" : "";
-      }
-
-      function GetDsf() {
-        var print = document.getElementById("device-pixel-radio");
-        print.innerText = "devicePixelRatio = " + window.devicePixelRatio;
-      }
-
-      function PreventDefault(event) {
-        event.preventDefault()
-      }
-
-      touchstartPreventDefault.onpointerdown = function() {
-        if (!touchstartPreventDefault.checked) {
-          document.addEventListener("touchstart", PreventDefault, {passive:false});
-        } else {
-          document.removeEventListener("touchstart", PreventDefault, {passive:false});
-        }
-      }
-
-    </script>
+      </p>
+      <p>
+        <label><input id="disableScrollCheckbox" type="checkbox"> Disable Scrolling</label>
+        <label><input id="touchstartPreventDefault" type="checkbox"> touchstart preventDefault</label>
+      </p>
+    </div>
+    <div id="LogArea">
+      <table>
+        <tr>
+          <td>
+            <pre>eventType,</pre>
+          </td>
+          <td align="right">
+            <pre>clientX,</pre>
+          </td>
+          <td align="right">
+            <pre>screenX,</pre>
+          </td>
+          <td align="right">
+            <pre>movementX,</pre>
+          </td>
+          <td align="right">
+            <pre>movementXSum,</pre>
+          </td>
+          <td align="right">
+            <pre>clientY,</pre>
+          </td>
+          <td align="right">
+            <pre>screenY,</pre>
+          </td>
+          <td align="right">
+            <pre>movementY,</pre>
+          </td>
+          <td align="right">
+            <pre>movementYSum,</pre>
+          </td>
+          <td align="right">
+            <pre>stateChange</pre>
+          </td>
+          <td align="right">
+            <pre>coalescedEvents</pre>
+          </td>
+        </tr>    
+        <tr id="log">
+          <td>
+            <pre id="eventTypeOutput"></pre>
+          </td>
+          <td align="right">
+            <pre id="clientXOutput"></pre>
+          </td>
+          <td align="right">
+            <pre id="screenXOutput"></pre>
+          </td>
+          <td align="right">
+            <pre id="movementXOutput"></pre>
+          </td>
+          <td align="right">
+            <pre id="movementXSumOutput"></pre>
+          </td>
+          <td align="right">
+            <pre id="clientYOutput"></pre>
+          </td>
+          <td align="right">
+            <pre id="screenYOutput"></pre>
+          </td>
+          <td align="right">
+            <pre id="movementYOutput"></pre>
+          </td>
+          <td align="right">
+            <pre id="movementYSumOutput"></pre>
+          </td>
+          <td align="right">
+            <pre id="stateOutput"></pre>
+          </td>
+          <td align="right">
+            <pre id="coalescedCountOutput"></pre>
+          </td>
+        </tr>    
+      </table>
+    </div>
   </body>
+  <script>
+    let maxLogSize = 200;
+    let MEList = ["mouseenter", "mouseleave", "mouseover", "mouseout", "mousemove", "mousedown", "mouseup"];
+    let PEList = ["pointerenter", "pointerleave", "pointerover", "pointerout", "pointermove", "pointerdown",
+              "pointerup", "gotpointercapture", "lostpointercapture"];
+    let Others = ['click', 'dblclick', 'auxclick', 'contextmenu', 'mousewheel', 'wheel'];
+    let lastX = 0;
+    let lastY = 0;
+    let movementXSum = 0;
+    let movementYSum = 0;
+
+    
+    ClearLogAndMovementSum();
+
+    function ClearLogAndMovementSum() {
+      console.log("Clear");
+      movementXSum = 0;
+      movementYSum = 0;
+      lastX = 0;
+      lastY = 0;
+      // Init the size of page so that scroll bars do not adjust.
+      let preElements = document.getElementById("log").getElementsByTagName("pre");
+      for (let i = 0; i < preElements.length; i++) {
+        preElements[i].innerText = ".\n".repeat(maxLogSize);
+      }
+    }
+
+    function pushStringToTopOfPreElement(value, element, color) {
+      let a = element.innerHTML.split("\n");
+      if (color == "red")
+        value = "<span style=\"color:red\">" + value + "</span>"
+      a.unshift(value);
+      a = a.slice(0, maxLogSize);
+      element.innerHTML = a.join("\n");
+    }
+
+    function UpdateLog(e, iscoalescedEvent) {
+        var colorX, colorY;
+        if (((mousemove.checked || mouseevents.checked) && e.type == "mousemove") ||
+            (!(mousemove.checked || mouseevents.checked) && e.type == "pointermove")) {
+          movementXSum += e.movementX;
+          movementYSum += e.movementY;
+          if (! document.pointerLockElement) {
+            if (lastX != 0 && e.screenX - lastX != e.movementX)
+              colorX = "red"
+            if (lastY != 0 && e.screenY - lastY != e.movementY)
+              colorY = "red"
+            lastX = e.screenX
+            lastY = e.screenY
+          }
+        }
+        pushStringToTopOfPreElement(e.type, eventTypeOutput);
+        pushStringToTopOfPreElement(e.clientX, clientXOutput);
+        pushStringToTopOfPreElement(e.screenX, screenXOutput);
+        pushStringToTopOfPreElement(e.movementX, movementXOutput, colorX);
+        pushStringToTopOfPreElement(movementXSum, movementXSumOutput);
+        pushStringToTopOfPreElement(e.clientY, clientYOutput);
+        pushStringToTopOfPreElement(e.screenY, screenYOutput);
+        pushStringToTopOfPreElement(e.movementY, movementYOutput, colorY);
+        pushStringToTopOfPreElement(movementYSum, movementYSumOutput);
+        pushStringToTopOfPreElement(document.pointerLockElement ? "locked" : "unlocked", stateOutput);
+        if (!iscoalescedEvent)
+          pushStringToTopOfPreElement((e.type == "pointermove" && e.getCoalescedEvents) ? e.getCoalescedEvents().length : "." , coalescedCountOutput);
+        else 
+          pushStringToTopOfPreElement("Yes", coalescedCountOutput);
+    }
+
+    function logEvent(e) {
+      if ((mouseevents.checked && MEList.includes(e.type)) ||
+          (mousemove.checked && e.type == "mousemove") ||
+          (pointerevents.checked && PEList.includes(e.type)) ||
+          (pointermove.checked && e.type == "pointermove") ||
+          ((pointerevents.checked || mouseevents.checked) && Others.includes(e.type))) {
+        if (e.type == "pointermove" && coalescedEvent.checked) {
+          e.getCoalescedEvents().forEach(function(ce) {
+            UpdateLog(ce, true);
+          });
+        } else {
+          UpdateLog(e)
+        }
+      }
+    }
+
+    MEList.forEach(function(eventName) {
+      document.addEventListener(eventName, function(e) {
+        logEvent(e);
+      });
+    })
+
+    PEList.forEach(function(eventName) {
+      document.addEventListener(eventName, function(e) {
+        logEvent(e);
+      });
+    })
+
+    Others.forEach(function(eventName) {
+      document.addEventListener(eventName, function(e) {
+        logEvent(e);
+      });
+    })
+
+    document.addEventListener('pointerlockchange', function(e) {
+      pushStringToTopOfPreElement("pointerlockchange", eventTypeOutput);
+      pushStringToTopOfPreElement(".", clientXOutput);
+      pushStringToTopOfPreElement(".", screenXOutput);
+      pushStringToTopOfPreElement(".", movementXOutput);
+      pushStringToTopOfPreElement(movementXSum, movementXSumOutput);
+      pushStringToTopOfPreElement(".", clientYOutput);
+      pushStringToTopOfPreElement(".", screenYOutput);
+      pushStringToTopOfPreElement(".", movementYOutput);
+      pushStringToTopOfPreElement(movementYSum, movementYSumOutput);
+      pushStringToTopOfPreElement("change: " + (document.pointerLockElement ? "locked" : "unlocked"), stateOutput);
+    });
+
+    document.getElementById('reqPointerLock').addEventListener('click', function() {
+      document.body.requestPointerLock();
+    });
+
+    disableScrollCheckbox.onchange = () => {
+      document.body.style.overflow = disableScrollCheckbox.checked ? "hidden" : "";
+    }
+
+    function GetDsf() {
+      var print = document.getElementById("device-pixel-radio");
+      print.innerText = "devicePixelRatio = " + window.devicePixelRatio;
+    }
+
+    function PreventDefault(event) {
+      event.preventDefault();
+    }
+
+    touchstartPreventDefault.onchange = function() {
+      if (touchstartPreventDefault.checked) {
+        LogArea.addEventListener("touchstart", PreventDefault, {passive:false});
+      } else {
+        LogArea.removeEventListener("touchstart", PreventDefault, {passive:false});
+      }
+    }
+
+  </script>
 </html>
