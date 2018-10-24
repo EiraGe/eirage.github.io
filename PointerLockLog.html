@@ -108,8 +108,8 @@
     let PEList = ["pointerenter", "pointerleave", "pointerover", "pointerout", "pointermove", "pointerdown",
               "pointerup", "gotpointercapture", "lostpointercapture"];
     let Others = ['click', 'dblclick', 'auxclick', 'contextmenu', 'mousewheel', 'wheel'];
-    let lastX = 0;
-    let lastY = 0;
+    let lastX = [];
+    let lastY = [];
     let movementXSum = 0;
     let movementYSum = 0;
 
@@ -120,8 +120,8 @@
       console.log("Clear");
       movementXSum = 0;
       movementYSum = 0;
-      lastX = 0;
-      lastY = 0;
+      lastX = [];
+      lastY = [];
       // Init the size of page so that scroll bars do not adjust.
       let preElements = document.getElementById("log").getElementsByTagName("pre");
       for (let i = 0; i < preElements.length; i++) {
@@ -138,22 +138,26 @@
       element.innerHTML = a.join("\n");
     }
 
+
     function UpdateLog(e, iscoalescedEvent) {
         var colorX, colorY;
-        if (((mousemove.checked || mouseevents.checked) && e.type == "mousemove") ||
-            (!(mousemove.checked || mouseevents.checked) && e.type == "pointermove")) {
-          movementXSum += e.movementX;
-          movementYSum += e.movementY;
-          if (! document.pointerLockElement) {
-            if (lastX != 0 && e.screenX - lastX != e.movementX)
+        let id = e.pointerId ? 0 : e.pointerId;
+        if (e.type == "mousemove" || e.type == "pointermove") {
+          if (((mousemove.checked || mouseevents.checked) && e.type == "mousemove") ||
+              (!(mousemove.checked || mouseevents.checked) && e.type == "pointermove" && e.isPrimary)) {
+            movementXSum += e.movementX;
+            movementYSum += e.movementY;
+          }
+          if (!document.pointerLockElement) {
+            if (id in lastX && e.screenX - lastX[id] != e.movementX)
               colorX = "red"
-            if (lastY != 0 && e.screenY - lastY != e.movementY)
+            if (id in lastY && e.screenY - lastY[id] != e.movementY)
               colorY = "red"
-            lastX = e.screenX
-            lastY = e.screenY
+            lastX[id] = e.screenX
+            lastY[id] = e.screenY
           }
         }
-        pushStringToTopOfPreElement(e.type, eventTypeOutput);
+        pushStringToTopOfPreElement(e.type + (e.pointerId ? ("." + e.pointerId) : ""), eventTypeOutput);
         pushStringToTopOfPreElement(e.clientX, clientXOutput);
         pushStringToTopOfPreElement(e.screenX, screenXOutput);
         pushStringToTopOfPreElement(e.movementX, movementXOutput, colorX);
