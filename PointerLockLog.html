@@ -141,7 +141,7 @@
 
     function UpdateLog(e, iscoalescedEvent) {
         var colorX, colorY;
-        let id = e.pointerId ? 0 : e.pointerId;
+        let id = e.pointerId ? e.pointerId : 0;
         if (e.type == "mousemove" || e.type == "pointermove") {
           if (((mousemove.checked || mouseevents.checked) && e.type == "mousemove") ||
               (!(mousemove.checked || mouseevents.checked) && e.type == "pointermove" && e.isPrimary)) {
