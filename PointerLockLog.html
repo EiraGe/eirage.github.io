@@ -108,6 +108,7 @@
     let PEList = ["pointerenter", "pointerleave", "pointerover", "pointerout", "pointermove", "pointerdown",
               "pointerup", "gotpointercapture", "lostpointercapture"];
     let Others = ['click', 'dblclick', 'auxclick', 'contextmenu', 'mousewheel', 'wheel'];
+    let epsilon = 0.0000001;
     let lastX = [];
     let lastY = [];
     let movementXSum = 0;
@@ -149,9 +150,9 @@
             movementYSum += e.movementY;
           }
           if (!document.pointerLockElement) {
-            if (id in lastX && e.screenX - lastX[id] != e.movementX)
+            if (id in lastX && Math.abs((e.screenX - lastX[id]) - e.movementX > epsilon))
               colorX = "red"
-            if (id in lastY && e.screenY - lastY[id] != e.movementY)
+            if (id in lastY && Math.abs((e.screenY - lastY[id]) - e.movementY > epsilon))
               colorY = "red"
             lastX[id] = e.screenX
             lastY[id] = e.screenY
