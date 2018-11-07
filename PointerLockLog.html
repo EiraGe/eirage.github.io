@@ -150,9 +150,9 @@
             movementYSum += e.movementY;
           }
           if (!document.pointerLockElement) {
-            if (id in lastX && Math.abs((e.screenX - lastX[id]) - e.movementX > epsilon))
+            if (id in lastX && (Math.abs((e.screenX - lastX[id]) - e.movementX) > epsilon))
               colorX = "red"
-            if (id in lastY && Math.abs((e.screenY - lastY[id]) - e.movementY > epsilon))
+            if (id in lastY && (Math.abs((e.screenY - lastY[id]) - e.movementY) > epsilon))
               colorY = "red"
             lastX[id] = e.screenX
             lastY[id] = e.screenY
