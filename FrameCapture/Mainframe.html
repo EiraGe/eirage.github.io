@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
+</head>
   <style type="text/css">
   	body {
   		user-select: none;
   	}
   </style>
 <body>
-	<div> same origin frame</div>
-	<iframe src = "https://eirage.github.io/Mainframe" style="width:60%; height: 60%"></iframe>
+	<div> mainframe</div>
+	<iframe src = "https://eirage.github.io/iframe1" style="width:60%; height:500px"></iframe>
 	<script type="text/javascript">
 		document.addEventListener("pointermove", function(e){
-			console.log(e.target)
+			console.log("main frame")
 		})
 	</script>
 </body>
