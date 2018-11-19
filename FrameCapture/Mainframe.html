@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
+  <title>Main Frame</title>
 </head>
   <style type="text/css">
     body {
@@ -10,11 +11,15 @@
     }
   </style>
 <body>
-    <div> mainframe</div>
+    <div>Main Frame</div>
     <iframe src = "https://eirage.github.io/FrameCapture/iframe1" style="width:60%; height:500px"></iframe>
     <script type="text/javascript">
-        document.addEventListener("pointermove", function(e){
-            console.log("main frame")
-        })
+        let PEList = ["pointerenter", "pointerleave", "pointerover", "pointerout", "pointermove", "pointerdown",
+              "pointerup", "gotpointercapture", "lostpointercapture"];
+        PEList.forEach(function(eventName) {
+          document.addEventListener(eventName, function(e) {
+            console.log(document.title + " " + e.type);
+          });
+        });
     </script>
 </body>

@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
+  <title>iframe 2</title>
 </head>
   <style type="text/css">
   	body {
@@ -12,8 +13,12 @@
 <body>
 	<div>iframe 2</div>
 	<script type="text/javascript">
-		document.addEventListener("pointermove", function(e){
-			console.log("iframe 2")
-		})
+        let PEList = ["pointerenter", "pointerleave", "pointerover", "pointerout", "pointermove", "pointerdown",
+              "pointerup", "gotpointercapture", "lostpointercapture"];
+        PEList.forEach(function(eventName) {
+          document.addEventListener(eventName, function(e) {
+            console.log(document.title + " " + e.type);
+          });
+        });
 	</script>
 </body>
