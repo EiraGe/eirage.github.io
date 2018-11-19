@@ -6,6 +6,11 @@
 </head>
 <html>
   <meta charset="utf-8">
+  <style type="text/css">
+    body{
+      user-select: none;
+    }
+  </style>
   <body>
     <div>
       <p><a href="#" id="reqPointerLock">Request pointer lock</a></p>
@@ -23,8 +28,9 @@
 
       </p>
       <p>
-        <label><input id="disableScrollCheckbox" type="checkbox"> Disable Scrolling</label>
         <label><input id="touchstartPreventDefault" type="checkbox"> touchstart preventDefault</label>
+        <label><input id="disableScrollCheckbox" type="checkbox"> Disable Scrolling</label>
+        <label><input id="disableSelection" type="checkbox" checked> Disable Selection</label>
       </p>
     </div>
     <div id="LogArea">
@@ -246,5 +252,8 @@
       }
     }
 
+    disableSelection.onchange = () => {
+      document.body.style.userSelect = disableSelection.checked ? "none" : "auto";
+    }
   </script>
 </html>
