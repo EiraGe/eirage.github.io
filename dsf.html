@@ -9,8 +9,12 @@
     function Get() {
       var print = document.getElementById("output");
       print.innerHTML = "devicePixelRatio = " + window.devicePixelRatio + "<br>";
+      print.innerHTML += "pageZoomRatio = " + window.pageZoomRatio + "<br>";
       print.innerHTML += "innerWidth = " + window.innerWidth + "<br>";
     }
+    window.addEventListener("resize", () => {
+      Get();
+    })
   </script>
   <div><button onclick="Get()">Get</button></div>
   <div id="output"></div>
