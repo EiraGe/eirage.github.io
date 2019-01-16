@@ -1,12 +1,7 @@
 var points = [];
-var predictedPoints = [];
-var coalescedPoints = [];
+var prediction = [];
 var startTime;
 var canvas;
-var colorCounter = {};
-const colors = ["rgba(255, 128, 0, ", "rgba(255, 255, 0, ", "rgba(128, 255, 0, ",
-                "rgba(0, 255, 0, ", "rgba(0, 255, 128, ", "rgba(0, 255, 255, ", " rgba(0, 128, 255, ",
-                "rgba(0, 0, 255, ", "rgba(128, 0, 255, ", "rgba(255, 0, 255, ", "rgba(255, 0, 128, ", "rgba(255, 0, 0, ", ]
 
 function GetContext() {
   return document.getElementById("canvas").getContext("2d"); 
@@ -16,8 +11,6 @@ window.addEventListener('resize', function(e) {
     InitializeCanvas();
 });
 
-var points = [];
-var prediction = [];
 
 function drawPoints(points) {
   let radius = 4.0;
@@ -60,6 +53,7 @@ window.onload = function() {
     startDraw();
   })
   canvas.addEventListener('pointerup', function(event) {
+    drawPoints(points);    
     endDraw();
   })
   canvas.addEventListener('pointermove', function(event) {
