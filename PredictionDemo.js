@@ -4,7 +4,7 @@ var startTime;
 var canvas;
 
 function GetContext() {
-  return document.getElementById("canvas").getContext("2d"); 
+  return document.getElementById("canvas").getContext("2d");
 }   
 
 window.addEventListener('resize', function(e) {
@@ -53,7 +53,8 @@ window.onload = function() {
     startDraw();
   })
   canvas.addEventListener('pointerup', function(event) {
-    drawPoints(points);    
+    prediction = [];
+    window.requestAnimationFrame(onFrame);
     endDraw();
   })
   canvas.addEventListener('pointermove', function(event) {
