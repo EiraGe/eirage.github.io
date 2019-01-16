@@ -88,7 +88,7 @@ function addPoint(x, y, id)
 
 window.onload = function() {
   canvas = document.getElementById('canvas');
-  if (window.PointerEvent) {    
+  if (window.PointerEvent) {
     startDraw();
     canvas.addEventListener('pointerdown', function(e) {
       addPoint(e.pageX, e.pageY, e.pointerId);
@@ -109,9 +109,6 @@ window.onload = function() {
       e.preventDefault();
     });
     canvas.addEventListener('pointerup', function(e) {
-      e.preventDefault();
-    });
-    canvas.addEventListener('touchstart', function(e) {
       e.preventDefault();
     });
     canvas.addEventListener('contextmenu', function(e) {
