@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html id>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
@@ -11,16 +11,9 @@
     }
   </style>
 <body>
-    <div>eirage.github.io/MainFrame</div>
-    <iframe src = "https://eirage.github.io/FrameCapture/iframe1" style="width:60%; height:500px"></iframe>
+    <div id="target">eirage.github.io/MainFrame</div>
+    <label><input id="capturecheckbox" type="checkbox"> set pointer capture on pointerdown</label> <br>
+    <iframe src = "iframe1.html" style="width:60%; height:500px"></iframe>
     <iframe src = "https://jsbin.com/bofiqu/1/quiet" style="width:30%; height:400"></iframe>
-    <script type="text/javascript">
-        let PEList = ["pointerenter", "pointerleave", "pointerover", "pointerout", "pointermove", "pointerdown",
-              "pointerup", "gotpointercapture", "lostpointercapture"];
-        PEList.forEach(function(eventName) {
-          document.addEventListener(eventName, function(e) {
-            console.log(document.title + " " + e.type);
-          });
-        });
-    </script>
+    <script src=Capture.js></script>
 </body>

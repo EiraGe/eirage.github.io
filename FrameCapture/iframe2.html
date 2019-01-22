@@ -11,14 +11,7 @@
   	}
   </style>
 <body>
-	<div>eirage.github.io/iframe2</div>
-	<script type="text/javascript">
-        let PEList = ["pointerenter", "pointerleave", "pointerover", "pointerout", "pointermove", "pointerdown",
-              "pointerup", "gotpointercapture", "lostpointercapture"];
-        PEList.forEach(function(eventName) {
-          document.addEventListener(eventName, function(e) {
-            console.log(document.title + " " + e.type);
-          });
-        });
-	</script>
+	<div id="target">eirage.github.io/iframe2</div>
+  <label><input id="capturecheckbox" type="checkbox">set pointer capture on pointerdown</label> <br>
+  <script src=Capture.js></script>
 </body>
