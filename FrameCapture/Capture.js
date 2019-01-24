@@ -1,4 +1,3 @@
-
 let PEList = ["pointerenter", "pointerleave", "pointerover", "pointerout", "pointermove", "pointerdown",
       "pointerup", "gotpointercapture", "lostpointercapture"];
 PEList.forEach(function(eventName) {
@@ -7,12 +6,25 @@ PEList.forEach(function(eventName) {
   });
 });
 
-function setCapture(event) {
+function SetCapture(event) {
   event.target.setPointerCapture(event.pointerId);
 }
+
+function PreventDefault(event) {
+    console.log("hello")
+    event.preventDefault();
+}
+
 capturecheckbox.onchange = () => {
   if (capturecheckbox.checked)
-    document.addEventListener("pointerdown", setCapture);
-  else 
-    document.removeEventListener("pointerdown", setCapture);
+    document.addEventListener("pointerdown", SetCapture);
+  else
+    document.removeEventListener("pointerdown", SetCapture);
+}
+
+preventdefaultcheckbox.onchange = () => {
+  if (preventdefaultcheckbox.checked)
+    document.addEventListener("pointerdown", PreventDefault);
+  else
+    document.removeEventListener("pointerdown", PreventDefault);
 }
