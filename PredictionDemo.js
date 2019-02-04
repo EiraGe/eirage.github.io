@@ -12,7 +12,7 @@ window.addEventListener('resize', function(e) {
 });
 
 
-function drawPoints(points, predict) {
+function drawPoints(points, predictions) {
   if (points.length > 0) {
     var context = canvas.getContext('2d');
     context.lineWidth = 3 * scale;
@@ -24,13 +24,13 @@ function drawPoints(points, predict) {
       context.lineTo(points[i].x * scale, points[i].y * scale);
     }
     context.stroke();
-
-
+  }
+  if (predictions.length > 0) {
     context.strokeStyle = 'rgba(150,0,0,0.5)';
     context.beginPath();
     context.moveTo(points[points.length - 1].x * scale, points[points.length - 1].y * scale);
-    for (var i = 1; i < predict.length; ++i) {
-      context.lineTo(predict[i].x * scale, predict[i].y * scale);
+    for (var i = 1; i < predictions.length; ++i) {
+      context.lineTo(predictions[i].x * scale, predictions[i].y * scale);
     }
     context.stroke();
   }
@@ -44,34 +44,29 @@ function onFrame() {
   }
 }
 
-function startDraw() {
+function startDraw(event) {
   startTime = performance.now();
-  points = [];
-  canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-  window.requestAnimationFrame(onFrame);
+  points = [{x:event.pageX, y:event.pageY}];
+  onFrame();
 }
 
-function endDraw() {
+function endDraw(event) {
+  prediction = [];
+  points.push({x:event.pageX, y:event.pageY});
+  onFrame();
   startTime = undefined;
 }
 
 window.onload = function() {
   canvas = document.getElementById('canvas');
-  canvas.addEventListener('pointerdown', function(event) {
-    startDraw();
-  })
-  canvas.addEventListener('pointerup', function(event) {
-    prediction = [];
-    window.requestAnimationFrame(onFrame);
-    endDraw();
-  })
+  canvas.addEventListener('pointerdown', startDraw);
+  canvas.addEventListener('pointerup', endDraw);
   canvas.addEventListener('pointermove', function(event) {
     if (startTime && event.isPrimary) {
-      prediction = [];
       for (let e of event.getCoalescedEvents())
         points.push({x:e.pageX, y:e.pageY});
-      predicted_points = event.getPredictedEvents();
-      for (let e of predicted_points)
+      prediction = [];
+      for (let e of event.getPredictedEvents())
         prediction.push({x:e.pageX, y:e.pageY});
     }
   });
