@@ -66,7 +66,7 @@ window.onload = function() {
     endDraw();
   })
   canvas.addEventListener('pointermove', function(event) {
-    if (startTime) {
+    if (startTime && event.isPrimary) {
       prediction = [];
       for (let e of event.getCoalescedEvents())
         points.push({x:e.pageX, y:e.pageY});
