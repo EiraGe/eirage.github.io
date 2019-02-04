@@ -12,7 +12,7 @@ window.addEventListener('resize', function(e) {
 });
 
 
-function drawPoints(points) {
+function drawPoints(points, predict) {
   if (points.length > 0) {
     var context = canvas.getContext('2d');
     context.lineWidth = 3;
@@ -24,14 +24,22 @@ function drawPoints(points) {
       context.lineTo(points[i].x * scale, points[i].y * scale);
     }
     context.stroke();
+
+
+    context.strokeStyle = 'rgba(150,0,0,0.5)';
+    context.beginPath();
+    context.moveTo(points[points.length - 1].x * scale, points[points.length - 1].y * scale);
+    for (var i = 1; i < predict.length; ++i) {
+      context.lineTo(predict[i].x * scale, predict[i].y * scale);
+    }
+    context.stroke();
   }
 }
 
 function onFrame() {
   if (startTime) {
-    if (points)
-      canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-    drawPoints(points.concat(prediction));
+    canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+    drawPoints(points, prediction);
     window.requestAnimationFrame(onFrame);
   }
 }
