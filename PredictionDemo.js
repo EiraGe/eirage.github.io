@@ -15,7 +15,7 @@ window.addEventListener('resize', function(e) {
 function drawPoints(points, predict) {
   if (points.length > 0) {
     var context = canvas.getContext('2d');
-    context.lineWidth = 3;
+    context.lineWidth = 3 * scale;
     context.strokeStyle = 'rgba(0,0,100,0.5)';
 
     context.beginPath();
