@@ -21,11 +21,11 @@
         width: 100%;
         height: 100%;
       }
-      #results {
+      #controls {
         position: absolute;
         left: 0;
         bottom: 0;
-        height: 50px;
+        height: 25px;
         background-color: grey;
         width: 100%;
       }
@@ -36,6 +36,15 @@
     <div id=container>
       <canvas id="canvas">
       </canvas>
+    </div>    
+    <div id=controls>
+      <select id="drawingtype">
+        <option value="Compare" selected="selected">Compare</option>
+        <option value="CoalescedEventsOnly">Coalesce events</option>
+        <option value="WithPrediction">Coalesce + prediction</option>
+      </select>
+
+      <button id="clear" tyle=button onclick="InitializeCanvas()">Clear</button>
     </div>
   </body>
 </html>

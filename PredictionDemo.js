@@ -26,7 +26,8 @@ function drawPoints(points, predictions) {
     context.stroke();
   }
   if (predictions.length > 0) {
-    context.strokeStyle = 'rgba(150,0,0,0.5)';
+    if (drawingtype.options[drawingtype.selectedIndex].value != "WithPrediction")
+      context.strokeStyle = 'rgba(150,0,0,0.5)';
     context.beginPath();
     context.moveTo(points[points.length - 1].x * scale, points[points.length - 1].y * scale);
     for (var i = 1; i < predictions.length; ++i) {
@@ -47,7 +48,8 @@ function onFrame() {
 function startDraw(event) {
   startTime = performance.now();
   points = [{x:event.pageX, y:event.pageY}];
-  onFrame();
+  prediction = [];
+  window.requestAnimationFrame(onFrame);
 }
 
 function endDraw(event) {
@@ -65,9 +67,11 @@ window.onload = function() {
     if (startTime && event.isPrimary) {
       for (let e of event.getCoalescedEvents())
         points.push({x:e.pageX, y:e.pageY});
-      prediction = [];
-      for (let e of event.getPredictedEvents())
-        prediction.push({x:e.pageX, y:e.pageY});
+      if (drawingtype.options[drawingtype.selectedIndex].value != "CoalescedEventsOnly") {
+        prediction = [];
+        for (let e of event.getPredictedEvents())
+          prediction.push({x:e.pageX, y:e.pageY});
+      }
     }
   });
   canvas.addEventListener('contextmenu', function(e) {
@@ -85,4 +89,7 @@ function InitializeCanvas() {
   scale = window.devicePixelRatio ? window.devicePixelRatio : 1;
   elem.width = container.clientWidth * scale;
   elem.height = container.clientHeight * scale;
+
+  points = [];
+  prediction = [];
 }
