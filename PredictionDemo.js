@@ -46,6 +46,9 @@ function onFrame() {
 }
 
 function startDraw(event) {
+  if (!event.isPrimary)
+      return;
+
   startTime = performance.now();
   points = [{x:event.pageX, y:event.pageY}];
   prediction = [];
@@ -53,6 +56,9 @@ function startDraw(event) {
 }
 
 function endDraw(event) {
+  if (!event.isPrimary)
+      return;
+    
   prediction = [];
   points.push({x:event.pageX, y:event.pageY});
   onFrame();
@@ -64,7 +70,10 @@ window.onload = function() {
   canvas.addEventListener('pointerdown', startDraw);
   canvas.addEventListener('pointerup', endDraw);
   canvas.addEventListener('pointermove', function(event) {
-    if (startTime && event.isPrimary) {
+    if (!event.isPrimary)
+      return;
+
+    if (startTime) {
       for (let e of event.getCoalescedEvents())
         points.push({x:e.pageX, y:e.pageY});
       if (drawingtype.options[drawingtype.selectedIndex].value != "CoalescedEventsOnly") {
