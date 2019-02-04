@@ -29,7 +29,7 @@ function drawPoints(points) {
 
 function onFrame() {
   if (startTime) {
-    if (prediction)
+    if (points)
       canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
     drawPoints(points.concat(prediction));
     window.requestAnimationFrame(onFrame);
