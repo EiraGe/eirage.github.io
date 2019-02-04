@@ -26,7 +26,7 @@ function drawPoints(points, predictions) {
     context.stroke();
   }
   if (predictions.length > 0) {
-    if (drawingtype.options[drawingtype.selectedIndex].value != "WithPrediction")
+    if (drawingtype.options[drawingtype.selectedIndex].value == "Compare")
       context.strokeStyle = 'rgba(150,0,0,0.5)';
     context.beginPath();
     context.moveTo(points[points.length - 1].x * scale, points[points.length - 1].y * scale);
@@ -58,7 +58,7 @@ function startDraw(event) {
 function endDraw(event) {
   if (!event.isPrimary)
       return;
-    
+
   prediction = [];
   points.push({x:event.pageX, y:event.pageY});
   onFrame();
@@ -74,12 +74,16 @@ window.onload = function() {
       return;
 
     if (startTime) {
-      for (let e of event.getCoalescedEvents())
-        points.push({x:e.pageX, y:e.pageY});
-      if (drawingtype.options[drawingtype.selectedIndex].value != "CoalescedEventsOnly") {
-        prediction = [];
-        for (let e of event.getPredictedEvents())
-          prediction.push({x:e.pageX, y:e.pageY});
+      if (drawingtype.options[drawingtype.selectedIndex].value == "AggregateOnly") {
+        points.push({x: event.pageX, y:event.pageY});
+      } else {
+        for (let e of event.getCoalescedEvents())
+          points.push({x:e.pageX, y:e.pageY});
+        if (["Compare", "WithPrediction"].indexOf(drawingtype.options[drawingtype.selectedIndex].value) >= 0) {
+          prediction = [];
+          for (let e of event.getPredictedEvents())
+            prediction.push({x:e.pageX, y:e.pageY});
+        }
       }
     }
   });
