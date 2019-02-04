@@ -13,16 +13,17 @@ window.addEventListener('resize', function(e) {
 
 
 function drawPoints(points) {
-  let radius = 4.0;
-  var context = canvas.getContext('2d');
-  context.lineWidth = 2;
-  context.fillStyle = 'rgba(0,0,100,0.5)';
+  if (points.length > 0) {
+    var context = canvas.getContext('2d');
+    context.lineWidth = 3;
+    context.strokeStyle = 'rgba(0,0,100,0.5)';
 
-  for (var i = 0; i < points.length; ++i) {
     context.beginPath();
-    context.arc(points[i].x * scale, points[i].y * scale, radius * scale, 0, 2 * 3.14159, false);
-    context.fill();
-    context.closePath();
+    context.moveTo(points[0].x * scale, points[0].y * scale);
+    for (var i = 1; i < points.length; ++i) {
+      context.lineTo(points[i].x * scale, points[i].y * scale);
+    }
+    context.stroke();
   }
 }
 
@@ -30,8 +31,7 @@ function onFrame() {
   if (startTime) {
     if (prediction)
       canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-    drawPoints(points);
-    drawPoints(prediction);
+    drawPoints(points.concat(prediction));
     window.requestAnimationFrame(onFrame);
   }
 }
