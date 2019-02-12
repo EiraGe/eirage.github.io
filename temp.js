@@ -28,10 +28,10 @@ function drawSquare() {
 function drawPoints(points, predictions) {
   var context = canvas.getContext('2d');
   if (points.length > 0) {
+    context.beginPath();
     context.lineWidth = 3 * scale;
     context.strokeStyle = 'rgba(0,0,100,0.5)';
 
-    context.beginPath();
     context.moveTo(points[0].x * scale, points[0].y * scale);
     for (var i = 1; i < points.length; ++i) {
       context.lineTo(points[i].x * scale, points[i].y * scale);
@@ -39,9 +39,10 @@ function drawPoints(points, predictions) {
     context.stroke();
   }
   if (predictions.length > 0) {
+    context.beginPath();
+    context.lineWidth = 3 * scale;
     if (drawingtype.options[drawingtype.selectedIndex].value == "Compare")
       context.strokeStyle = 'rgba(150,0,0,0.5)';
-    context.beginPath();
     context.moveTo(points[points.length - 1].x * scale, points[points.length - 1].y * scale);
     for (var i = 1; i < predictions.length; ++i) {
       context.lineTo(predictions[i].x * scale, predictions[i].y * scale);
