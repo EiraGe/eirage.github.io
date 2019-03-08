@@ -19,19 +19,18 @@
         <button onclick="ClearLogAndMovementSum()">Clear Log</button>
         <button onclick="GetDsf()">Get device-pixel-radio</button> <span id="device-pixel-radio"></span>
       </p>
-      <p>
+      <div id = "eventConfig">
         <label><input id="mousemove" type="checkbox" checked> mousemove</label>
         <label><input id="pointermove" type="checkbox"> pointermove</label>
         <label><input id="mouseevents" type="checkbox"> mouseevents</label>
         <label><input id="pointerevents" type="checkbox"> pointerevents</label>
         <label><input id="coalescedEvent" type="checkbox"> coalescedEvent</label>
-
-      </p>
-      <p>
+      </div>
+      <div id = "otherConfig">
         <label><input id="touchstartPreventDefault" type="checkbox"> touchstart preventDefault</label>
         <label><input id="disableScrollCheckbox" type="checkbox"> Disable Scrolling</label>
         <label><input id="disableSelection" type="checkbox" checked> Disable Selection</label>
-      </p>
+      </div>
     </div>
     <div id="LogArea">
       <table>
@@ -119,6 +118,7 @@
     let lastY = [];
     let movementXSum = 0;
     let movementYSum = 0;
+    var LogEventList = []
 
     
     ClearLogAndMovementSum();
@@ -181,11 +181,6 @@
     }
 
     function logEvent(e) {
-      if ((mouseevents.checked && MEList.includes(e.type)) ||
-          (mousemove.checked && e.type == "mousemove") ||
-          (pointerevents.checked && PEList.includes(e.type)) ||
-          (pointermove.checked && e.type == "pointermove") ||
-          ((pointerevents.checked || mouseevents.checked) && Others.includes(e.type))) {
         if (e.type == "pointermove" && coalescedEvent.checked) {
           e.getCoalescedEvents().forEach(function(ce) {
             UpdateLog(ce, true);
@@ -193,26 +188,7 @@
         } else {
           UpdateLog(e)
         }
-      }
     }
-
-    MEList.forEach(function(eventName) {
-      document.addEventListener(eventName, function(e) {
-        logEvent(e);
-      });
-    })
-
-    PEList.forEach(function(eventName) {
-      document.addEventListener(eventName, function(e) {
-        logEvent(e);
-      });
-    })
-
-    Others.forEach(function(eventName) {
-      document.addEventListener(eventName, function(e) {
-        logEvent(e);
-      });
-    })
 
     document.addEventListener('pointerlockchange', function(e) {
       pushStringToTopOfPreElement("pointerlockchange", eventTypeOutput);
@@ -231,10 +207,6 @@
       LogArea.requestPointerLock();
     });
 
-    disableScrollCheckbox.onchange = () => {
-      document.body.style.overflow = disableScrollCheckbox.checked ? "hidden" : "";
-    }
-
     function GetDsf() {
       var print = document.getElementById("device-pixel-radio");
       print.innerText = "devicePixelRatio = " + window.devicePixelRatio;
@@ -244,15 +216,75 @@
       event.preventDefault();
     }
 
-    touchstartPreventDefault.onchange = function() {
+    eventConfig.onchange = () => {
+      var config = {}
+      var checkboxes = eventConfig.querySelectorAll('input[type=checkbox]');
+      checkboxes.forEach(function(checkbox) {
+        config[checkbox.id] = checkbox.checked;
+      })
+      localStorage.eventConfig = JSON.stringify(config);
+      ConfigEvents();
+    }
+
+    otherConfig.onchange = () => {
+      var config = {}
+      var checkboxes = otherConfig.querySelectorAll('input[type=checkbox]');
+      checkboxes.forEach(function(checkbox) {
+        config[checkbox.id] = checkbox.checked;
+      })
+      localStorage.otherConfig = JSON.stringify(config);
+      ConfigOthers();
+    }
+
+    window.onload = () => {
+      var eventConfig = (localStorage.eventConfig) ? JSON.parse(localStorage.eventConfig) : {};
+      var otherConfig = (localStorage.otherConfig) ? JSON.parse(localStorage.otherConfig) : {};
+
+      var config = Object.assign({}, eventConfig, otherConfig)
+      var checkboxes = document.querySelectorAll('input[type=checkbox]');
+      for(var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].id in config)
+          checkboxes[i].checked = config[checkboxes[i].id];
+      }
+      ConfigEvents();
+      ConfigOthers();
+    }
+
+    function ConfigEvents() {
+      LogEventList.forEach(function(eventName) {
+        document.removeEventListener(eventName, logEvent);
+      })
+
+      LogEventList = new Set();
+      if (mouseevents.checked) {
+        MEList.forEach(eventName => LogEventList.add(eventName))
+        Others.forEach(eventName => LogEventList.add(eventName))
+      }
+
+      if (pointerevents.checked) {
+        PEList.forEach(eventName => LogEventList.add(eventName))
+      }
+
+      if (mousemove.checked)
+        LogEventList.add("mousemove")
+
+      if (pointermove.checked)
+        LogEventList.add("pointermove")
+
+      LogEventList.forEach(function(eventName) {
+        document.addEventListener(eventName, logEvent);
+      })
+    }
+
+    function ConfigOthers() {
       if (touchstartPreventDefault.checked) {
         LogArea.addEventListener("touchstart", PreventDefault, {passive:false});
       } else {
         LogArea.removeEventListener("touchstart", PreventDefault, {passive:false});
       }
-    }
 
-    disableSelection.onchange = () => {
+      document.body.style.overflow = disableScrollCheckbox.checked ? "hidden" : "";
+
       document.body.style.userSelect = disableSelection.checked ? "none" : "auto";
     }
   </script>
