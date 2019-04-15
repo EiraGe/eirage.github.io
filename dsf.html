@@ -9,8 +9,8 @@
     function Get() {
       var print = document.getElementById("output");
       print.innerHTML = "devicePixelRatio = " + window.devicePixelRatio + "<br>";
-      print.innerHTML += "pageZoomRatio = " + window.pageZoomRatio + "<br>";
       print.innerHTML += "innerWidth = " + window.innerWidth + "<br>";
+      print.innerHTML += "innerHeight = " + window.innerHeight + "<br>";
     }
     window.addEventListener("resize", () => {
       Get();
