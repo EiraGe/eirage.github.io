@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+<style>
+#div1, #div2 {
+    width:100px;
+    height:50px;
+    padding:10px;
+    border:1px solid #aaaaaa;
+}
+</style>
+<script>
+function allowDrop(allowdropevent) {
+    allowdropevent.target.style.color = 'blue';
+    allowdropevent.preventDefault();
+}
+
+function drag(dragevent) {
+    dragevent.dataTransfer.setData(set.value, dragevent.target.id);
+    dragevent.target.style.color = 'green';
+}
+
+function drop(dropevent) {
+    dropevent.preventDefault();
+    var data = dropevent.dataTransfer.getData(get.value);
+    dropevent.target.appendChild(document.getElementById(data));
+    document.getElementById("drag").style.color = 'black';
+}
+</script>
+</head>
+<body>
+<div>
+Format: Set:<input type="text" id = "set" value = "text"> Get:<input type="text" id = "get" value = "text">
+</div>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <span id="drag" draggable="true" ondragstart="drag(event)">drag me to the other box</span>
+</div>
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<iframe src="DataTransfer.html" style="width:500px; height:500px;"></iframe>
+<iframe src="https://jsbin.com/dezover/quiet" style="width:500px; height:500px;"></iframe>
+</body>
+</html>
