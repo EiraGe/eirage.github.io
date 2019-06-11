@@ -283,7 +283,7 @@
         LogArea.removeEventListener("touchstart", PreventDefault, {passive:false});
       }
 
-      document.body.style.touch-action = disableScrollCheckbox.checked ? "none" : "auto";
+      document.body.style.touchAction = disableScrollCheckbox.checked ? "none" : "auto";
 
       document.body.style.userSelect = disableSelection.checked ? "none" : "auto";
     }
