@@ -16,20 +16,21 @@ function PreventDefault(event) {
 window.addEventListener("load", ApplyConfig);
 checkboxes.addEventListener("change", StoreConfig);
 
-capturecheckbox.addEventListener("change", SetCapture);
+capturecheckbox.addEventListener("change", SetCaptureFlag);
 preventdefaultcheckbox.addEventListener("change", SetPreventDefault);
 scrollbarcheckbox.addEventListener("change", CreateScrollbar)
 
 function ApplyConfig() {
   var configs = (localStorage.configs) ? JSON.parse(localStorage.configs) : {};
-  var config = configs[document.title];
+  var config = configs[document.url];
   if (config) {
     var checkboxes = document.querySelectorAll('input[type=checkbox]');
     for(var i = 0; i < checkboxes.length; i++) {
       if (checkboxes[i].id in config)
         checkboxes[i].checked = config[checkboxes[i].id];
     }
-    SetCapture();
+    console.log()
+    SetCaptureFlag();
     SetPreventDefault();
     CreateScrollbar();
   }
@@ -42,12 +43,12 @@ function StoreConfig() {
     config[item.id] = item.checked;
   })
   var configs = (localStorage.configs) ? JSON.parse(localStorage.configs) : {};
-  configs[document.title] = config;
+  configs[document.url] = config;
   localStorage.configs = JSON.stringify(configs);
 }
 
 
-function SetCapture() {
+function SetCaptureFlag() {
   if (capturecheckbox.checked)
     document.addEventListener("pointerdown", SetCapture);
   else
