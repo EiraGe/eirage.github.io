@@ -22,14 +22,13 @@ scrollbarcheckbox.addEventListener("change", CreateScrollbar)
 
 function ApplyConfig() {
   var configs = (localStorage.configs) ? JSON.parse(localStorage.configs) : {};
-  var config = configs[document.url];
+  var config = configs[document.title];
   if (config) {
     var checkboxes = document.querySelectorAll('input[type=checkbox]');
     for(var i = 0; i < checkboxes.length; i++) {
       if (checkboxes[i].id in config)
         checkboxes[i].checked = config[checkboxes[i].id];
     }
-    console.log()
     SetCaptureFlag();
     SetPreventDefault();
     CreateScrollbar();
@@ -43,7 +42,7 @@ function StoreConfig() {
     config[item.id] = item.checked;
   })
   var configs = (localStorage.configs) ? JSON.parse(localStorage.configs) : {};
-  configs[document.url] = config;
+  configs[document.title] = config;
   localStorage.configs = JSON.stringify(configs);
 }
 
