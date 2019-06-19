@@ -13,14 +13,10 @@ function PreventDefault(event) {
     event.preventDefault();
 }
 
-window.addEventListener("load", ApplyConfig);
-checkboxes.addEventListener("change", StoreConfig);
+window.addEventListener("load", FetchConfig);
+checkboxes.addEventListener("change", UpdateConfig);
 
-capturecheckbox.addEventListener("change", SetCaptureFlag);
-preventdefaultcheckbox.addEventListener("change", SetPreventDefault);
-scrollbarcheckbox.addEventListener("change", CreateScrollbar)
-
-function ApplyConfig() {
+function FetchConfig() {
   var configs = (localStorage.configs) ? JSON.parse(localStorage.configs) : {};
   var config = configs[document.title];
   if (config) {
@@ -29,10 +25,17 @@ function ApplyConfig() {
       if (checkboxes[i].id in config)
         checkboxes[i].checked = config[checkboxes[i].id];
     }
-    SetCaptureFlag();
-    SetPreventDefault();
-    CreateScrollbar();
   }
+  UpdateConfig();
+}
+
+function UpdateConfig() {
+  SetCaptureFlag();
+  SetPreventDefault();
+  CreateScrollbar();
+  SetTouchAction();
+
+  StoreConfig()
 }
 
 function StoreConfig() {
@@ -45,7 +48,6 @@ function StoreConfig() {
   configs[document.title] = config;
   localStorage.configs = JSON.stringify(configs);
 }
-
 
 function SetCaptureFlag() {
   if (capturecheckbox.checked)
@@ -64,10 +66,14 @@ function SetPreventDefault() {
 
 function CreateScrollbar() {
   if (scrollbarcheckbox.checked) {
-    container.style.width = "200%";
+    container.style.width = "200vw";
     container.style.height = "200vh";
   } else {
     container.style.width = ""
     container.style.height = "";
   }
+}
+
+function SetTouchAction() {
+  document.body.style.touchAction = touchActionCheckbox.checked ? "none" : "auto";
 }
