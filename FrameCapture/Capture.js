@@ -34,6 +34,7 @@ function UpdateConfig() {
   SetPreventDefault();
   CreateScrollbar();
   SetTouchAction();
+  SetSelection();
 
   StoreConfig()
 }
@@ -76,4 +77,8 @@ function CreateScrollbar() {
 
 function SetTouchAction() {
   document.body.style.touchAction = touchActionCheckbox.checked ? "none" : "auto";
+}
+
+function SetSelection(){
+  document.body.style.userSelect = selectionCheckbox.checked ? "none" : "auto";
 }
