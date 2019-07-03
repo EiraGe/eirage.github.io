@@ -4,7 +4,6 @@
   let canvas = document.querySelector('canvas');
   setInterval(function () {
     // Pointer is locked after click anywhere in the top frame.
-    //canvas.requestPointerLock(); // If user clicks anywhere on the page with mouse pointer lock auto-redirect will fire
-    window.top.location = 'https://www.example.com#pointerlock';
+    canvas.requestPointerLock(); // If user clicks anywhere on the page with mouse pointer lock auto-redirect will fire
   }, 500);
 </script>
