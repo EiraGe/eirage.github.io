@@ -24,6 +24,7 @@
         <label><input id="pointermove" type="checkbox"> pointermove</label>
         <label><input id="mouseevents" type="checkbox"> mouseevents</label>
         <label><input id="pointerevents" type="checkbox"> pointerevents</label>
+        <label><input id="pointerrawupdate" type="checkbox"> pointerrawupdate</label>
         <label><input id="coalescedEvent" type="checkbox"> coalescedEvent</label>
       </div>
       <div id = "otherConfig">
@@ -119,6 +120,7 @@
     let movementXSum = 0;
     let movementYSum = 0;
     var LogEventList = []
+    var moveEvents = new Set(["mousemove", "pointermove", "pointerrawupdate"])
 
     
     ClearLogAndMovementSum();
@@ -149,9 +151,12 @@
     function UpdateLog(e, iscoalescedEvent) {
         var colorX, colorY;
         let id = e.pointerId ? e.pointerId : 0;
-        if (e.type == "mousemove" || e.type == "pointermove") {
-          if (((mousemove.checked || mouseevents.checked) && e.type == "mousemove") ||
-              (!(mousemove.checked || mouseevents.checked) && e.type == "pointermove" && e.isPrimary)) {
+        if (e.type == "pointerrawupdate") {
+          id = -id;
+        }
+        if (moveEvents.has(e.type)) {
+          if ((e.type == "mousemove") ||
+              (e.type == "pointermove" && e.isPrimary && !LogEventList.has("mousemove"))) {
             movementXSum += e.movementX;
             movementYSum += e.movementY;
           }
@@ -270,6 +275,9 @@
 
       if (pointermove.checked)
         LogEventList.add("pointermove")
+
+      if (pointerrawupdate.checked)
+        LogEventList.add("pointerrawupdate")
 
       LogEventList.forEach(function(eventName) {
         document.addEventListener(eventName, logEvent);
