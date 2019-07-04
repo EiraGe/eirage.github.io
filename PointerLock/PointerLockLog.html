@@ -180,7 +180,7 @@
         pushStringToTopOfPreElement(movementYSum, movementYSumOutput);
         pushStringToTopOfPreElement(document.pointerLockElement ? "locked" : "unlocked", stateOutput);
         if (!iscoalescedEvent)
-          pushStringToTopOfPreElement((e.type == "pointermove" && e.getCoalescedEvents) ? e.getCoalescedEvents().length : "." , coalescedCountOutput);
+          pushStringToTopOfPreElement((moveEvents.has(e.type) && e.getCoalescedEvents) ? e.getCoalescedEvents().length : "." , coalescedCountOutput);
         else 
           pushStringToTopOfPreElement("Yes", coalescedCountOutput);
     }
