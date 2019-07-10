@@ -33,22 +33,25 @@
         background: pink;
         position: relative;
     }
-    #logoutput {
-      height: 150px;
-      overflow: auto;
-    }
   </style>
 
   <script type="text/javascript">
     documentPointerMoveCallCounter = 0;
     coalescedCalls = 0
-
-    function log(x) {
-      logoutput.insertAdjacentHTML("beforeEnd", "<div>" + x + "</div>");
-      logoutput.scrollTop = logoutput.scrollHeight - logoutput.clientHeight;
-    }
+    old_eventType = "";
+    last = null;
 
     function init() {
+      function updateIsLocked () {
+        var locked = document.pointerLockElement;
+        if (document.getElementById("isLocked").lastLocked != locked) {
+          document.getElementById("isLocked").innerHTML = "document.pointerLockElement " +
+          (document.pointerLockElement ? "locked" + document.pointerLockElement.id : "unlocked");
+          document.getElementById("isLocked").lastLocked = locked;
+        }
+      };
+      document.onpointerlockchange = updateIsLocked;
+
       var HTMLCursor = document.getElementById("HTMLCursor");
       var resetPos = document.getElementById("resetPos");
       function moveHTMLCursorTo(x, y) {
@@ -60,17 +63,17 @@
       }
       moveHTMLCursorToCenter();
       function moveHTMLCursorBy(x, y) {
-        let zoom = 1;//window.devicePixelRatio;
+        let zoom = window.devicePixelRatio;
         moveHTMLCursorTo(
             HTMLCursor.getBoundingClientRect().left + x / zoom,
             HTMLCursor.getBoundingClientRect().top + y / zoom);
       }
 
-      function Update(e) {
+      function updateMovement(e) {
         moveHTMLCursorBy(e.movementX, e.movementY);
         displaytext.innerHTML =
           "  document pointermove listener:<br>" +
-          "  Raw: " + e.screenX + ", " + e.screenY +
+          "  Raw: " + e.clientX  + ", " + e.clientY +
           "  Cursor: "
           + HTMLCursor.getBoundingClientRect().left + ", "
           + HTMLCursor.getBoundingClientRect().top +
@@ -80,17 +83,6 @@
           displaytext.innerHTML += ", coalescedMoveCalls: " + coalescedCalls;
       }
 
-      document.addEventListener("pointermove", function (e) {
-        documentPointerMoveCallCounter++;
-        if (coalescedEvent.checked && e.getCoalescedEvents) {
-          e.getCoalescedEvents().forEach(function(ce) {
-            coalescedCalls ++;
-            Update(ce);
-          });
-        } else {
-          Update(e);
-        }
-      });
       document.addEventListener("keypress", function (e) {
         if (e.keyCode != 116) {
           e.preventDefault();
@@ -108,15 +100,46 @@
       // Color background when we are the iframe.
       if (window.top !== window)
         document.getElementById('container').style.backgroundColor="tan";
+
+      function logEvent(e){
+        documentPointerMoveCallCounter++;
+        if (coalescedEvent.checked && e.getCoalescedEvents) {
+          e.getCoalescedEvents().forEach(function(ce) {
+            coalescedCalls ++;
+            updateMovement(ce);
+          });
+        } else {
+          updateMovement(e);
+        }
+      }
+
+      lockCursor.onclick = function() {
+        document.body.requestPointerLock();
+      };
+
+      eventTypeSelection.onchange = configEventListener;
+      function configEventListener () {
+        eventType = eventTypeSelection.querySelector('input[name="eventType"]:checked').value;
+        document.removeEventListener(old_eventType, logEvent)
+        document.addEventListener(eventType, logEvent);
+        old_eventType =eventType;
+      }
+      configEventListener();
   }
   </script>
 </head>
 
-<body onload="init()" title="This tooltip should not be shown if the mouse is locked.">
+<body onload="init()">
   <div id="container">
     <form name="displaytext">...<br>...</form>
     <div id="isLocked">document.pointerLockElement unlocked</div>
-    <label><input id="coalescedEvent" type="checkbox"> coalescedEvent</label>
+    <button id=lockCursor> Lock Cursor </button>
+    <div id=eventTypeSelection>
+      <label><input type="radio" name="eventType" value="mousemove" checked> mousemove</label>
+      <label><input type="radio" name="eventType" value="pointermove"> pointermove</label>
+      <label><input type="radio" name="eventType" value="pointermove" id="coalescedEvent"> coalescedEvents</label>
+      <label><input type="radio" name="eventType" value="pointerrawupdate"> pointerrawupdate</label>
+    </div>
     <div id="resetPos">
       Press a key, or Click here to reset HTMLCursor position.
     </div><br>
