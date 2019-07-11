@@ -4,6 +4,8 @@ var coalescedPoints = [];
 var startTime;
 var canvas;
 var colorCounter = {};
+var activeFingerCount = 0;
+var last_down_event;
 const colors = ["rgba(255, 128, 0, ", "rgba(255, 255, 0, ", "rgba(128, 255, 0, ",
                 "rgba(0, 255, 0, ", "rgba(0, 255, 128, ", "rgba(0, 255, 255, ", " rgba(0, 128, 255, ",
                 "rgba(0, 0, 255, ", "rgba(128, 0, 255, ", "rgba(255, 0, 255, ", "rgba(255, 0, 128, ", "rgba(255, 0, 0, ", ]
@@ -92,6 +94,8 @@ window.onload = function() {
     startDraw();
     canvas.addEventListener('pointerdown', function(e) {
       addPoint(e.pageX, e.pageY, e.pointerId);
+      activeFingerCount ++;
+      last_down_event = e;
       e.preventDefault();
     });
     canvas.addEventListener('pointermove', function(e) {
@@ -109,6 +113,10 @@ window.onload = function() {
       e.preventDefault();
     });
     canvas.addEventListener('pointerup', function(e) {
+      activeFingerCount --;
+      // Two finger tap to clear the page
+      if (activeFingerCount > 0 && (e.timeStamp - last_down_event.timeStamp < 300))
+        Clear();
       e.preventDefault();
     });
     canvas.addEventListener('contextmenu', function(e) {
