@@ -1,12 +1,19 @@
 var points = [];
-var predictedPoints = [];
-var coalescedPoints = [];
 var startTime;
 var canvas;
-var colorCounter = {};
+var activeFingerCount = 0;
+var maxActiveFinger = 0;
+var colorCounter = 0;
 const colors = ["rgba(255, 128, 0, ", "rgba(255, 255, 0, ", "rgba(128, 255, 0, ",
                 "rgba(0, 255, 0, ", "rgba(0, 255, 128, ", "rgba(0, 255, 255, ", " rgba(0, 128, 255, ",
                 "rgba(0, 0, 255, ", "rgba(128, 0, 255, ", "rgba(255, 0, 255, ", "rgba(255, 0, 128, ", "rgba(255, 0, 0, ", ]
+
+const TypeEnum = {
+  DispatchEvents:     0,
+  CoalescedEvents:    1,
+  PredictedEvents:    2,
+  RawUpdateEvents:    3,
+};
 
 function GetContext() {
   return document.getElementById("canvas").getContext("2d"); 
@@ -16,26 +23,41 @@ window.addEventListener('resize', function(e) {
     InitializeCanvas();
 });
 
-function drawPoints(points, isCoalesced, isPredicted) {
+function drawPoints(points) {
+  if (!points.length)
+    return;
+
+  colorCounter = (colorCounter + 2)  % 12;
+
   var context = canvas.getContext('2d');
   for (var i = 0; i < points.length; ++i) {
     var radius;
-    if (isPredicted) {
-      radius= 5.0
-      context.strokeStyle = colors[points[i].color] + "0.3)";
-    } else if (isCoalesced) {
-      radius = 2.0;
-      context.fillStyle = colors[points[i].color] + "0.9)";
-    } else {
-      radius = 3.0
-      context.strokeStyle = colors[points[i].color] + "0.6)";
+    switch (points[i].type) {
+      case TypeEnum.PredictedEvents:
+        radius= 5.0
+        context.strokeStyle = colors[colorCounter] + "0.3)";
+        break;
+      case TypeEnum.CoalescedEvents:
+        radius = 2.0;
+        context.fillStyle = colors[colorCounter] + "0.9)";
+        break;
+      case TypeEnum.RawUpdateEvents:
+        radius = 2.0
+        context.fillStyle = colors[colorCounter] + "0.3)";
+        points[i].x += 10;
+        points[i].y += 10;
+        break;
+      case TypeEnum.DispatchEvents:
+        radius = 3.0
+        context.strokeStyle = colors[colorCounter] + "0.6)";
+        break;
     }
 
     context.lineWidth = 2
     context.beginPath();
 
     context.arc(points[i].x * scale, points[i].y * scale, radius * scale, 0, 2 * 3.14159, false);
-    if (isCoalesced)
+    if (radius <= 2)
       context.fill();
     else
       context.stroke();
@@ -43,15 +65,10 @@ function drawPoints(points, isCoalesced, isPredicted) {
   }
 }
 
-function onFrame()
-{ 
+function onFrame() {
   if (startTime) {
-    drawPoints(points, false, false);
-    drawPoints(predictedPoints, false, true);
-    drawPoints(coalescedPoints, true, false);
+    drawPoints(points);
     points = [];
-    predictedPoints = [];
-    coalescedPoints = [];
 
     window.requestAnimationFrame(onFrame);
   }
@@ -67,50 +84,76 @@ function endDraw() {
   startTime = undefined;
 }
 
-function addPredictedPoint(x, y, color) {
-  predictedPoints.push({x:x, y:y, color:color});
+function addPoint(x, y, type = TypeEnum.DispatchEvents) {
+  points.push({x:x, y:y, type: type});
 }
 
-function addCoalescedPoint(x, y, color) {
-  coalescedPoints.push({x:x, y:y, color:color});
+function handlePointerMoves(e) {
+  if (predictedCheckbox.checked && e.getPredictedEvents) {
+    e.getPredictedEvents().forEach(function(ce) {
+      addPoint(ce.pageX, ce.pageY, TypeEnum.PredictedEvents);
+    });
+  }
+  if (coalescedCheckbox.checked && e.getCoalescedEvents) {
+    e.getCoalescedEvents().forEach(function(ce) {
+      addPoint(ce.pageX, ce.pageY, TypeEnum.CoalescedEvents);
+    });
+  }
+  if (dispatchEventCheckbox.checked)
+    addPoint(e.pageX, e.pageY);
+  e.preventDefault();
+}
+function handleRawUpdates(e) {
+  if (rawUpdatesCheckbox.checked)
+    addPoint(e.pageX, e.pageY, TypeEnum.RawUpdateEvents);
 }
 
-function addPoint(x, y, color) {
-  points.push({x:x, y:y, color:color});
+function updateConfig() {
+  var config = {}
+  var cbs = checkboxes.querySelectorAll('input[type=checkbox]');
+  cbs.forEach(function(checkbox) {
+    config[checkbox.id] = checkbox.checked;
+  })
+  localStorage.eventConfig = JSON.stringify(config);
+  configEvents();
 }
 
-function getColorCounter(pointerId) {
-  if (!(pointerId in colorCounter))
-    colorCounter[pointerId] = 0;
-  colorCounter[pointerId] = (colorCounter[pointerId] + 2)  % 12;
-  return colorCounter[pointerId];
+function configEvents() {
+  var eventConfig = (localStorage.eventConfig) ? JSON.parse(localStorage.eventConfig) : {};
+  var checkboxes = document.querySelectorAll('input[type=checkbox]');
+  for(var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].id in eventConfig)
+      checkboxes[i].checked = eventConfig[checkboxes[i].id];
+  }
+
+  canvas.removeEventListener("pointermove", handlePointerMoves);
+  canvas.removeEventListener("pointerrawupdate", handleRawUpdates);
+  if (dispatchEventCheckbox.checked || coalescedCheckbox.checked || predictedCheckbox.checked)
+    canvas.addEventListener("pointermove", handlePointerMoves);
+  if (rawUpdatesCheckbox.checked)
+    canvas.addEventListener("pointerrawupdate", handleRawUpdates);
 }
 
-window.onload = function() {
+function addEventHandlers() {
   canvas = document.getElementById('canvas');
   if (window.PointerEvent) {
     startDraw();
     canvas.addEventListener('pointerdown', function(e) {
-      color_counter = getColorCounter(e.pointerId);
-      addPoint(e.pageX, e.pageY, color_counter);
-      e.preventDefault();
-    });
-    canvas.addEventListener('pointerrawupdate', function(e) {
-      color_counter = getColorCounter(e.pointerId);
-      if (e.getPredictedEvents) {
-        e.getPredictedEvents().forEach(function(ce) {
-          addPredictedPoint(ce.pageX, ce.pageY, color_counter);
-        });
-      }
-      if (e.getCoalescedEvents) {
-        e.getCoalescedEvents().forEach(function(ce) {
-          addCoalescedPoint(ce.pageX, ce.pageY, color_counter);
-        });
-      }
-      addPoint(e.pageX, e.pageY, color_counter);
+      addPoint(e.pageX, e.pageY);
+      if (activeFingerCount == 0)
+        first_finger_down_time = e.timeStamp;
+      activeFingerCount++;
+      maxActiveFinger = Math.max(activeFingerCount, maxActiveFinger);
       e.preventDefault();
     });
     canvas.addEventListener('pointerup', function(e) {
+      activeFingerCount --;
+      // Two finger tap to clear the page.
+      if (activeFingerCount == 0) {
+        if (maxActiveFinger > 1 && e.timeStamp - first_finger_down_time <= 300)
+          Clear();
+        maxActiveFinger = 0;
+      }
       e.preventDefault();
     });
     canvas.addEventListener('contextmenu', function(e) {
@@ -118,7 +161,6 @@ window.onload = function() {
       Clear();
     })
   }
-  InitializeCanvas();
 }
 
 var scale = 1;
@@ -130,10 +172,17 @@ function InitializeCanvas() {
   scale = window.devicePixelRatio ? window.devicePixelRatio : 1;
   elem.width = container.clientWidth * scale;
   elem.height = container.clientHeight * scale;
+
+  addEventHandlers();
+  configEvents();
+  Clear();
 }
 
 function Clear() {
   endDraw();
   startDraw();
-  colorCounter = {}
+  colorCounter = 0
 }
+
+
+window.onload = InitializeCanvas;

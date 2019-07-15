@@ -6,7 +6,6 @@ var canvas;
 var colorCounter = {};
 var activeFingerCount = 0;
 var maxActiveFinger = 0;
-var may_multi_tap = false;
 const colors = ["rgba(255, 128, 0, ", "rgba(255, 255, 0, ", "rgba(128, 255, 0, ",
                 "rgba(0, 255, 0, ", "rgba(0, 255, 128, ", "rgba(0, 255, 255, ", " rgba(0, 128, 255, ",
                 "rgba(0, 0, 255, ", "rgba(128, 0, 255, ", "rgba(255, 0, 255, ", "rgba(255, 0, 128, ", "rgba(255, 0, 0, ", ]
@@ -89,6 +88,8 @@ function addPoint(x, y, id)
   points.push({x:x, y:y, id:id});
 }
 
+function handlePointerMoves
+
 window.onload = function() {
   canvas = document.getElementById('canvas');
   if (window.PointerEvent) {
@@ -142,6 +143,8 @@ function InitializeCanvas() {
   scale = window.devicePixelRatio ? window.devicePixelRatio : 1;
   elem.width = container.clientWidth * scale;
   elem.height = container.clientHeight * scale;
+
+  Clear();
 }
 
 function Clear() {

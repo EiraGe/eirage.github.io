@@ -21,11 +21,11 @@
         width: 100%;
         height: 100%;
       }
-      #results {
+      #controls {
         position: absolute;
         left: 0;
         bottom: 0;
-        height: 50px;
+        height: 25px;
         background-color: grey;
         width: 100%;
       }
@@ -36,6 +36,15 @@
     <div id=container>
       <canvas id="canvas">
       </canvas>
+    </div>
+    <div id=controls>
+      <button id="clear" tyle=button onclick="InitializeCanvas()">Clear</button>
+      <div id="checkboxes" onchange="updateConfig()" style="display:inline-block;">
+        <label><input type=checkbox id="dispatchEventCheckbox" checked>dispatchEvent</label>
+        <label><input type=checkbox id="coalescedCheckbox" checked>CoalescedEvents</label>
+        <label><input type=checkbox id="predictedCheckbox" checked>PredictedEvents</label>
+        <label><input type=checkbox id="rawUpdatesCheckbox">PointerRawUpdates</label>
+      </div>
     </div>
   </body>
 </html>
