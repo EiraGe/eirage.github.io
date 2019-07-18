@@ -62,7 +62,7 @@
       }
       moveHTMLCursorToCenter();
       function moveHTMLCursorBy(x, y) {
-        let zoom = window.devicePixelRatio;
+        let zoom = zoomed.checked ? window.devicePixelRatio : 1;
         moveHTMLCursorTo(
             HTMLCursor.getBoundingClientRect().left + x / zoom,
             HTMLCursor.getBoundingClientRect().top + y / zoom);
@@ -138,6 +138,7 @@
       <label><input type="radio" name="eventType" value="pointermove"> pointermove</label>
       <label><input type="radio" name="eventType" value="pointermove" id="coalescedEvent"> coalescedEvents</label>
       <label><input type="radio" name="eventType" value="pointerrawupdate"> pointerrawupdate</label>
+      <label><input type="checkbox" id="zoomed" checked>include devicePixelRatio</label>
     </div>
     <div id="resetPos">
       Press a key, or Click here to reset HTMLCursor position.
