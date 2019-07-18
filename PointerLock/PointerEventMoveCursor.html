@@ -71,7 +71,7 @@
       function updateMovement(e) {
         moveHTMLCursorBy(e.movementX, e.movementY);
         displaytext.innerHTML =
-          "  document pointermove listener:<br>" +
+          "  document " + e.type + " listener:<br>" +
           "  Raw: " + e.clientX  + ", " + e.clientY +
           "  Cursor: "
           + HTMLCursor.getBoundingClientRect().left + ", "

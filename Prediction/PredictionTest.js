@@ -88,8 +88,6 @@ function addPoint(x, y, id)
   points.push({x:x, y:y, id:id});
 }
 
-function handlePointerMoves
-
 window.onload = function() {
   canvas = document.getElementById('canvas');
   if (window.PointerEvent) {
