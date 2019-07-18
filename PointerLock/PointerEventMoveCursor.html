@@ -39,6 +39,7 @@
     coalescedCalls = 0
     old_eventType = "";
     last = null;
+    cursorPosition = {x:0, y:0}
 
     function init() {
       function updateIsLocked () {
@@ -53,9 +54,11 @@
 
       var HTMLCursor = document.getElementById("HTMLCursor");
       var resetPos = document.getElementById("resetPos");
+
       function moveHTMLCursorTo(x, y) {
         HTMLCursor.style.left = x + "px";
         HTMLCursor.style.top = y + "px";
+        cursorPosition = {x: x, y: y};
       }
       function moveHTMLCursorToCenter() {
         moveHTMLCursorTo(window.innerWidth / 2, window.innerHeight / 2);
@@ -63,9 +66,7 @@
       moveHTMLCursorToCenter();
       function moveHTMLCursorBy(x, y) {
         let zoom = zoomed.checked ? window.devicePixelRatio : 1;
-        moveHTMLCursorTo(
-            HTMLCursor.getBoundingClientRect().left + x / zoom,
-            HTMLCursor.getBoundingClientRect().top + y / zoom);
+        moveHTMLCursorTo(cursorPosition.x + x / zoom, cursorPosition.y + y / zoom);
       }
 
       function updateMovement(e) {
@@ -96,10 +97,6 @@
         coalescedCalls = 0
       });
 
-      // Color background when we are the iframe.
-      if (window.top !== window)
-        document.getElementById('container').style.backgroundColor="tan";
-
       function logEvent(e){
         documentPointerMoveCallCounter++;
         if (coalescedEvent.checked && e.getCoalescedEvents) {
@@ -123,7 +120,9 @@
         document.addEventListener(eventType, logEvent);
         old_eventType =eventType;
       }
+
       configEventListener();
+      moveHTMLCursorToCenter();
   }
   </script>
 </head>
