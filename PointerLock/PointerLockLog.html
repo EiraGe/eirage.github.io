@@ -28,8 +28,8 @@
         <label><input id="coalescedEvent" type="checkbox"> coalescedEvent</label>
       </div>
       <div id = "otherConfig">
-        <label><input id="touchstartPreventDefault" type="checkbox"> touchstart preventDefault</label>
-        <label><input id="disableScrollCheckbox" type="checkbox"> Disable Scrolling</label>
+        <label><input id="zoomCheckbox" type="checkbox" checked>include devicePixelRatio</label>
+        <label><input id="touchActionCheckbox" type="checkbox"> touch-action:none</label>
         <label><input id="disableSelection" type="checkbox" checked> Disable Selection</label>
       </div>
     </div>
@@ -114,7 +114,7 @@
     let PEList = ["pointerenter", "pointerleave", "pointerover", "pointerout", "pointermove", "pointerdown",
               "pointerup", "gotpointercapture", "lostpointercapture"];
     let Others = ['click', 'dblclick', 'auxclick', 'contextmenu', 'mousewheel', 'wheel'];
-    let epsilon = 0.0000001;
+    let epsilon = 0.0001;
     let lastX = [];
     let lastY = [];
     let movementXSum = 0;
@@ -161,9 +161,10 @@
             movementYSum += e.movementY;
           }
           if (!document.pointerLockElement) {
-            if (id in lastX && (Math.abs((e.screenX - lastX[id]) - e.movementX) > epsilon))
+            let zoom = zoomCheckbox.checked ? window.devicePixelRatio : 1;
+            if (id in lastX && (Math.abs((e.screenX - lastX[id]) - e.movementX / zoom) > epsilon))
               colorX = "red"
-            if (id in lastY && (Math.abs((e.screenY - lastY[id]) - e.movementY) > epsilon))
+            if (id in lastY && (Math.abs((e.screenY - lastY[id]) - e.movementY / zoom) > epsilon))
               colorY = "red"
             lastX[id] = e.screenX
             lastY[id] = e.screenY
@@ -285,13 +286,7 @@
     }
 
     function ConfigOthers() {
-      if (touchstartPreventDefault.checked) {
-        LogArea.addEventListener("touchstart", PreventDefault, {passive:false});
-      } else {
-        LogArea.removeEventListener("touchstart", PreventDefault, {passive:false});
-      }
-
-      document.body.style.touchAction = disableScrollCheckbox.checked ? "none" : "auto";
+      document.body.style.touchAction = touchActionCheckbox.checked ? "none" : "auto";
 
       document.body.style.userSelect = disableSelection.checked ? "none" : "auto";
     }
