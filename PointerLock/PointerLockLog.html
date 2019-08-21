@@ -207,6 +207,7 @@
       pushStringToTopOfPreElement(".", movementYOutput);
       pushStringToTopOfPreElement(movementYSum, movementYSumOutput);
       pushStringToTopOfPreElement("change: " + (document.pointerLockElement ? "locked" : "unlocked"), stateOutput);
+      pushStringToTopOfPreElement(".", coalescedCountOutput);
     });
 
     document.getElementById('reqPointerLock').addEventListener('click', function() {
