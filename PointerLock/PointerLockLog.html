@@ -14,6 +14,7 @@
   <body>
     <div>
       <p><a href="#" id="reqPointerLock" draggable=false>Request pointer lock</a></p>
+      <p><a href="#" id="reqRawPointerLock" draggable=false>Request pointer lock unadjustedMovement</a></p>
 
       <p>
         <button onclick="ClearLogAndMovementSum()">Clear Log</button>
@@ -195,9 +196,8 @@
           UpdateLog(e)
         }
     }
-
-    document.addEventListener('pointerlockchange', function(e) {
-      pushStringToTopOfPreElement("pointerlockchange", eventTypeOutput);
+    function LogNonEvent(e) {
+      pushStringToTopOfPreElement(e.type, eventTypeOutput);
       pushStringToTopOfPreElement(".", clientXOutput);
       pushStringToTopOfPreElement(".", screenXOutput);
       pushStringToTopOfPreElement(".", movementXOutput);
@@ -208,11 +208,19 @@
       pushStringToTopOfPreElement(movementYSum, movementYSumOutput);
       pushStringToTopOfPreElement("change: " + (document.pointerLockElement ? "locked" : "unlocked"), stateOutput);
       pushStringToTopOfPreElement(".", coalescedCountOutput);
-    });
+    }
+    document.addEventListener('pointerlockerror', LogNonEvent);
+
+    document.addEventListener('pointerlockchange', LogNonEvent);
 
     document.getElementById('reqPointerLock').addEventListener('click', function() {
       LogArea.requestPointerLock();
     });
+
+    document.getElementById('reqRawPointerLock').addEventListener('click', function() {
+      LogArea.requestPointerLock({unadjustedMovement:true});
+    });
+
 
     function GetDsf() {
       var print = document.getElementById("device-pixel-radio");

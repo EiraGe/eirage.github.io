@@ -102,6 +102,17 @@
       lockCursor.onclick = function() {
         document.body.requestPointerLock();
       };
+      lockCursorUnadjusted.onclick = function() {
+        document.body.requestPointerLock({unadjustedMovement:true});
+      };
+
+      function LogNonEvent(e) {
+        LogArea.innerHTML = e.type + "<br>" + LogArea.innerHTML;
+      }
+
+      document.addEventListener('pointerlockerror', LogNonEvent);
+
+      document.addEventListener('pointerlockchange', LogNonEvent);
 
       eventTypeSelection.onchange = configEventListener;
       function configEventListener () {
@@ -112,7 +123,6 @@
       }
 
       configEventListener();
-      moveHTMLCursorToCenter();
   }
   </script>
 </head>
@@ -121,7 +131,10 @@
   <div id="container">
     <form name="displaytext">...<br>...</form>
     <div id="isLocked">document.pointerLockElement unlocked</div>
-    <button id=lockCursor> Lock Cursor </button>
+    <div>
+      <button id=lockCursor> Lock Cursor </button>
+      <button id=lockCursorUnadjusted> Lock Cursor and request unadjusted movement</button>
+    </div>
     <div id=eventTypeSelection>
       <label><input type="radio" name="eventType" value="mousemove" checked> mousemove</label>
       <label><input type="radio" name="eventType" value="pointermove"> pointermove</label>
@@ -132,6 +145,7 @@
     <div id="resetPos">
       Press a key, or Click here to reset HTMLCursor position.
     </div><br>
+    <div id="LogArea"></div>
     </table>
   </div>
   <div id="HTMLCursor">HTMLCursor</div><br>
