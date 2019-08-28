@@ -200,8 +200,9 @@
         }
     }
     function LockStateChange(e) {
-      if (should_reenter && !document.pointerLockElement) {
-        LogArea.requestPointerLock();
+      if (should_reenter) {
+        if (!document.pointerLockElement)
+          LogArea.requestPointerLock();
         should_reenter = false;
       }
       pushStringToTopOfPreElement(e.type, eventTypeOutput);
