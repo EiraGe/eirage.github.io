@@ -15,6 +15,8 @@
     <div>
       <p><a href="#" id="reqPointerLock" draggable=false>Request pointer lock</a></p>
       <p><a href="#" id="reqRawPointerLock" draggable=false>Request pointer lock unadjustedMovement</a></p>
+      <p><a href="#" id="reqRawPointerLockFallback" draggable=false>Request pointer lock unadjustedMovement, fallback if failed</a></p>
+      <p><a href="#" id="reenterPointerLock" draggable=false>Unlock and re-enter</a></p>
 
       <p>
         <button onclick="ClearLogAndMovementSum()">Clear Log</button>
@@ -122,6 +124,7 @@
     let movementYSum = 0;
     var LogEventList = []
     var moveEvents = new Set(["mousemove", "pointermove", "pointerrawupdate"])
+    var should_reenter = false;
 
     
     ClearLogAndMovementSum();
@@ -196,7 +199,11 @@
           UpdateLog(e)
         }
     }
-    function LogNonEvent(e) {
+    function LockStateChange(e) {
+      if (should_reenter && !document.pointerLockElement) {
+        LogArea.requestPointerLock();
+        should_reenter = false;
+      }
       pushStringToTopOfPreElement(e.type, eventTypeOutput);
       pushStringToTopOfPreElement(".", clientXOutput);
       pushStringToTopOfPreElement(".", screenXOutput);
@@ -209,17 +216,27 @@
       pushStringToTopOfPreElement("change: " + (document.pointerLockElement ? "locked" : "unlocked"), stateOutput);
       pushStringToTopOfPreElement(".", coalescedCountOutput);
     }
-    document.addEventListener('pointerlockerror', LogNonEvent);
+    document.addEventListener('pointerlockerror', LockStateChange);
 
-    document.addEventListener('pointerlockchange', LogNonEvent);
+    document.addEventListener('pointerlockchange', LockStateChange);
 
-    document.getElementById('reqPointerLock').addEventListener('click', function() {
+    reqPointerLock.addEventListener('click', function() {
       LogArea.requestPointerLock();
     });
 
-    document.getElementById('reqRawPointerLock').addEventListener('click', function() {
+    reqRawPointerLock.addEventListener('click', function() {
       LogArea.requestPointerLock({unadjustedMovement:true});
     });
+
+    reqRawPointerLockFallback.addEventListener('click', function() {
+      LogArea.requestPointerLock({unadjustedMovement:true});
+      should_reenter = true;
+    });
+
+    reenterPointerLock.addEventListener('click', function() {
+      document.exitPointerLock();
+      should_reenter = true;
+    });   
 
 
     function GetDsf() {
