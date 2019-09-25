@@ -44,8 +44,10 @@ function drawPoints(points) {
       case TypeEnum.RawUpdateEvents:
         radius = 2.0
         context.fillStyle = colors[colorCounter] + "0.3)";
-        points[i].x += 10;
-        points[i].y += 10;
+        if (coalescedCheckbox.checked) {
+          points[i].x += 10;
+          points[i].y += 10;
+        }
         break;
       case TypeEnum.DispatchEvents:
         radius = 3.0
