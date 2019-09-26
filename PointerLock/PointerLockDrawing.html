@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        height: 100%;
+      } 
+      #container {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0px;
+        touch-action: none;
+      }
+      canvas {
+        width: 100%;
+        height: 100%;
+      }
+      #controls {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 25px;
+        background-color: grey;
+        width: 100%;
+      }
+    </style>
+    <script src=PointerLockDrawing.js></script>
+  </head>
+  <body>
+    <div id=container>
+      <canvas id="canvas">
+      </canvas>
+    </div>
+    <div id=controls>
+      <button id="clear" tyle=button onclick="InitializeCanvas()">Clear</button>
+      <button id="pointerlock" tyle=button onclick="PointerLock()">PointerLock</button>
+      <button id="pointerlock" tyle=button onclick="PointerLockUnadjustedMovement()">PointerLockUnadjustedMovement</button>
+      <div id="selections" onchange="updateConfig()" style="display:inline-block;">
+        <label><input name="selection" type=radio id="dispatchEventSelection" checked>PointerEvents</label>
+        <label><input name="selection" type=radio id="coalescedSelection">CoalescedEvents</label>
+        <label><input name="selection" type=radio id="rawUpdatesSelection">PointerRawUpdates</label>
+      </div>
+    </div>
+  </body>
+</html>
+
