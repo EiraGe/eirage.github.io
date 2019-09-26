@@ -187,3 +187,7 @@ function PointerLock() {
 function PointerLockUnadjustedMovement() {
   canvas.requestPointerLock({unadjustedMovement:true});
 }
+
+document.addEventListener('pointerlockerror', ()=>{
+  console.log("pointerlockerror")
+});
