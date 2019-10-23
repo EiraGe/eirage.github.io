@@ -30,7 +30,7 @@ function drawPoints(points, predictions) {
       context.strokeStyle = 'rgba(150,0,0,0.5)';
     context.beginPath();
     context.moveTo(points[points.length - 1].x * scale, points[points.length - 1].y * scale);
-    for (var i = 1; i < predictions.length; ++i) {
+    for (var i = 0; i < 2; ++i) {
       context.lineTo(predictions[i].x * scale, predictions[i].y * scale);
     }
     context.stroke();
