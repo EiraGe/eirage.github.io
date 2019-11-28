@@ -142,7 +142,7 @@ function addEventHandlers() {
     startDraw();
     canvas.addEventListener('pointerdown', function(e) {
       addPoint(e.pageX, e.pageY);
-      if (e.pointerType() != "mouse") {
+      if (e.pointerType != "mouse") {
         if (activeFingerCount == 0)
           first_finger_down_time = e.timeStamp;
         activeFingerCount++;
@@ -151,7 +151,7 @@ function addEventHandlers() {
       e.preventDefault();
     });
     canvas.addEventListener('pointerup', function(e) {
-      if (e.pointerType() != "mouse") {
+      if (e.pointerType != "mouse") {
         activeFingerCount --;
         // Two finger tap to clear the page.
         if (activeFingerCount == 0) {
