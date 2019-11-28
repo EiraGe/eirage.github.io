@@ -16,8 +16,8 @@ const TypeEnum = {
 };
 
 function GetContext() {
-  return document.getElementById("canvas").getContext("2d"); 
-}   
+  return document.getElementById("canvas").getContext("2d");
+}
 
 window.addEventListener('resize', function(e) {
     InitializeCanvas();
@@ -142,19 +142,23 @@ function addEventHandlers() {
     startDraw();
     canvas.addEventListener('pointerdown', function(e) {
       addPoint(e.pageX, e.pageY);
-      if (activeFingerCount == 0)
-        first_finger_down_time = e.timeStamp;
-      activeFingerCount++;
-      maxActiveFinger = Math.max(activeFingerCount, maxActiveFinger);
+      if (e.pointerType() != "mouse") {
+        if (activeFingerCount == 0)
+          first_finger_down_time = e.timeStamp;
+        activeFingerCount++;
+        maxActiveFinger = Math.max(activeFingerCount, maxActiveFinger);
+      }
       e.preventDefault();
     });
     canvas.addEventListener('pointerup', function(e) {
-      activeFingerCount --;
-      // Two finger tap to clear the page.
-      if (activeFingerCount == 0) {
-        if (maxActiveFinger > 1 && e.timeStamp - first_finger_down_time <= 300)
-          Clear();
-        maxActiveFinger = 0;
+      if (e.pointerType() != "mouse") {
+        activeFingerCount --;
+        // Two finger tap to clear the page.
+        if (activeFingerCount == 0) {
+          if (maxActiveFinger > 1 && e.timeStamp - first_finger_down_time <= 300)
+            Clear();
+          maxActiveFinger = 0;
+        }
       }
       e.preventDefault();
     });
