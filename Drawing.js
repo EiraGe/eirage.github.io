@@ -148,7 +148,6 @@ function addEventHandlers() {
         activeFingerCount++;
         maxActiveFinger = Math.max(activeFingerCount, maxActiveFinger);
       }
-      e.preventDefault();
     });
     canvas.addEventListener('pointerup', function(e) {
       if (e.pointerType != "mouse") {
@@ -160,7 +159,6 @@ function addEventHandlers() {
           maxActiveFinger = 0;
         }
       }
-      e.preventDefault();
     });
     canvas.addEventListener('contextmenu', function(e) {
       e.preventDefault();
@@ -174,7 +172,7 @@ var scale = 1;
 function InitializeCanvas() {
   var elem = document.getElementById('canvas');
   var container = document.getElementById('container');
-  
+
   scale = window.devicePixelRatio ? window.devicePixelRatio : 1;
   elem.width = container.clientWidth * scale;
   elem.height = container.clientHeight * scale;
