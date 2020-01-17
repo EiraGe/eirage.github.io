@@ -1,8 +1,10 @@
 {
   "name": "Eirage Drawing Test Pages",
   "short_name": "Drawing",
+  "description": "Heng ji ji ",
   "icons": [{
       "src": "/images/icon-192x192.png",
+      "purpose":"maskable",
       "sizes": "192x192",
       "type": "image/png"
     }, {
@@ -11,7 +13,6 @@
       "type": "image/png"
     }],
   "start_url": "/Drawing.html",
-  "scope": "/",
   "android_package_name":"com.eirage.android",
   "display": "standalone",
   "background_color": "#FFFFFF",

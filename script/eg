@@ -1,0 +1,63 @@
+#!/bin/sh
+
+
+ProgName=$(basename $0)
+
+sub_help() {
+  echo "Usage: $ProgName <subcommand> [options]\n"
+  echo "Subcommands:"
+  echo "    bar   Do bar"
+  echo "    baz   Run baz"
+  echo ""
+  echo "For help with each subcommand run:"
+  echo "$ProgName <subcommand> -h|--help"
+  echo ""
+}
+
+sub_mint() {
+  mint $1
+}
+
+sub_tmux() {
+  run_tmux
+}
+
+sub_server() {
+  server
+}
+
+sub_proxy() {
+  charles &
+  adb reverse tcp:8888 tcp:8888
+  adb shell settings put global http_proxy 127.0.0.1:8888
+}
+
+sub_proxystop() {
+  adb shell settings delete global http_proxy
+  adb shell settings delete global global_http_proxy_host
+  adb shell settings delete global global_http_proxy_port
+  adb reboot
+}
+
+sub_request() {
+  echo "web_apk: {" > $2
+  printproto --proto2 --raw_protocol_buffer --multiline --message google.chrome.webapk.v1.WebApk $1 >> $2
+  echo "}" >> $2
+}
+
+
+subcommand=$1
+case $subcommand in
+  "" | "-h" | "--help")
+    sub_help
+    ;;
+  *)
+    shift
+    sub_${subcommand} $@
+    if [ $? = 127 ]; then
+      echo "Error: '$subcommand' is not a known subcommand." >&2
+      echo "       Run '$ProgName --help' for a list of known subcommands." >&2
+      exit 1
+    fi
+    ;;
+esac
