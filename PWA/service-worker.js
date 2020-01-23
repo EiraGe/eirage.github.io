@@ -1,9 +1,8 @@
 const FILES_TO_CACHE = [
-  '/Drawing.html',
-  '/Drawing.js',
+  '/LocationPermission.html',
 ];
 
-CACHE_NAME = 'v1';
+CACHE_NAME = 'v3';
 
 self.addEventListener('install', (evt) => {
     evt.waitUntil(
@@ -37,7 +36,7 @@ self.addEventListener('fetch', (evt) => {
           .catch(() => {
             return caches.open(CACHE_NAME)
                 .then((cache) => {
-                  return cache.match('Drawing.html');
+                  return cache.match('LocationPermission.html');
                 });
           })
   );

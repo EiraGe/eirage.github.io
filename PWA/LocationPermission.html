@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" href="images/icon-192x192.png">
+    <link rel="icon" href="../images/icon-192x192.png">
 </head>
 <body>
     <div id=getPos>
@@ -18,7 +18,15 @@
 </body>
 
 <script type="text/javascript">
-    
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js')
+        .then((reg) => {
+          console.log('Service worker registered.', reg);
+        });
+  });
+}
+
 function geoFindMe() {
     let status = document.getElementById('find-status');
     function success(position) {
@@ -27,7 +35,7 @@ function geoFindMe() {
         status.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
     }
 
-    function error() {
+    function error(error) {
         status.textContent = 'code: ' + error.code + '\n' + 'message: ' + error.message + '\n';
     }
 
@@ -68,7 +76,6 @@ function geoWatchMe(){
         status.textContent = ""
         invoke_counter = 0;
     }
-
 }
 document.querySelector('#watch-me').addEventListener('click', geoWatchMe);
 
