@@ -1,5 +1,5 @@
 const FILES_TO_CACHE = [
-  '/LocationPermission.html',
+  '/PWA/LocationPermission.html',
 ];
 
 CACHE_NAME = 'v3';
@@ -36,7 +36,7 @@ self.addEventListener('fetch', (evt) => {
           .catch(() => {
             return caches.open(CACHE_NAME)
                 .then((cache) => {
-                  return cache.match('LocationPermission.html');
+                  return cache.match('PWA/LocationPermission.html');
                 });
           })
   );
