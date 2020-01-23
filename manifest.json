@@ -9,9 +9,10 @@
     }, {
       "src": "/images/icon-512x512.png",
       "sizes": "512x512",
+      "purpose":"maskable",
       "type": "image/png"
     }],
-  "start_url": "/LocationPermission.html",
+  "start_url": "/PWA/LocationPermission.html",
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#FFFFFF"

@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" href="../images/icon-192x192.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/images/icon-192x192.png">
 </head>
 <body>
     <div id=getPos>
@@ -20,7 +20,7 @@
 <script type="text/javascript">
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./service-worker.js')
+    navigator.serviceWorker.register('/service-worker.js')
         .then((reg) => {
           console.log('Service worker registered.', reg);
         });

@@ -2,7 +2,7 @@ const FILES_TO_CACHE = [
   '/PWA/LocationPermission.html',
 ];
 
-CACHE_NAME = 'v3';
+CACHE_NAME = 'v4';
 
 self.addEventListener('install', (evt) => {
     evt.waitUntil(
@@ -36,7 +36,7 @@ self.addEventListener('fetch', (evt) => {
           .catch(() => {
             return caches.open(CACHE_NAME)
                 .then((cache) => {
-                  return cache.match('PWA/LocationPermission.html');
+                  return cache.match('/PWA/LocationPermission.html');
                 });
           })
   );
