@@ -1,7 +1,6 @@
 {
   "name": "Eirage Drawing Test Pages",
   "short_name": "Drawing",
-  "description": "Heng ji ji ",
   "icons": [{
       "src": "/images/icon-192x192.png",
       "purpose":"maskable",
