@@ -9,7 +9,6 @@
     }, {
       "src": "/images/icon-512x512.png",
       "sizes": "512x512",
-      "purpose":"any",
       "type": "image/png"
     }],
   "start_url": "/index.html",
