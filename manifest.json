@@ -12,7 +12,7 @@
       "purpose":"any",
       "type": "image/png"
     }],
-  "start_url": "/PWA/LocationPermission.html",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#FFFFFF"
