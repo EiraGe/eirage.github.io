@@ -1,6 +1,6 @@
 {
-  "name": "Eirage Location Permission Test Pages",
-  "short_name": "Location",
+  "name": "Eirage Test Pages",
+  "short_name": "Eirage",
   "icons": [{
       "src": "/images/icon-192x192.png",
       "purpose":"maskable",
