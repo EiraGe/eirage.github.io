@@ -32,6 +32,10 @@ sub_proxy() {
   adb shell settings put global http_proxy 127.0.0.1:8888
 }
 
+sub_proxystop() {
+  sub_stopproxy
+}
+
 sub_stopproxy() {
   adb shell settings delete global http_proxy
   adb shell settings delete global global_http_proxy_host
