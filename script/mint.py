@@ -3,6 +3,7 @@
 # Lint as: python3
 
 import os
+import json
 
 from absl import app
 
@@ -37,13 +38,31 @@ def install(apk_file):
   print ">> Executing " + cmd
   os.system(cmd);
 
+def printphoto(fin, fout):
+    cmd = "eg printproto %s %s" % (fin, fout)
+    print ">> Executing " + cmd
+    os.system(cmd);
+
+def getNames(filename):
+  filenames = filename.split('.')
+  if filenames[-1] == "proto" or filenames[-1] == "req":
+    rawName = ('.').join(filenames[:-1])
+  else:
+    rawName = filename;
+
+  with open(filename) as f:
+    if not "web_apk" in f.readline():
+      printphoto(filename, rawName+ ".proto")
+
+  return rawName + '.proto', rawName + '.apk'
 
 def main(argv):
   proto_file = "$HOME/WebAPK/twitter.proto"
   if len(argv) > 1:
-    proto_file = argv[1];
+    filename = argv[1]
 
-  apk_file = proto_file + ".apk";
+  [proto_file, apk_file] = getNames(filename);
+
   if len(argv) > 2:
     apk_file = argv[2];
 

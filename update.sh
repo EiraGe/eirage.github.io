@@ -2,5 +2,7 @@
 
 ./makeindex.sh
 git add .
-git commit -am "update"
+read -p "Commit message [update]:" message
+message = ${message: -Update}
+git commit -am $message
 git push

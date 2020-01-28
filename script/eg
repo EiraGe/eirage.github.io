@@ -6,8 +6,12 @@ ProgName=$(basename $0)
 sub_help() {
   echo "Usage: $ProgName <subcommand> [options]\n"
   echo "Subcommands:"
-  echo "    bar   Do bar"
-  echo "    baz   Run baz"
+  echo "    tmux:        Start tmux"
+  echo "    mint:        Mint WebApk"
+  echo "    server:      Start WAM sub_server"
+  echo "    proxy:       Connect phone to proxy"
+  echo "    stopproxy:   Remove proxy settings from phone"
+  echo "    proto:       printroto"
   echo ""
   echo "For help with each subcommand run:"
   echo "$ProgName <subcommand> -h|--help"
@@ -42,10 +46,14 @@ sub_stopproxy() {
   adb shell settings delete global global_http_proxy_port
 }
 
-sub_request() {
+sub_printproto() {
   echo "web_apk: {" > $2
   printproto --proto2 --raw_protocol_buffer --multiline --message google.chrome.webapk.v1.WebApk $1 >> $2
   echo "}" >> $2
+}
+
+sub_proto() {
+  sub_printproto
 }
 
 
