@@ -53,7 +53,7 @@ sub_printproto() {
 }
 
 sub_proto() {
-  sub_printproto
+  sub_printproto $1 $2
 }
 
 
