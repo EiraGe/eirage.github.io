@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link rel="manifest" href="manifest.json">
 <body>
     <div id=getPos>
         <button id = "find-me">Show my location</button><br/>
@@ -15,6 +16,15 @@
 </body>
 
 <script type="text/javascript">
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+        .then((reg) => {
+          console.log('Service worker registered.', reg);
+        });
+  });
+}
+
 function geoFindMe() {
     let status = document.getElementById('find-status');
     function success(position) {

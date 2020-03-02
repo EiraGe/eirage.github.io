@@ -1,8 +1,8 @@
 const FILES_TO_CACHE = [
-  'index.html',
+  '/PWA/Totoro/index.html',
 ];
 
-CACHE_NAME = 'v4';
+CACHE_NAME = 'v1';
 
 self.addEventListener('install', (evt) => {
     evt.waitUntil(
@@ -36,7 +36,7 @@ self.addEventListener('fetch', (evt) => {
           .catch(() => {
             return caches.open(CACHE_NAME)
                 .then((cache) => {
-                  return cache.match('/index.html');
+                  return cache.match('/PWA/Totoro/index.html');
                 });
           })
   );
