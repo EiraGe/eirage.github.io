@@ -23,7 +23,7 @@ tmux send-keys "cd ${SESSION_NAME}/src" C-m
 tmux new-window
 tmux send-keys "cd ${SESSION_NAME}/src" C-m
 #tmux send-keys "autoninja -C out/Debug chrome && out/Debug/chrome"
-tmux send-keys "autoninja -C out/Android/ chrome_apk"
+tmux send-keys "autoninja -C out/Android/ monochrome_apk"
 ## #4.Layouttest
 ## tmux new-window
 ## tmux send-keys "cd ${SESSION_NAME}/src" C-m
@@ -37,14 +37,9 @@ tmux send-keys "g4d webapk" C-m
 #tmux send-keys "cd googleclient/chrome/webapk/" C-m
 tmux new-window -n "server"
 tmux send-keys "g4d webapk" C-m
-tmux send-keys "blaze run //googleclient/chrome/webapk:webapk_server -- -alsologtostderr -bigtable=/bigtable/srv-iy/chrome-webapk.webapks-test -minimum_shell_update_version=5" C-m
+tmux send-keys "server" C-m
 tmux split-window -h
 tmux send-keys "cd WebAPK" C-m
-
-## #WebAPK folder
-## SESSION_NAME="WebAPK"
-## tmux new-window -n ${SESSION_NAME}
-## tmux send-keys "cd WebAPK" C-m
 
 # clankium session
 SESSION_NAME="clankium"
@@ -57,7 +52,7 @@ tmux send-keys "cd ${SESSION_NAME}/src" C-m
 #2.compile
 tmux new-window
 tmux send-keys "cd ${SESSION_NAME}/src" C-m
-tmux send-keys "autoninja -C out/Android/ chrome_public_apk"
+tmux send-keys "autoninja -C out/Android/ monochrome_apk"
 ## #3.Layouttest
 ## tmux new-window
 ## tmux send-keys "cd ${SESSION_NAME}/src" C-m

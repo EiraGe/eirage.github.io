@@ -7,6 +7,7 @@ sub_help() {
   echo "Usage: $ProgName <subcommand> [options]\n"
   echo "Subcommands:"
   echo "    tmux:        Start tmux"
+  echo "    twa:         Start tmux twa window"
   echo "    mint:        Mint WebApk"
   echo "    server:      Start WAM sub_server"
   echo "    proxy:       Connect phone to proxy"
@@ -57,6 +58,13 @@ sub_printproto() {
 
 sub_proto() {
   sub_printproto $1 $2
+}
+
+sub_twa() {
+  tmux new-window -n "TWA"
+  tmux send-keys "cd ~/android-browser-helper/" C-m
+  tmux split-window -h
+  tmux send-keys "cd ~/TWA" C-m
 }
 
 
