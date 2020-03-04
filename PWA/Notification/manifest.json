@@ -1,0 +1,19 @@
+{
+  "name": "Forked Beveloo Notifacation Test Pages",
+  "short_name": "Notifacation",
+  "icons": [{
+      "src": "/images/icon-192x192.png",
+      "purpose":"maskable",
+      "sizes": "192x192",
+      "type": "image/png"
+    }, {
+      "src": "/images/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }],
+  "start_url": "https://eirage.github.io/peter.sh/tests/notification-generator/index.html",
+  "scope": "/PWA/Notification/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF"
+}
