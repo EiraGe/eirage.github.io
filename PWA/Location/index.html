@@ -9,10 +9,12 @@
         <p id = "find-status"></p>
     </div>
 
+<!---    
     <div id=watchPos>
         <button id = "watch-me">Watch my location</button><br/>
         <p id = "watch-status"></p>
     </div>
+    ---->
 </body>
 
 <script type="text/javascript">
@@ -40,7 +42,6 @@ function geoFindMe() {
     if (!navigator.geolocation) {
         status.textContent = 'Geolocation is not supported by your browser';
     } else {
-        status.textContent = 'Locating…';
         navigator.geolocation.getCurrentPosition(success, error);
     }
 }

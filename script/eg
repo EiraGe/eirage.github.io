@@ -28,6 +28,8 @@ sub_tmux() {
 }
 
 sub_server() {
+  g4d -f webapk
+  g4 sync
   server
 }
 
