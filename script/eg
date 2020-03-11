@@ -1,5 +1,4 @@
-#!/bin/sh
-
+#!/bin/bash
 
 ProgName=$(basename $0)
 
@@ -13,6 +12,7 @@ sub_help() {
   echo "    proxy:       Connect phone to proxy"
   echo "    stopproxy:   Remove proxy settings from phone"
   echo "    proto:       printroto"
+  echo "    ax:          build androiX project"
   echo ""
   echo "For help with each subcommand run:"
   echo "$ProgName <subcommand> -h|--help"
@@ -65,10 +65,20 @@ sub_proto() {
 sub_twa() {
   tmux new-window -n "TWA"
   tmux send-keys "cd ~/android-browser-helper/" C-m
-  tmux split-window -h
-  tmux send-keys "cd ~/TWA" C-m
+  # tmux split-window -h
+  # tmux send-keys "cd ~/android-browser-helper/" C-m
+  # tmux send-keys "cd ~/TWA" C-m
 }
 
+sub_ax() {
+  path_to_checkout=~/androidx-master-dev
+  path_to_sdk=~/more-android-sdk
+  cd $path_to_checkout/frameworks/support/
+  ./gradlew createArchive
+  rm -rf $path_to_sdk/extra
+  unzip $path_to_checkout/out/dist/top-of-tree-m2repository-all-0.zip -d $path_to_sdk/extra/
+  ls $path_to_sdk/extra/m2repository/androidx/browser/browser/
+}
 
 subcommand=$1
 case $subcommand in
@@ -77,7 +87,9 @@ case $subcommand in
     ;;
   *)
     shift
+#    set -x
     sub_${subcommand} $@
+#    set +x
     if [ $? = 127 ]; then
       echo "Error: '$subcommand' is not a known subcommand." >&2
       echo "       Run '$ProgName --help' for a list of known subcommands." >&2
