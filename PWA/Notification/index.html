@@ -5,8 +5,7 @@
     <link rel="manifest" href="manifest.json">
 <body>
     <div>
-      <a href="https://eirage.github.io/peter.sh/tests/notification-generator/index.html"></a>
-      <iframe src="https://tests.peter.sh/notification-generator/"></iframe>
+      This page does not support offline
     </div>
 
 <script type="text/javascript">
@@ -17,6 +16,10 @@ if ('serviceWorker' in navigator) {
           console.log('Service worker registered.', reg);
         });
   });
+}
+
+window.onload = function() {
+    window.location.href= "https://eirage.github.io/peter.sh/tests/notification-generator/index.html";
 }
 </script>
 </html>
