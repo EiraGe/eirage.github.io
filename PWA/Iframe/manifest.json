@@ -11,7 +11,7 @@
       "sizes": "512x512",
       "type": "image/png"
     }],
-  "start_url": "https://eirage.github.io/Iframe/index.html",
+  "start_url": "https://eirage.github.io/PWA/Iframe/index.html",
   "scope": "/PWA/Iframe/",
   "display": "standalone",
   "background_color": "#FFFFFF",
