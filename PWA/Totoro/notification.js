@@ -9,7 +9,8 @@ function displayNotification() {
     navigator.serviceWorker.getRegistration().then(function(reg) {
       var options = {
         body: 'This is a notification from Long Long!',
-        icon: 'Totoro_badge.png',
+        icon: 'totoro_icon.png',
+        badge: 'totoro_badge.png',
       };
       reg.showNotification('Hello Ella!', options);
     });
