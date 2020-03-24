@@ -3,8 +3,34 @@
 <meta name="viewport" content="width=device-width" />
 <link rel="manifest" href="manifest.json">
 <title>Long Long Test Page</title>
+<script type="text/javascript" src="./notification.js"></script>
+<script type="text/javascript" src="./location.js"></script>
+<style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
 <body>
-Hello world!
+
+<img src="IMG_0279.HEIC" class="center">
+<div class='center'>
+    <button class="button" id="notification" onclick="sendNotification()">Notification</button>
+    <button class="button" id="location" onclick="getLocation()">Location</button>
+</div>
+<div id="resultDiv"></div>
 </body>
 
 <script>

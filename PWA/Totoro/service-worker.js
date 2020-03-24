@@ -41,3 +41,24 @@ self.addEventListener('fetch', (evt) => {
           })
   );
 })
+
+self.addEventListener('notificationclick', function(e) {
+  var notification = e.notification;
+  var primaryKey = notification.data.primaryKey;
+  var action = e.action;
+
+  if (action === 'close') {
+    notification.close();
+  } else {
+    clients.openWindow('https://eirage.github.io/PWA/Totoro/index.html');
+    notification.close();
+  }
+});
+
+self.addEventListener('notificationclose', function(e) {
+  var notification = e.notification;
+  var primaryKey = notification.data.primaryKey;
+
+  console.log('Closed notification: ' + primaryKey);
+});
+
