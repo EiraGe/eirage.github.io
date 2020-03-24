@@ -12,8 +12,8 @@ SESSION_NAME="chromium"
 tmux rename-window ${SESSION_NAME}
 tmux send-keys "cd ${SESSION_NAME}/src" C-m
 tmux send-keys "~/goma/goma_ctl.py ensure_start" C-m
-#tmux split-window -h
-#tmux send-keys "cd ${SESSION_NAME}/src" C-m
+tmux split-window -h
+tmux send-keys "cd ${SESSION_NAME}/src" C-m
 ## #2.vim
 ## tmux new-window
 ## tmux send-keys "cd ${SESSION_NAME}/src" C-m
@@ -31,15 +31,15 @@ tmux send-keys "autoninja -C out/Android/ monochrome_apk"
 ## tmux send-keys "./run_web_tests.py --debug "
 
 #g3 session
-#SESSION_NAME="google3"
-#tmux new-window -n ${SESSION_NAME}
-#tmux send-keys "g4d webapk" C-m
+SESSION_NAME="google3"
+tmux new-window -n ${SESSION_NAME}
+tmux send-keys "g4d webapk" C-m
 #tmux send-keys "cd googleclient/chrome/webapk/" C-m
-#tmux new-window -n "server"
-#tmux send-keys "g4d webapk" C-m
-#tmux send-keys "server" C-m
-#tmux split-window -h
-#tmux send-keys "cd WebAPK" C-m
+tmux new-window -n "server"
+tmux send-keys "g4d webapk" C-m
+tmux send-keys "server" C-m
+tmux split-window -h
+tmux send-keys "cd WebAPK" C-m
 
 # clankium session
 SESSION_NAME="clankium"
@@ -47,8 +47,8 @@ SESSION_NAME="clankium"
 tmux new-window -n ${SESSION_NAME}
 #1.git/vim
 tmux send-keys "cd ${SESSION_NAME}/src" C-m
-#tmux split-window -h
-#tmux send-keys "cd ${SESSION_NAME}/src" C-m
+tmux split-window -h
+tmux send-keys "cd ${SESSION_NAME}/src" C-m
 #2.compile
 tmux new-window
 tmux send-keys "cd ${SESSION_NAME}/src" C-m
