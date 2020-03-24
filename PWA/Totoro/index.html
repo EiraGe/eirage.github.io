@@ -22,15 +22,22 @@
   display: inline-block;
   font-size: 16px;
 }
+.result {
+  margin: 0 0 8px 0;
+  padding-top: 8px; padding-bottom: 8px;
+  background-color: rgba(255, 0, 0, .1);
+  display: none;
+}
 </style>
 <body>
+<ul id="result" class="result">
+</ul>
 
 <img src="IMG_0279.HEIC" class="center">
 <div class='center'>
     <button class="button" id="notification" onclick="sendNotification()">Notification</button>
     <button class="button" id="location" onclick="getLocation()">Location</button>
 </div>
-<div id="resultDiv"></div>
 </body>
 
 <script>
