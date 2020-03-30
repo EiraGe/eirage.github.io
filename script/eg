@@ -75,9 +75,42 @@ sub_ax() {
   path_to_sdk=~/more-android-sdk
   cd $path_to_checkout/frameworks/support/
   ./gradlew createArchive
-  rm -rf $path_to_sdk/extra
-  unzip $path_to_checkout/out/dist/top-of-tree-m2repository-all-0.zip -d $path_to_sdk/extra/
-  ls $path_to_sdk/extra/m2repository/androidx/browser/browser/
+  if [ $? -eq 0 ]; then
+    rm -rf $path_to_sdk/extra
+    unzip $path_to_checkout/out/dist/top-of-tree-m2repository-all-0.zip -d $path_to_sdk/extra/
+  fi
+}
+
+#mac
+sub_sync() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    androidx=~/androidx-master-dev/frameworks/support/
+    remote="eirage0.wat.corp.google.com:/usr/local/google/home/eirage/chromium/src/third_party/android_sdk/androidx_browser/src/"
+    java="browser/browser/src/main/java/androidx/browser/"
+    aidl="browser/browser/src/main/aidl/android/support/customtabs/"
+    case $1 in
+      "")
+        scp -r $androidx$java/trusted $remote$java
+        scp -r $androidx$aidl/trusted $remote$aidl
+        ;;
+      "-r")
+        scp -r $remote$java/trusted $androidx$java
+        scp -r $remote$aidl/trusted $androidx$aidl
+        ;;
+    esac
+  fi
+}
+
+#mac
+sub_install() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    version=$(date +%F_%H-%M-%S)
+    set -x
+    scp eirage0.wat.corp.google.com:/usr/local/google/home/eirage/chromium/src/out/Android/apks/Monochrome.apk ~/AndroidApks/Monochrome$version.apk
+
+    adb install -r -d ~/AndroidApks/Monochrome$version.apk
+    set +x
+  fi
 }
 
 subcommand=$1
