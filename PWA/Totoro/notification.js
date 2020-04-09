@@ -18,8 +18,3 @@ function displayNotification() {
     showResult('Notification permission status:' + Notification.permission)
   }
 }
-function showResult(text) {
-    result = document.getElementById("result");
-    result.innerHTML = "<li>" + text + "</li>";
-    result.style.display = "block";
-}

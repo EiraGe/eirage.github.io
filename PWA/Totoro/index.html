@@ -49,4 +49,10 @@ if ('serviceWorker' in navigator) {
         });
   });
 }
+
+function showResult(text) {
+    result = document.getElementById("result");
+    result.innerHTML += "<li>" + text + "</li>";
+    result.style.display = "block";
+}
 </script>

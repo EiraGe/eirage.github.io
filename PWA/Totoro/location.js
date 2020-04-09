@@ -18,6 +18,6 @@ function getLocation() {
 
 function showResult(text) {
     result = document.getElementById("result");
-    result.innerHTML = "<li>" + text + "</li>";
+    result.innerHTML += "<li>" + text + "</li>";
     result.style.display = "block";
 }
