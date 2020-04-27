@@ -125,16 +125,19 @@ sub_install() {
 
 #temp --- update location permission tag
 sub_tag() {
-  case $1 in
-    "" | "-u") #update
-      git tag -d permission_tot
-      git tag permission_tot
-      ;;
-    "-f") #fetch
-      git tag -d permission_tot
-      git fetch local -p
-      ;;
-  esac
+  if [[ "$PWD" =~ .*clankium/src.* ]]; then
+    #update
+    git tag -d permission_tot
+    git tag permission_tot
+  elif [[ "$PWD" =~ .*chromium/src.* ]]; then
+    #fetch
+    git tag -d permission_tot
+    git fetch local -p
+  fi
+}
+
+sub_tot() {
+  sub_tag;
 }
 
 subcommand=$1
