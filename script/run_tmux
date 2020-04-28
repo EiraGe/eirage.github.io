@@ -30,16 +30,16 @@ tmux send-keys "autoninja -C out/Android/ monochrome_apk"
 ## tmux send-keys "cd third_party/blink/tools/" C-m
 ## tmux send-keys "./run_web_tests.py --debug "
 
-#g3 session
-#SESSION_NAME="google3"
-#tmux new-window -n ${SESSION_NAME}
-#tmux send-keys "g4d webapk" C-m
-#tmux send-keys "cd googleclient/chrome/webapk/" C-m
-#tmux new-window -n "server"
-#tmux send-keys "g4d webapk" C-m
-#tmux send-keys "server" C-m
-#tmux split-window -h
-#tmux send-keys "cd WebAPK" C-m
+g3 session
+SESSION_NAME="google3"
+tmux new-window -n ${SESSION_NAME}
+tmux send-keys "g4d webapk" C-m
+tmux send-keys "cd googleclient/chrome/webapk/" C-m
+tmux new-window -n "server"
+tmux send-keys "g4d webapk" C-m
+tmux send-keys "server" C-m
+tmux split-window -h
+tmux send-keys "cd WebAPK" C-m
 
 # clankium session
 SESSION_NAME="clankium"
