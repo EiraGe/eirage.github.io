@@ -30,7 +30,7 @@ def mint_enterprise(proto_file, apk_file):
     apk = base64.b64decode(mint_result['apk_blob'])
     with open(apk_file, "w") as out:
       out.write(apk);
-    with open("/usr/local/google/home/eirage/DriveFileStream/My Drive/WebAPK/webapk.apk", "w") as out:
+    with open("/usr/local/google/home/eirage/DriveFileStream/My Drive/AndroidApks/webapk.apk", "w") as out:
       out.write(apk);
   os.system("rm tmp")
 

@@ -11,7 +11,7 @@ SESSION_NAME="chromium"
 #1.git/vim
 tmux rename-window ${SESSION_NAME}
 tmux send-keys "cd ${SESSION_NAME}/src" C-m
-tmux send-keys "~/goma/goma_ctl.py ensure_start" C-m
+tmux send-keys "goma_ctl ensure_start" C-m
 #tmux split-window -h
 #tmux send-keys "cd ${SESSION_NAME}/src" C-m
 ## #2.vim

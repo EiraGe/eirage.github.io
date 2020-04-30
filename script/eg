@@ -116,9 +116,11 @@ sub_install() {
     esac
     version=$(date +%F_%H-%M-%S)
     set -x
-    scp $remote/Monochrome.apk ~/AndroidApks/Monochrome$version.apk
+    local="~/AndroidApks/"
+    #local="/Volumes/GoogleDrive/My\ Drive/AndroidApks/"
+    scp $remote/Monochrome.apk $local/Monochrome$version.apk
 
-    adb install -r -d ~/AndroidApks/Monochrome$version.apk
+    adb install -r -d $local/Monochrome$version.apk
     set +x
   fi
 }
