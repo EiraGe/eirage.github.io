@@ -114,7 +114,7 @@ sub_install() {
       *)
         remote="eirage0.wat.corp.google.com:/usr/local/google/home/eirage/chromium/src/out/Android/apks/"
     esac
-    version=$(date +%F_%H-%M-%S)
+    version="" #$(date +%F_%H-%M-%S)
     set -x
     local="~/AndroidApks/"
     #local="/Volumes/GoogleDrive/My\ Drive/AndroidApks/"

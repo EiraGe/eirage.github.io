@@ -9,11 +9,7 @@ function getLocation() {
         showResult('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
     }
 
-    if (!navigator.geolocation) {
-        showResult(status.textContent = 'Geolocation is not supported by your browser');
-    } else {
-        navigator.geolocation.getCurrentPosition(success, error);
-    }
+    navigator.geolocation.getCurrentPosition(success, error);
 }
 
 function showResult(text) {
