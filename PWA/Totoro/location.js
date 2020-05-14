@@ -1,12 +1,15 @@
 var id = -1;
 
 function getLocation() {
+    let button = document.getElementById("location");
     if (id) {
         navigator.geolocation.clearWatch(id);
         id = null;
+        button.innerText = "Location";
     } else {
         resetResult();
         id = navigator.geolocation.watchPosition(success, error);
+        button.innerText = "Stop Location";
     }
 }
 
@@ -18,6 +21,7 @@ function success(position) {
 
 function error(error) {
     showResult('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+    document.getElementById("location").innerText = "Stop Location";
 }
 
 function showResult(text) {
