@@ -29,7 +29,7 @@
   display: none;
 }
 </style>
-<body>
+<body onload="Start()">
 <ul id="result" class="result">
 </ul>
 
@@ -37,6 +37,7 @@
 <div class='center'>
     <button class="button" id="notification" onclick="sendNotification()">Notification</button>
     <button class="button" id="location" onclick="getLocation()">Location</button>
+    <button class="button" id="watchLocation" onclick="watchLocation()">Watch Location</button>
 </div>
 </body>
 
