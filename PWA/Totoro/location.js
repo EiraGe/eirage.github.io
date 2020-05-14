@@ -7,7 +7,6 @@ const State = {
 var getBtn, watchBtn, mState, id;
 
 function Start() {
-    console.log(onload)
     getBtn = document.getElementById("location");
     watchBtn = document.getElementById("watchLocation")
 
@@ -16,12 +15,11 @@ function Start() {
 }
 
 function getLocation() {
-    navigator.geolocation.watchPosition(success, error);
+    navigator.geolocation.getCurrentPosition(success, error);
     setState(State.WaitingLocation);
 }
 
 function watchLocation() {
-    console.log(id)
     if (id) {
         navigator.geolocation.clearWatch(id);
         id = null;
@@ -77,5 +75,4 @@ function setState(state) {
             break;
         }
     }
-    console.log(mState)
 }
