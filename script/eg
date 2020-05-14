@@ -109,14 +109,14 @@ sub_install() {
   if [[ "$OSTYPE" == "darwin"* ]]; then
     case $1 in
       "-c" | "--clank")
-        remote="eirage0.wat.corp.google.com:/usr/local/google/home/eirage/clankium/src/out/Android/apks/"
+        remote="eirage0.wat.corp.google.com:/usr/local/google/home/eirage/clankium/src/out/Android/apks"
         ;;
       *)
-        remote="eirage0.wat.corp.google.com:/usr/local/google/home/eirage/chromium/src/out/Android/apks/"
+        remote="eirage0.wat.corp.google.com:/usr/local/google/home/eirage/chromium/src/out/Android/apks"
     esac
     version="" #$(date +%F_%H-%M-%S)
     set -x
-    local="~/AndroidApks/"
+    local="/Users/eirage/AndroidApks"
     #local="/Volumes/GoogleDrive/My\ Drive/AndroidApks/"
     scp $remote/Monochrome.apk $local/Monochrome$version.apk
 
