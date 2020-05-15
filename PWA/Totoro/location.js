@@ -16,6 +16,7 @@ function Start() {
 function getLocation() {
     navigator.geolocation.getCurrentPosition(success, error);
     setState(State.WaitingLocation);
+    resetResult()
 }
 
 function watchLocation() {
@@ -43,16 +44,16 @@ function error(error) {
     setState(State.Idle);
 }
 
-function showResult(text) {
-    result = document.getElementById("result");
-    result.innerHTML += "<li>" + text + "</li>";
-    result.style.display = "block";
+function appendResult(text) {
+    var ul = document.getElementById("result");
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode(text));
+    ul.appendChild(li);
 }
 
 function resetResult() {
     result = document.getElementById("result");
     result.innerHTML = "";
-    result.style.display = "none";
 }
 
 function setState(state) {
