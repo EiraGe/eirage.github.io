@@ -11,7 +11,6 @@ function Start() {
     watchBtn = document.getElementById("watchLocation")
 
     setState(State.Idle);
-    id = null;
 }
 
 function getLocation() {
@@ -20,14 +19,14 @@ function getLocation() {
 }
 
 function watchLocation() {
-    if (id) {
-        navigator.geolocation.clearWatch(id);
-        id = null;
-        setState(State.Idle)
-    } else {
+    if (mState == State.Idle) {
         resetResult();
         id = navigator.geolocation.watchPosition(success, error);
         setState(State.WatchingLocation)
+    } else {
+        navigator.geolocation.clearWatch(id);
+        id = null;
+        setState(State.Idle)
     }
 }
 
