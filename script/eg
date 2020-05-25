@@ -27,7 +27,7 @@ sub_mint() {
 }
 
 sub_tmux() {
-  run_tmux
+  run_tmux $1
 }
 
 sub_server() {
