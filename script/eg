@@ -88,7 +88,7 @@ sub_ax() {
 sub_sync() {
   if [[ "$OSTYPE" == "darwin"* ]]; then
     androidx=~/androidx-master-dev/frameworks/support/
-    remote="eirage0.wat.corp.google.com:/usr/local/google/home/eirage/chromium/src/third_party/android_sdk/androidx_browser/src/"
+    remote="eirage.c.corp.google.com:/usr/local/google/home/eirage/chromium/src/third_party/android_sdk/androidx_browser/src/"
     java="browser/browser/src/main/java/androidx/browser/"
     aidl="browser/browser/src/main/aidl/android/support/customtabs/"
     case $1 in
@@ -109,10 +109,10 @@ sub_install() {
   if [[ "$OSTYPE" == "darwin"* ]]; then
     case $1 in
       "-c" | "--clank")
-        remote="eirage0.wat.corp.google.com:/usr/local/google/home/eirage/clankium/src/out/Android/apks"
+        remote="eirage.c.corp.google.com:/usr/local/google/home/eirage/clankium/src/out/Android/apks"
         ;;
       *)
-        remote="eirage0.wat.corp.google.com:/usr/local/google/home/eirage/chromium/src/out/Android/apks"
+        remote="eirage.c.corp.google.com:/usr/local/google/home/eirage/chromium/src/out/Android/apks"
     esac
     version="" #$(date +%F_%H-%M-%S)
     set -x
