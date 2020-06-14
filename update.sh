@@ -10,6 +10,10 @@ git push
 
 cd PWA
 git add .
-message=${message:-Update}
+git commit -am "$message"
+git push
+
+cd script
+git add .
 git commit -am "$message"
 git push

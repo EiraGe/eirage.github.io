@@ -1,5 +1,5 @@
 const FILES_TO_CACHE = [
-  '/PWA/Location/index.html',
+  './index.html',
 ];
 
 CACHE_NAME = 'v1';
@@ -36,7 +36,7 @@ self.addEventListener('fetch', (evt) => {
           .catch(() => {
             return caches.open(CACHE_NAME)
                 .then((cache) => {
-                  return cache.match('/PWA/Location/index.html');
+                  return cache.match('./index.html');
                 });
           })
   );

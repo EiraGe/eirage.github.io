@@ -11,8 +11,8 @@
       "sizes": "512x512",
       "type": "image/png"
     }],
-  "start_url": "https://eirage.github.io/PWA/Location/index.html",
-  "scope": "/PWA/Location/",
+  "start_url": "./index.html",
+  "scope": "../Location/",
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#FFFFFF"

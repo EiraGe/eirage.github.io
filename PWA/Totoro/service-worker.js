@@ -1,5 +1,5 @@
 const FILES_TO_CACHE = [
-  '/PWA/Totoro/index.html',
+  './index.html',
 ];
 
 CACHE_NAME = 'v1';
@@ -36,7 +36,7 @@ self.addEventListener('fetch', (evt) => {
           .catch(() => {
             return caches.open(CACHE_NAME)
                 .then((cache) => {
-                  return cache.match('/PWA/Totoro/index.html');
+                  return cache.match('./index.html');
                 });
           })
   );
@@ -50,7 +50,7 @@ self.addEventListener('notificationclick', function(e) {
   if (action === 'close') {
     notification.close();
   } else {
-    clients.openWindow('https://eirage.github.io/PWA/Totoro/index.html');
+    clients.openWindow('./index.html');
     notification.close();
   }
 });
