@@ -9,12 +9,15 @@
         <p id = "find-status"></p>
     </div>
 
-<!---
     <div id=watchPos>
         <button id = "watch-me">Watch my location</button><br/>
         <p id = "watch-status"></p>
     </div>
----->
+
+    <div id=watchPos2>
+        <button id = "watch-me2">Watch my location</button><br/>
+        <p id = "watch-status2"></p>
+    </div>
 </body>
 
 <script type="text/javascript">
@@ -77,6 +80,38 @@ function geoWatchMe(){
     }
 }
 document.querySelector('#watch-me').addEventListener('click', geoWatchMe);
+
+
+var watchID2 = null;
+function geoWatchMe2(){
+    let status = document.getElementById('watch-status2');
+    let button = document.getElementById('watch-me2');
+    var invoke_counter = 0;
+    function success(position) {
+      const latitude  = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      invoke_counter ++;
+      status.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} ° Counter: ${invoke_counter}`;
+    }
+
+    function error(error) {
+        status.textContent = 'code: ' + error.code + '\n' + 'message: ' + error.message + '\n';
+    }
+
+    if (!watchID2) {
+        var options = { timeout: 30000 };
+        watchID2 = navigator.geolocation.watchPosition(success, error, options);
+        button.textContent = "stop";
+    } else {
+        navigator.geolocation.clearWatch(watchID2);
+        watchID2 = null;
+        button.textContent = "Watch my location";
+        status.textContent = ""
+        invoke_counter = 0;
+    }
+}
+
+document.querySelector('#watch-me2').addEventListener('click', geoWatchMe2);
 
 </script>
 </html>
