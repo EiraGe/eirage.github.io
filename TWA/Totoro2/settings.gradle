@@ -1,0 +1,3 @@
+include ':app'
+include ':androidbrowserhelper'
+project(':androidbrowserhelper').projectDir= new File('/Users/eirage/android-browser-helper/androidbrowserhelper')
