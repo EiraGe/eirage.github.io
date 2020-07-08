@@ -22,7 +22,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.eirage.pwa.twa">
 
-    
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -93,7 +94,7 @@
 
         <activity android:name="com.google.androidbrowserhelper.trusted.WebViewFallbackActivity"
             android:configChanges="orientation|screenSize" />
-
+        <activity android:name="com.google.androidbrowserhelper.trusted.PermissionRequestActivity"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="@string/providerAuthority"
