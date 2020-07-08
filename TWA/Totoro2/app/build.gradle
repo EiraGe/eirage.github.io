@@ -46,10 +46,10 @@ android {
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.eirage.pwa.twa"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
-        versionName "1"
+        versionCode 3
+        versionName "3.0"
 
         // The name for the application
         resValue "string", "appName", twaManifest.name
@@ -167,4 +167,5 @@ preBuild.dependsOn(generateShorcutsFile)
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(path: ':androidbrowserhelper')
+    implementation project(path: ':locationdelegation')
 }
