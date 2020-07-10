@@ -93,12 +93,12 @@ sub_sync() {
     aidl="browser/browser/src/main/aidl/android/support/customtabs/"
     case $1 in
       "")
-        scp -r $androidx$java/trusted $remote$java
-        scp -r $androidx$aidl/trusted $remote$aidl
+        scp -r $androidx$java/* $remote$java
+        scp -r $androidx$aidl/* $remote$aidl
         ;;
       "-r")
-        scp -r $remote$java/trusted $androidx$java
-        scp -r $remote$aidl/trusted $androidx$aidl
+        scp -r $remote$java/* $androidx$java
+        scp -r $remote$aidl/* $androidx$aidl
         ;;
     esac
   fi
