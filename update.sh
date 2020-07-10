@@ -12,8 +12,10 @@ cd PWA
 git add .
 git commit -am "$message"
 git push
+cd ..
 
 cd script
 git add .
 git commit -am "$message"
 git push
+cd ..
