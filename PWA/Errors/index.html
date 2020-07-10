@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <link rel="manifest" href="manifest.json">
-<body>
-  <ui>
-    <li> 
-      <a href="./index.html"> normal </a>
-    </li>
-    <li> 
-      <a href="../Totoro/hello.html"> 404 </a>
-    </li>
-    <li> 
-      <a href="../Totoro/index.html"> offline dino</a>
-    </li>
-  </ui>
-</body>
+  <head>
+      <meta name="viewport" content="width=device-width" />
+      <link rel="manifest" href="manifest.json">
+  </head>
+  <style>
+    body {
+      font-size: xx-large;
+      line-height: 3em
+    }
+  </style>
+  <body>
+    <ui>
+      <li> 
+        <a href="./index.html"> normal </a>
+      </li>
+      <li> 
+        <a href="../Totoro/hello.html"> 404 </a>
+      </li>
+      <li> 
+        <a href="../Totoro/index.html"> offline dino</a>
+      </li>
+    </ui>
+  </body>
 
-<script type="text/javascript">
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./service-worker.js')
-        .then((reg) => {
-          console.log('Service worker registered.', reg);
-        });
-  });
-}
-</script>
+  <script type="text/javascript">
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./service-worker.js')
+          .then((reg) => {
+            console.log('Service worker registered.', reg);
+          });
+    });
+  }
+  </script>
 </html>
