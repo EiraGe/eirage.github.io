@@ -1,5 +1,6 @@
 const FILES_TO_CACHE = [
   './index.html',
+  './blank.html'
   './hello.html'
 ];
 
