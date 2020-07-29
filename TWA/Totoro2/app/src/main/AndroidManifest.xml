@@ -91,7 +91,6 @@
 
         <activity android:name="com.google.androidbrowserhelper.trusted.WebViewFallbackActivity"
             android:configChanges="orientation|screenSize" />
-        <activity android:name="com.google.androidbrowserhelper.locationdelegation.PermissionRequestActivity"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="@string/providerAuthority"
