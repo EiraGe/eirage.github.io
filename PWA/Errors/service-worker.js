@@ -1,7 +1,8 @@
 const FILES_TO_CACHE = [
   './index.html',
-  './blank.html'
-  './hello.html'
+  './blank.html',
+  './hello.html',
+  './link.html'
 ];
 
 CACHE_NAME = 'v1';
@@ -28,18 +29,15 @@ self.addEventListener('activate', (evt) => {
     );
 })
 
-self.addEventListener('fetch', (evt) => {
-  if (evt.request.mode !== 'navigate') {
-    // Not a page navigation, bail.
-    return;
-  }
-  evt.respondWith(
-      fetch(evt.request)
-          .catch(() => {
-            return caches.open(CACHE_NAME)
-                .then((cache) => {
-                  return cache.match('./index.html');
-                });
-          })
-  );
-})
+self.addEventListener('fetch', function(event) {
+    event.respondWith(
+        caches.match(event.request)
+        .then(function(response) {
+            if (response) {
+                return response;
+            } else {
+                return fetch(event.request);
+            }
+        })
+    );
+});
