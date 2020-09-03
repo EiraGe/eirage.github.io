@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hello!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="./style.css">
+    <!-- Manifest -->
+    <link rel="manifest" href="./manifest.json">
+  </head>  
+  <body>
+    <!-- Install button, hidden by default -->
+    <div id="installContainer" class="hidden">
+      <button id="butInstall" type="button">
+        Install
+      </button>
+    </div>
+
+    <!-- import the webpage's javascript file -->
+    <script src="./script.js" defer></script>
+    
+    
+
+ <!-- Add js lock/unlock here: https://www.w3.org/TR/screen-orientation/#locking-to-a-specific-orientation-and-unlocking -->   
+<script>
+function fullScreenCheck() {
+  if (document.fullscreenElement) return;
+  return document.documentElement.requestFullscreen();
+}
+
+function updateDetails(lockButton) {
+  const buttonOrientation = getOppositeOrientation();
+  lockButton.textContent = `Lock to ${buttonOrientation}`;
+}
+
+function getOppositeOrientation() {
+  const { type } = screen.orientation;
+  return type.startsWith("portrait") ? "landscape" : "portrait";
+}
+
+async function rotate(lockButton) {
+  try {
+    await fullScreenCheck();
+  } catch (err) {
+    console.error(err);
+  }
+  const newOrientation = getOppositeOrientation();
+  await screen.orientation.lock(newOrientation);
+  updateDetails(lockButton);
+}
+
+function show() {
+  const { type, angle } = screen.orientation;
+  console.log(`Orientation type is ${type} & angle is ${angle}.`);
+}
+
+screen.orientation.addEventListener("change", () => {
+  show();
+  updateDetails(document.getElementById("button"));
+});
+
+window.addEventListener("load", () => {
+  show();
+  updateDetails(document.getElementById("button"));
+});
+</script>
+
+<button onclick="rotate(this)" id="button">
+  Lock
+</button>
+<button onclick="screen.orientation.unlock()">
+  Unlock
+</button>
+    
+  </body>
+  
+  
+ <!-- end of js lock/unlock here --> 
+  
+  
+</html>
