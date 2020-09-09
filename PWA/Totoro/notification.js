@@ -27,7 +27,7 @@ function displayNotification() {
     options = createNotificationOptions();
 
     navigator.serviceWorker.getRegistration().then(function(reg) {
-      reg.showNotification('Hello Ella!', );
+      reg.showNotification(title, options);
     });
   }
   showResult('Notification permission status:' + Notification.permission)
