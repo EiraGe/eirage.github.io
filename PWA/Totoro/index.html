@@ -31,7 +31,7 @@
 </style>
 <body onload="Start()">
 
-<img src="IMG_0279.HEIC" class="center">
+<img id="Tototo", src="IMG_0.jpg" class="center">
 <div class='center'>
     <button class="button" id="notification" onclick="sendNotification()">Notification</button>
     <button class="button" id="location" onclick="getLocation()">Location</button>
@@ -55,5 +55,11 @@ function showResult(text) {
     result = document.getElementById("result");
     result.innerHTML += "<li>" + text + "</li>";
     result.style.display = "block";
+}
+
+var imageIndex = 0;
+document.getElementById("Tototo").onclick = function() {
+  Tototo.src="IMG_"+(++imageIndex)+".jpg"
+  imageIndex %= 3;
 }
 </script>
