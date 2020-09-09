@@ -19,13 +19,16 @@ import groovy.xml.MarkupBuilder
 apply plugin: 'com.android.application'
 
 def twaManifest = [
-    applicationId: 'io.github.eirage.twa.longlong',
-    hostName: 'tests.eirage.com', // The domain being opened in the TWA.
-    launchUrl: '/PWA/Totoro/index.html', // The start path for the TWA. Must be relative to the domain.
+    applicationId: 'com.eirage.pwa.twa',
+    hostName: 'pwa.eirage.com', // The domain being opened in the TWA.
+    launchUrl: '/Totoro/index.html', // The start path for the TWA. Must be relative to the domain.
     name: 'Long Long Test Pages', // The application name.
     launcherName: 'Long Long', // The name shown on the Android Launcher.
     themeColor: '#FFFFFF', // The color used for the status bar.
     navigationColor: '#000000', // The color used for the navigation bar.
+    navigationColorDark: '#000000', // The color used for the dark navbar.
+    navigationDividerColor: '#000000', // The navbar divider color.
+    navigationDividerColorDark: '#000000', // The dark navbar divider color.
     backgroundColor: '#FFFFFF', // The color used for the splash screen background.
     enableNotifications: true, // Set to true to enable notification delegation.
     // Every shortcut must include the following fields:
@@ -39,13 +42,14 @@ def twaManifest = [
     generatorApp: 'bubblewrap-cli', // Application that generated the Android Project
     // The fallback strategy for when Trusted Web Activity is not avilable. Possible values are
     // 'customtabs' and 'webview'.
-    fallbackType: 'customtabs'
+    fallbackType: 'customtabs',
+    enableSiteSettingsShortcut: 'true',
 ]
 
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "io.github.eirage.twa.longlong"
+        applicationId "com.eirage.pwa.twa"
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
@@ -65,7 +69,7 @@ android {
             // The URL the Web Manifest for the Progressive Web App that the TWA points to. This
             // is used by Chrome OS to open the Web version of the PWA instead of the TWA, as it
             // will probably give a better user experience for non-mobile devices.
-            resValue "string", "webManifestUrl", 'https://tests.eirage.com/PWA/Totoro/manifest.json'
+            resValue "string", "webManifestUrl", 'https://pwa.eirage.com/Totoro/manifest.json'
         
 
         // The hostname is used when building the intent-filter, so the TWA is able to
@@ -86,10 +90,25 @@ android {
         // compile. If not set, the status bar color defaults to #FFFFFF - white.
         resValue "color", "colorPrimary", twaManifest.themeColor
 
-        // This attribute sets the navigation bar color for the TWA. It can be either set here or in
-        // `res/values/colors.xml`. Setting in both places is an error and the app will not
+        // This attribute sets the navigation bar color for the TWA. It can be either set here or
+        // in `res/values/colors.xml`. Setting in both places is an error and the app will not
         // compile. If not set, the navigation bar color defaults to #FFFFFF - white.
         resValue "color", "navigationColor", twaManifest.navigationColor
+
+        // This attribute sets the dark navigation bar color for the TWA. It can be either set here
+        // or in `res/values/colors.xml`. Setting in both places is an error and the app will not
+        // compile. If not set, the navigation bar color defaults to #000000 - black.
+        resValue "color", "navigationColorDark", twaManifest.navigationColorDark
+
+        // This attribute sets the navbar divider color for the TWA. It can be either 
+        // set here or in `res/values/colors.xml`. Setting in both places is an error and the app 
+        // will not compile. If not set, the divider color defaults to #00000000 - transparent.
+        resValue "color", "navigationDividerColor", twaManifest.navigationDividerColor
+
+        // This attribute sets the dark navbar divider color for the TWA. It can be either 
+        // set here or in `res/values/colors.xml`. Setting in both places is an error and the 
+        //app will not compile. If not set, the divider color defaults to #000000 - black.
+        resValue "color", "navigationDividerColorDark", twaManifest.navigationDividerColorDark
 
         // Sets the color for the background used for the splash screen when launching the
         // Trusted Web Activity.
@@ -115,6 +134,8 @@ android {
         resValue "string", "generatorApp", twaManifest.generatorApp
 
         resValue "string", "fallbackType", twaManifest.fallbackType
+
+        resValue "bool", "enableSiteSettingsShortcut", twaManifest.enableSiteSettingsShortcut
     }
     buildTypes {
         release {
@@ -164,7 +185,12 @@ task generateShorcutsFile {
 
 preBuild.dependsOn(generateShorcutsFile)
 
+repositories {
+    
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(path: ':androidbrowserhelper')
+    implementation project(path: ':locationdelegation')
 }

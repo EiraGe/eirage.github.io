@@ -1,24 +1,32 @@
 {
-  "packageId": "io.github.eirage.twa.longlong",
-  "host": "tests.eirage.com",
+  "packageId": "com.eirage.pwa.twa",
+  "host": "pwa.eirage.com",
   "name": "Long Long Test Pages",
   "launcherName": "Long Long",
+  "display": "standalone",
   "themeColor": "#FFFFFF",
   "navigationColor": "#000000",
+  "navigationColorDark": "#000000",
+  "navigationDividerColor": "#000000",
+  "navigationDividerColorDark": "#000000",
   "backgroundColor": "#FFFFFF",
-  "enableNotifications": false,
-  "startUrl": "/PWA/Totoro/index.html",
-  "iconUrl": "https://tests.eirage.com/images/icon-512x512.png",
+  "enableNotifications": true,
+  "startUrl": "/Totoro/index.html",
+  "iconUrl": "https://pwa.eirage.com/images/icon-512x512.png",
   "splashScreenFadeOutDuration": 300,
   "signingKey": {
-    "alias": "android",
-    "path": "./android.keystore"
+    "path": "./android.keystore",
+    "alias": "android"
   },
   "appVersionName": "1",
   "appVersionCode": 1,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
-  "webManifestUrl": "https://tests.eirage.com/PWA/Totoro/manifest.json",
+  "webManifestUrl": "https://pwa.eirage.com/Totoro/manifest.json",
   "fallbackType": "customtabs",
+  "features": {
+    "locationDelegation": true
+  },
+  "enableSiteSettingsShortcut": true,
   "appVersion": "1"
 }

@@ -11,6 +11,7 @@ function displayNotification() {
         body: 'This is a notification from Long Long!',
         icon: 'totoro_icon.png',
         badge: 'totoro_badge.png',
+        dir: 'auto'
       };
       reg.showNotification('Hello Ella!', options);
     });
