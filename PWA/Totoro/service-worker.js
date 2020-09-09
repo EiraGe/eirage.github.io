@@ -43,22 +43,26 @@ self.addEventListener('fetch', (evt) => {
 })
 
 self.addEventListener('notificationclick', function(e) {
+  console.log(e)
   var notification = e.notification;
-  var primaryKey = notification.data.primaryKey;
-  var action = e.action;
+  var options = notification.data.options;
 
-  if (action === 'close') {
+  var promise = Promise.resolve();
+  if (options.action === 'close') {
     notification.close();
   } else {
-    clients.openWindow('./index.html');
-    notification.close();
+    promise =
+        promise.then(function() { return firstWindowClient(); })
+               .then(function(client) { return client.focus(); });
+      promise = promise.catch(function() { clients.openWindow(options.url); });
   }
+
+  e.waitUntil(promise);
 });
 
 self.addEventListener('notificationclose', function(e) {
   var notification = e.notification;
-  var primaryKey = notification.data.primaryKey;
 
-  console.log('Closed notification: ' + primaryKey);
+  console.log('Closed notification: ' + notification);
 });
 

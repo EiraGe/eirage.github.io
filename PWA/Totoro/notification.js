@@ -4,18 +4,31 @@ function sendNotification(argument) {
     });
 }
 
+function createNotificationOptions() {
+  return {
+    body: 'This is a notification from Long Long!',
+    icon: 'totoro_icon.png',
+    badge: 'totoro_badge.png',
+    dir: 'auto',
+    data: {
+      options: {
+        action: 'default',
+        close: true,
+        notificationCloseEvent: false,
+        url: document.location.toString(),
+      }
+    }
+  }
+}
+
 function displayNotification() {
   if (Notification.permission == 'granted') {
+    title = "Hello Ella"
+    options = createNotificationOptions();
+
     navigator.serviceWorker.getRegistration().then(function(reg) {
-      var options = {
-        body: 'This is a notification from Long Long!',
-        icon: 'totoro_icon.png',
-        badge: 'totoro_badge.png',
-        dir: 'auto'
-      };
-      reg.showNotification('Hello Ella!', options);
+      reg.showNotification('Hello Ella!', );
     });
-  } else {
-    showResult('Notification permission status:' + Notification.permission)
   }
+  showResult('Notification permission status:' + Notification.permission)
 }
