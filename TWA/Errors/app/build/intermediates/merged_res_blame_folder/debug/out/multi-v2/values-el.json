@@ -1,0 +1,36 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/eirage/eirage.github.io/TWA/Errors/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-el/values-el.xml",
+            "map": [
+                {
+                    "source": "/Users/eirage/.gradle/caches/transforms-2/files-2.1/6e6a7b588525cb073574643274ea4bf9/core-1.1.0/res/values-el/values-el.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "506",
+                        "endColumns": "100",
+                        "endOffsets": "602"
+                    }
+                },
+                {
+                    "source": "/Users/eirage/.gradle/caches/transforms-2/files-2.1/facb8927833c362d5e9c022d12e30608/browser-1.2.0/res/values-el/values-el.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,165,272,397",
+                        "endColumns": "109,106,124,108",
+                        "endOffsets": "160,267,392,501"
+                    }
+                }
+            ]
+        }
+    ]
+}

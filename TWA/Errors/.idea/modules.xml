@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Errors.iml" filepath="$PROJECT_DIR$/.idea/modules/Errors.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1562407779/Errors.androidbrowserhelper.iml" filepath="$PROJECT_DIR$/.idea/modules/-1562407779/Errors.androidbrowserhelper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Errors.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Errors.app.iml" />
+    </modules>
+  </component>
+</project>

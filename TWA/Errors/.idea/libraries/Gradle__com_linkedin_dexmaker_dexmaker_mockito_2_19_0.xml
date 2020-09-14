@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.linkedin.dexmaker:dexmaker-mockito:2.19.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.linkedin.dexmaker/dexmaker-mockito/2.19.0/3a2631a36a7beb78910ce4ea514abc8afd77ad64/dexmaker-mockito-2.19.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.linkedin.dexmaker/dexmaker-mockito/2.19.0/33bf8555d89152ed421ce89599c6cfc344397a79/dexmaker-mockito-2.19.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.linkedin.dexmaker/dexmaker-mockito/2.19.0/386a42409b2e3115007f51a338b480159bce7fae/dexmaker-mockito-2.19.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

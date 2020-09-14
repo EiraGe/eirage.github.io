@@ -1,0 +1,6 @@
+com/eirage/tests/twa/Application.java
+ com.eirage.tests.twa.Application
+com/eirage/tests/twa/BuildConfig.java
+ com.eirage.tests.twa.BuildConfig
+com/eirage/tests/twa/LauncherActivity.java
+ com.eirage.tests.twa.LauncherActivity

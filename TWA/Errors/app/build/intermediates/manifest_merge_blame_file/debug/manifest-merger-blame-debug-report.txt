@@ -1,0 +1,261 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<!--
+3    Copyright 2019 Google Inc. All Rights Reserved.
+4
+5     Licensed under the Apache License, Version 2.0 (the "License");
+6     you may not use this file except in compliance with the License.
+7     You may obtain a copy of the License at
+8
+9         http://www.apache.org/licenses/LICENSE-2.0
+10
+11     Unless required by applicable law or agreed to in writing, software
+12     distributed under the License is distributed on an "AS IS" BASIS,
+13     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+14     See the License for the specific language governing permissions and
+15     limitations under the License.
+16-->
+17<!--
+18 The "package" attribute is rewritten by the Gradle build with the value of applicationId.
+19     It is still required here, as it is used to derive paths, for instance when referring
+20     to an Activity by ".MyActivity" instead of the full name. If more Activities are added to the
+21     application, the package attribute will need to reflect the correct path in order to use
+22     the abbreviated format.
+23-->
+24<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+25    package="com.eirage.tests.twa"
+26    android:versionCode="1"
+27    android:versionName="1" >
+28
+29    <uses-sdk
+30        android:minSdkVersion="19"
+30-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml
+31        android:targetSdkVersion="29" />
+31-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml
+32
+33    <queries>
+33-->[:androidbrowserhelper] /Users/eirage/android-browser-helper/androidbrowserhelper/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:5-34:15
+34        <intent>
+34-->[:androidbrowserhelper] /Users/eirage/android-browser-helper/androidbrowserhelper/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:9-33:18
+35            <action android:name="android.intent.action.VIEW" />
+35-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:111:17-68
+35-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:111:25-66
+36
+37            <category android:name="android.intent.category.BROWSABLE" />
+37-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:113:17-77
+37-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:113:27-75
+38
+39            <data android:scheme="https" />
+39-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:114:17-115:54
+39-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:114:23-45
+40        </intent>
+41    </queries>
+42
+43    <application
+43-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:29:5-148:19
+44        android:name="com.eirage.tests.twa.Application"
+44-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:30:9-35
+45        android:allowBackup="true"
+45-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:31:9-35
+46        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+46-->[androidx.core:core:1.1.0] /Users/eirage/.gradle/caches/transforms-2/files-2.1/6e6a7b588525cb073574643274ea4bf9/core-1.1.0/AndroidManifest.xml:24:18-86
+47        android:debuggable="true"
+48        android:icon="@mipmap/ic_launcher"
+48-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:32:9-43
+49        android:label="@string/appName"
+49-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:33:9-40
+50        android:manageSpaceActivity="com.google.androidbrowserhelper.trusted.ManageDataLauncherActivity"
+50-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:35:9-105
+51        android:supportsRtl="true"
+51-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:37:9-35
+52        android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+52-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:38:9-68
+53        <meta-data
+53-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:40:9-42:58
+54            android:name="asset_statements"
+54-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:41:13-44
+55            android:resource="@string/assetStatements" />
+55-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:42:13-55
+56        <meta-data
+56-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:45:13-47:58
+57            android:name="web_manifest_url"
+57-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:46:17-48
+58            android:value="@string/webManifestUrl" />
+58-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:47:17-55
+59        <meta-data
+59-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:50:9-52:52
+60            android:name="twa_generator"
+60-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:51:13-41
+61            android:value="@string/generatorApp" />
+61-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:52:13-49
+62
+63        <activity android:name="com.google.androidbrowserhelper.trusted.ManageDataLauncherActivity" >
+63-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:55:13-59:24
+63-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:55:23-104
+64            <meta-data
+64-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:56:13-58:53
+65                android:name="android.support.customtabs.trusted.MANAGE_SPACE_URL"
+65-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:57:17-83
+66                android:value="@string/launchUrl" />
+66-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:58:17-50
+67        </activity>
+68        <activity
+68-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:62:9-117:20
+69            android:name="com.eirage.tests.twa.LauncherActivity"
+69-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:62:19-50
+70            android:label="@string/launcherName" >
+70-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:63:13-49
+71            <meta-data
+71-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:64:13-65:53
+72                android:name="android.support.customtabs.trusted.DEFAULT_URL"
+72-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:64:24-85
+73                android:value="@string/launchUrl" />
+73-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:65:17-50
+74            <meta-data
+74-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:67:13-69:58
+75                android:name="android.support.customtabs.trusted.STATUS_BAR_COLOR"
+75-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:68:17-83
+76                android:resource="@color/colorPrimary" />
+76-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:69:17-55
+77            <meta-data
+77-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:71:13-73:61
+78                android:name="android.support.customtabs.trusted.NAVIGATION_BAR_COLOR"
+78-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:72:17-87
+79                android:resource="@color/navigationColor" />
+79-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:73:17-58
+80            <meta-data
+80-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:75:13-77:65
+81                android:name="android.support.customtabs.trusted.NAVIGATION_BAR_COLOR_DARK"
+81-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:76:17-92
+82                android:resource="@color/navigationColorDark" />
+82-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:77:17-62
+83            <meta-data
+83-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:79:13-81:68
+84                android:name="androix.browser.trusted.NAVIGATION_BAR_DIVIDER_COLOR"
+84-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:80:17-84
+85                android:resource="@color/navigationDividerColor" />
+85-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:81:17-65
+86            <meta-data
+86-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:83:13-85:72
+87                android:name="androix.browser.trusted.NAVIGATION_BAR_DIVIDER_COLOR_DARK"
+87-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:84:17-89
+88                android:resource="@color/navigationDividerColorDark" />
+88-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:85:17-69
+89            <meta-data
+89-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:87:13-88:54
+90                android:name="android.support.customtabs.trusted.SPLASH_IMAGE_DRAWABLE"
+90-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:87:24-95
+91                android:resource="@drawable/splash" />
+91-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:88:17-52
+92            <meta-data
+92-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:90:13-91:60
+93                android:name="android.support.customtabs.trusted.SPLASH_SCREEN_BACKGROUND_COLOR"
+93-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:90:24-104
+94                android:resource="@color/backgroundColor" />
+94-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:91:17-58
+95            <meta-data
+95-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:93:13-94:71
+96                android:name="android.support.customtabs.trusted.SPLASH_SCREEN_FADE_OUT_DURATION"
+96-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:93:24-105
+97                android:value="@integer/splashScreenFadeOutDuration" />
+97-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:94:17-69
+98            <meta-data
+98-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:96:13-97:60
+99                android:name="android.support.customtabs.trusted.FILE_PROVIDER_AUTHORITY"
+99-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:96:24-97
+100                android:value="@string/providerAuthority" />
+100-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:97:17-58
+101            <meta-data
+101-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:99:13-97
+102                android:name="android.app.shortcuts"
+102-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:99:24-60
+103                android:resource="@xml/shortcuts" />
+103-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:99:61-94
+104            <meta-data
+104-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:101:13-102:56
+105                android:name="android.support.customtabs.trusted.FALLBACK_STRATEGY"
+105-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:101:24-91
+106                android:value="@string/fallbackType" />
+106-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:102:17-53
+107
+108            <intent-filter>
+108-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:105:13-108:29
+109                <action android:name="android.intent.action.MAIN" />
+109-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:106:17-69
+109-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:106:25-66
+110
+111                <category android:name="android.intent.category.LAUNCHER" />
+111-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:107:17-77
+111-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:107:27-74
+112            </intent-filter>
+113            <intent-filter android:autoVerify="true" >
+113-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:110:13-116:29
+113-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:110:28-53
+114                <action android:name="android.intent.action.VIEW" />
+114-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:111:17-68
+114-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:111:25-66
+115
+116                <category android:name="android.intent.category.DEFAULT" />
+116-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:112:17-76
+116-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:112:27-73
+117                <category android:name="android.intent.category.BROWSABLE" />
+117-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:113:17-77
+117-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:113:27-75
+118
+119                <data
+119-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:114:17-115:54
+120                    android:host="@string/hostName"
+120-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:115:21-52
+121                    android:scheme="https" />
+121-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:114:23-45
+122            </intent-filter>
+123        </activity>
+124        <activity android:name="com.google.androidbrowserhelper.trusted.FocusActivity" />
+124-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:119:9-90
+124-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:119:19-87
+125        <activity
+125-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:121:9-122:62
+126            android:name="com.google.androidbrowserhelper.trusted.WebViewFallbackActivity"
+126-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:121:19-97
+127            android:configChanges="orientation|screenSize" />
+127-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:122:13-59
+128
+129        <provider
+129-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:124:9-132:20
+130            android:name="androidx.core.content.FileProvider"
+130-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:125:13-62
+131            android:authorities="@string/providerAuthority"
+131-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:126:13-60
+132            android:exported="false"
+132-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:128:13-37
+133            android:grantUriPermissions="true" >
+133-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:127:13-47
+134            <meta-data
+134-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:129:13-131:53
+135                android:name="android.support.FILE_PROVIDER_PATHS"
+135-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:130:17-67
+136                android:resource="@xml/filepaths" />
+136-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:131:17-50
+137        </provider>
+138
+139        <service
+139-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:134:9-145:19
+140            android:name="com.google.androidbrowserhelper.trusted.DelegationService"
+140-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:135:13-85
+141            android:enabled="@bool/enableNotification"
+141-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:136:13-55
+142            android:exported="@bool/enableNotification" >
+142-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:137:13-56
+143            <intent-filter>
+143-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:141:13-144:29
+144                <action android:name="android.support.customtabs.trusted.TRUSTED_WEB_ACTIVITY_SERVICE" />
+144-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:142:17-105
+144-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:142:25-103
+145
+146                <category android:name="android.intent.category.DEFAULT" />
+146-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:112:17-76
+146-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:112:27-73
+147            </intent-filter>
+148        </service>
+149    </application>
+150
+151</manifest>
