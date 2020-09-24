@@ -33,9 +33,9 @@
 31-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml
 32
 33    <queries>
-33-->[:androidbrowserhelper] /Users/eirage/android-browser-helper/androidbrowserhelper/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:5-34:15
+33-->[com.google.androidbrowserhelper:androidbrowserhelper:2.0.0] /Users/eirage/.gradle/caches/transforms-2/files-2.1/96596b9df58358f5b9c653d432555e38/androidbrowserhelper-2.0.0/AndroidManifest.xml:26:5-34:15
 34        <intent>
-34-->[:androidbrowserhelper] /Users/eirage/android-browser-helper/androidbrowserhelper/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:9-33:18
+34-->[com.google.androidbrowserhelper:androidbrowserhelper:2.0.0] /Users/eirage/.gradle/caches/transforms-2/files-2.1/96596b9df58358f5b9c653d432555e38/androidbrowserhelper-2.0.0/AndroidManifest.xml:27:9-33:18
 35            <action android:name="android.intent.action.VIEW" />
 35-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:111:17-68
 35-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:111:25-66
@@ -57,7 +57,7 @@
 45        android:allowBackup="true"
 45-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:31:9-35
 46        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-46-->[androidx.core:core:1.1.0] /Users/eirage/.gradle/caches/transforms-2/files-2.1/6e6a7b588525cb073574643274ea4bf9/core-1.1.0/AndroidManifest.xml:24:18-86
+46-->[androidx.core:core:1.1.0] /Users/eirage/.gradle/caches/transforms-2/files-2.1/03736cf4bc3669a69d502627b70a527e/core-1.1.0/AndroidManifest.xml:24:18-86
 47        android:debuggable="true"
 48        android:icon="@mipmap/ic_launcher"
 48-->/Users/eirage/eirage.github.io/TWA/Errors/app/src/main/AndroidManifest.xml:32:9-43

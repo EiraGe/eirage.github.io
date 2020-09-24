@@ -3,41 +3,31 @@
 
     <!-- Automatically generated file. DO NOT MODIFY -->
 
-    <!-- Value from default config. -->
+    <!-- Values from default config. -->
     <string name="appName" translatable="false">Eirage Quality Enforcement Test</string>
-    <!-- Value from default config. -->
     <string name="assetStatements" translatable="false">[{ \"relation\": [\"delegate_permission/common.handle_all_urls\"],\"target\": {\"namespace\": \"web\", \"site\": \"https://tests.eirage.com\"}}]</string>
-    <!-- Value from default config. -->
+
     <color name="backgroundColor">#FFFFFF</color>
-    <!-- Value from default config. -->
     <color name="colorPrimary">#FFFFFF</color>
-    <!-- Value from default config. -->
+
     <bool name="enableNotification">false</bool>
-    <!-- Value from default config. -->
     <bool name="enableSiteSettingsShortcut">true</bool>
-    <!-- Value from default config. -->
+
     <string name="fallbackType" translatable="false">customtabs</string>
-    <!-- Value from default config. -->
     <string name="generatorApp" translatable="false">bubblewrap-cli</string>
-    <!-- Value from default config. -->
     <string name="hostName" translatable="false">tests.eirage.com</string>
-    <!-- Value from default config. -->
     <string name="launchUrl" translatable="false">https://tests.eirage.com/PWA/Errors/index.html</string>
-    <!-- Value from default config. -->
     <string name="launcherName" translatable="false">Quality</string>
-    <!-- Value from default config. -->
+
     <color name="navigationColor">#000000</color>
-    <!-- Value from default config. -->
     <color name="navigationColorDark">#000000</color>
-    <!-- Value from default config. -->
     <color name="navigationDividerColor">#000000</color>
-    <!-- Value from default config. -->
     <color name="navigationDividerColorDark">#000000</color>
-    <!-- Value from default config. -->
+
     <string name="providerAuthority" translatable="false">com.eirage.tests.twa.fileprovider</string>
-    <!-- Value from default config. -->
+
     <integer name="splashScreenFadeOutDuration">300</integer>
-    <!-- Value from default config. -->
+
     <string name="webManifestUrl" translatable="false">https://tests.eirage.com/PWA/Errors/manifest.json</string>
 
 </resources>

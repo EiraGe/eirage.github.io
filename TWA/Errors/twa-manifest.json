@@ -1,8 +1,8 @@
 {
   "packageId": "com.eirage.tests.twa",
   "host": "tests.eirage.com",
-  "name": "Eirage Quality Enforcement Test",
-  "launcherName": "Quality",
+  "name": "Eirage Error Test Pages",
+  "launcherName": "Errors",
   "display": "standalone",
   "themeColor": "#FFFFFF",
   "navigationColor": "#000000",
