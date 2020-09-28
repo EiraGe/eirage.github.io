@@ -11,11 +11,6 @@ git commit -am "$message"
 git push
 cd ..
 
-cd script
-git add .
-git commit -am "$message"
-cd ..
-
 git add .
 git commit -am "$message"
 git push
