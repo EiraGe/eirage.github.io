@@ -1,0 +1,57 @@
+#!/usr/bin/env python
+
+# Lint as: python3
+
+import argparse
+import os
+import base64
+import json
+import sys
+
+def install(remote, local, dry_run):
+  cmd = "scp %s/Monochrome.apk %s/Monochrome$version.apk" % (remote, local)
+  print (">> Executing " + cmd)
+  os.system(cmd)
+  
+  if (dry_run): return;
+
+  cmd = "adb install -r -d %s/Monochrome$version.apk" % local
+  print (">> Executing " + cmd)
+  os.system(cmd)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+            description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
+
+    parser.add_argument(
+            "--host", "-t", type=int, choices=[0, 1], 
+            help="Install from 0: desktop(default), 1: cloudtop")
+    parser.add_argument(
+            "--clank", "-c", help="Install from Clankium folder (default Chromium folder)",
+            dest="folder",
+            action='store_const',
+            const="clankium",
+            default="chromium")
+
+    parser.add_argument(
+      "--local", "-l", action='store_true',
+      help="Copy to local destination, instead of GDrive")
+  
+    parser.add_argument(
+      "-d", "--dry", action='store_true',
+      help="Dry run. Copy file but not install")
+  
+    args = parser.parse_args()
+  
+    host = "cloudtop" if (args.host) else  "desktop";
+    remote = "%s:/usr/local/google/home/eirage/%s/src/out/Android/apks" % (host, args.folder);
+ 
+    local = "/Volumes/GoogleDrive/My\ Drive/AndroidApks/";
+    if (args.local):
+        local = "/Users/eirage/AndroidApks"
+  
+    install(remote, local, args.dry);
+
+if __name__ == '__main__':
+  sys.exit(main())
