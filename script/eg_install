@@ -9,13 +9,13 @@ import json
 import sys
 
 def install(remote, local, dry_run):
-  cmd = "scp %s/Monochrome.apk %s/Monochrome$version.apk" % (remote, local)
+  cmd = "scp %s/Monochrome.apk %s/Monochrome.apk" % (remote, local)
   print (">> Executing " + cmd)
   os.system(cmd)
   
   if (dry_run): return;
 
-  cmd = "adb install -r -d %s/Monochrome$version.apk" % local
+  cmd = "adb install -r -d %s/Monochrome.apk" % local
   print (">> Executing " + cmd)
   os.system(cmd)
 
