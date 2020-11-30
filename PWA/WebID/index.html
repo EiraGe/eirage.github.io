@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width" />
+<meta name="google-signin-client_id" content="632973562712-agedbmjfnv162bhb348gffocg95t3ten.apps.googleusercontent.com">
+<link rel="manifest" href="manifest.json">
+<title>Long Long Test Page</title>
+<script type="text/javascript" src="./notification.js"></script>
+<script type="text/javascript" src="./location.js"></script>
+<style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.result {
+  margin: 0 0 8px 0;
+  padding-top: 8px; padding-bottom: 8px;
+  background-color: rgba(255, 0, 0, .1);
+  display: none;
+}
+</style>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<body>
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<a href="#" onclick="signOut();">Sign out</a>
+</body>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js')
+        .then((reg) => {
+          console.log('Service worker registered.', reg);
+        });
+  });
+}
+
+function showResult(text) {
+    result = document.getElementById("result");
+    result.innerHTML += "<li>" + text + "</li>";
+    result.style.display = "block";
+}
+</script>
+
+<script type="text/javascript">
+  function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  }
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
