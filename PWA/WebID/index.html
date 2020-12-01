@@ -35,6 +35,12 @@
 <body>
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
 <a href="#" onclick="signOut();">Sign out</a>
+
+<fb:login-button 
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
+
 <div id="result"></div>
 </body>
 
@@ -49,6 +55,7 @@ if ('serviceWorker' in navigator) {
 }
 
 function showResult(text) {
+    console.log(text)
     result = document.getElementById("result");
     result.innerHTML += "<li>" + text + "</li>";
     result.style.display = "block";
@@ -59,11 +66,10 @@ function showResult(text) {
   function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     result = 
-    `ID: ${profile.getId()}\n
-     Name: ${profile.getName()}\n
-     Image URL: ${profile.getImageUrl()}\n
-     Email: ${profile.getEmail()}\n`
-    console.log(result)
+    `ID: ${profile.getId()} \n
+     Name: ${profile.getName()} \n
+     Image URL: ${profile.getImageUrl()} \n
+     Email: ${profile.getEmail()} \n`
     showResult(result);
   }
 
@@ -73,4 +79,38 @@ function showResult(text) {
       console.log('User signed out.');
     });
   }
+</script>
+
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '{your-app-id}',
+      cookie     : true,
+      xfbml      : true,
+      version    : '{api-version}'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+  statusChangeCallback(response) {
+    showResult(response.status)
+  }
+
 </script>
