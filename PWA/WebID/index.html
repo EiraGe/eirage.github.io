@@ -30,27 +30,12 @@
   display: none;
 }
 </style>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://apis.google.com/js/platform.js?onload=ginit" async defer></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0&appId=2842343212758598&autoLogAppEvents=1" nonce="uwuG1mgb"></script>
 
-<script>
-
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
-
-  function statusChangeCallback(response) {
-    showResult(response.status)
-    if (response.status === 'connected') {
-      logIn = 'FB'
-      FB.api('/me', function(response) {
-        showResult('Successful login for: ' + response.name);
-      });
-    }
-  }
-
-</script>
+<script src="./base.js"></script>
+<script src="./gLogin.js"></script>
+<script src="./fbLogin.js"></script>
 
 <body>
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
@@ -65,52 +50,23 @@
 </body>
 
 <script>
-var logIn = '';
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./service-worker.js')
-        .then((reg) => {
-          console.log('Service worker registered.', reg);
-        });
-  });
-}
+var document.logIn = '';
 
-function showResult(text) {
-    console.log(text)
-    result = document.getElementById("result");
-    result.innerHTML += "<li>" + text + "</li>";
-    result.style.display = "block";
-}
-</script>
 
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0&appId=2842343212758598&autoLogAppEvents=1" nonce="uwuG1mgb"></script>
 
-<script type="text/javascript">
-  function onSignIn(googleUser) {
-    logIn = 'google'
-    var profile = googleUser.getBasicProfile();
-    result = 
-    `ID: ${profile.getId()} \n
-     Name: ${profile.getName()} \n
-     Image URL: ${profile.getImageUrl()} \n
-     Email: ${profile.getEmail()} \n`
-    showResult(result);
+function signOut() {
+  if (document.logIn === 'google') {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      showResult('Google user signed out.');
+    });
+  } else if (document.logIn === 'FB') {
+    FB.logout(function(response) {
+      // Person is now logged out
+      showResult("FB logged out")
+    });
   }
-
-  function signOut() {
-    if (logIn === 'google') {
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        showResult('Google user signed out.');
-      });
-    } else if (logIn === 'FB') {
-      FB.logout(function(response) {
-        // Person is now logged out
-        showResult("FB logged out")
-      });
-    }
-    logIn = ''
-  }
+  document.logIn = ''
+}
 </script>
 
