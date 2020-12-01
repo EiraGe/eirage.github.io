@@ -32,13 +32,35 @@
 </style>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
+<script>
+
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  function statusChangeCallback(response) {
+    showResult(response.status)
+    if (response.status === 'connected') {
+      logIn = 'FB'
+      FB.api('/me', function(response) {
+        showResult('Successful login for: ' + response.name);
+      });
+    }
+  }
+
+</script>
+
 <body>
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+
 <a href="#" onclick="signOut();">Sign out</a>
 <div id="result"></div>
 <br>
-
-<div class="fb-login-button" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
 
 </body>
 
@@ -92,28 +114,3 @@ function showResult(text) {
   }
 </script>
 
-
-<script>
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-
-
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
-
-  function statusChangeCallback(response) {
-    showResult(response.status)
-    if (response.status === 'connected') {
-      logIn = 'FB'
-    }
-  }
-
-</script>
