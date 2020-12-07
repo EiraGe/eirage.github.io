@@ -1,5 +1,6 @@
 const FILES_TO_CACHE = [
   './index.html',
+  './p2.html',
 ];
 
 CACHE_NAME = 'v1';

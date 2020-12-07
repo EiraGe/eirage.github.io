@@ -15,5 +15,15 @@
   "scope": ".",
   "display": "standalone",
   "background_color": "#FFFFFF",
-  "theme_color": "#FFFFFF"
+  "theme_color": "#FFFFFF",
+  "shortcuts": [{
+    "name": "Shortcut name",
+    "description": "desc",
+    "url": "./p2.html",
+    "icons": [{
+      "src": "./totoro_badge.png",
+      "type": "image/png",
+      "purpose": "any"
+    }]
+  }] 
 }
