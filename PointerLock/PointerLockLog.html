@@ -10,105 +10,112 @@
     body{
       user-select: none;
     }
+    ::backdrop {
+      background-color: #fff;
+    }
   </style>
   <body>
-    <div>
-      <p><a href="#" id="reqPointerLock" draggable=false>Request pointer lock</a></p>
-      <p><a href="#" id="reqRawPointerLock" draggable=false>Request pointer lock unadjustedMovement</a></p>
-      <p><a href="#" id="reqRawPointerLockFallback" draggable=false>Request pointer lock unadjustedMovement, fallback if failed</a></p>
-      <p><a href="#" id="reenterPointerLock" draggable=false>Unlock and re-enter</a></p>
+    <div id="container">
+      <div>
+        <p><a href="#" id="reqFullscreen" draggable=false>Request fullscreen (whole page)</a></p>
+        <p><a href="#" id="reqFullscreenContainer" draggable=false>Request fullscreen (element)</a></p>
+        <p><a href="#" id="reqPointerLock" draggable=false>Request pointer lock</a></p>
+        <p><a href="#" id="reqRawPointerLock" draggable=false>Request pointer lock unadjustedMovement</a></p>
+        <p><a href="#" id="reqRawPointerLockFallback" draggable=false>Request pointer lock unadjustedMovement, fallback if failed</a></p>
+        <p><a href="#" id="reenterPointerLock" draggable=false>Unlock and re-enter</a></p>
 
-      <p>
-        <button onclick="ClearLogAndMovementSum()">Clear Log</button>
-        <button onclick="GetDsf()">Get device-pixel-radio</button> <span id="device-pixel-radio"></span>
-      </p>
-      <div id = "eventConfig">
-        <label><input id="mousemove" type="checkbox" checked> mousemove</label>
-        <label><input id="pointermove" type="checkbox"> pointermove</label>
-        <label><input id="mouseevents" type="checkbox"> mouseevents</label>
-        <label><input id="pointerevents" type="checkbox"> pointerevents</label>
-        <label><input id="pointerrawupdate" type="checkbox"> pointerrawupdate</label>
-        <label><input id="coalescedEvent" type="checkbox"> coalescedEvent</label>
+        <p>
+          <button onclick="ClearLogAndMovementSum()">Clear Log</button>
+          <button onclick="GetDsf()">Get device-pixel-radio</button> <span id="device-pixel-radio"></span>
+        </p>
+        <div id = "eventConfig">
+          <label><input id="mousemove" type="checkbox" checked> mousemove</label>
+          <label><input id="pointermove" type="checkbox"> pointermove</label>
+          <label><input id="mouseevents" type="checkbox"> mouseevents</label>
+          <label><input id="pointerevents" type="checkbox"> pointerevents</label>
+          <label><input id="pointerrawupdate" type="checkbox"> pointerrawupdate</label>
+          <label><input id="coalescedEvent" type="checkbox"> coalescedEvent</label>
+        </div>
+        <div id = "otherConfig">
+          <label><input id="zoomCheckbox" type="checkbox" checked>include devicePixelRatio</label>
+          <label><input id="touchActionCheckbox" type="checkbox"> touch-action:none</label>
+          <label><input id="disableSelection" type="checkbox" checked> Disable Selection</label>
+        </div>
       </div>
-      <div id = "otherConfig">
-        <label><input id="zoomCheckbox" type="checkbox" checked>include devicePixelRatio</label>
-        <label><input id="touchActionCheckbox" type="checkbox"> touch-action:none</label>
-        <label><input id="disableSelection" type="checkbox" checked> Disable Selection</label>
+      <div id="LogArea">
+        <table>
+          <tr>
+            <td>
+              <pre>eventType,</pre>
+            </td>
+            <td align="right">
+              <pre>clientX,</pre>
+            </td>
+            <td align="right">
+              <pre>screenX,</pre>
+            </td>
+            <td align="right">
+              <pre>movementX,</pre>
+            </td>
+            <td align="right">
+              <pre>movementXSum,</pre>
+            </td>
+            <td align="right">
+              <pre>clientY,</pre>
+            </td>
+            <td align="right">
+              <pre>screenY,</pre>
+            </td>
+            <td align="right">
+              <pre>movementY,</pre>
+            </td>
+            <td align="right">
+              <pre>movementYSum,</pre>
+            </td>
+            <td align="right">
+              <pre>stateChange</pre>
+            </td>
+            <td align="right">
+              <pre>coalescedEvents</pre>
+            </td>
+          </tr>    
+          <tr id="log">
+            <td>
+              <pre id="eventTypeOutput"></pre>
+            </td>
+            <td align="right">
+              <pre id="clientXOutput"></pre>
+            </td>
+            <td align="right">
+              <pre id="screenXOutput"></pre>
+            </td>
+            <td align="right">
+              <pre id="movementXOutput"></pre>
+            </td>
+            <td align="right">
+              <pre id="movementXSumOutput"></pre>
+            </td>
+            <td align="right">
+              <pre id="clientYOutput"></pre>
+            </td>
+            <td align="right">
+              <pre id="screenYOutput"></pre>
+            </td>
+            <td align="right">
+              <pre id="movementYOutput"></pre>
+            </td>
+            <td align="right">
+              <pre id="movementYSumOutput"></pre>
+            </td>
+            <td align="right">
+              <pre id="stateOutput"></pre>
+            </td>
+            <td align="right">
+              <pre id="coalescedCountOutput"></pre>
+            </td>
+          </tr>    
+        </table>
       </div>
-    </div>
-    <div id="LogArea">
-      <table>
-        <tr>
-          <td>
-            <pre>eventType,</pre>
-          </td>
-          <td align="right">
-            <pre>clientX,</pre>
-          </td>
-          <td align="right">
-            <pre>screenX,</pre>
-          </td>
-          <td align="right">
-            <pre>movementX,</pre>
-          </td>
-          <td align="right">
-            <pre>movementXSum,</pre>
-          </td>
-          <td align="right">
-            <pre>clientY,</pre>
-          </td>
-          <td align="right">
-            <pre>screenY,</pre>
-          </td>
-          <td align="right">
-            <pre>movementY,</pre>
-          </td>
-          <td align="right">
-            <pre>movementYSum,</pre>
-          </td>
-          <td align="right">
-            <pre>stateChange</pre>
-          </td>
-          <td align="right">
-            <pre>coalescedEvents</pre>
-          </td>
-        </tr>    
-        <tr id="log">
-          <td>
-            <pre id="eventTypeOutput"></pre>
-          </td>
-          <td align="right">
-            <pre id="clientXOutput"></pre>
-          </td>
-          <td align="right">
-            <pre id="screenXOutput"></pre>
-          </td>
-          <td align="right">
-            <pre id="movementXOutput"></pre>
-          </td>
-          <td align="right">
-            <pre id="movementXSumOutput"></pre>
-          </td>
-          <td align="right">
-            <pre id="clientYOutput"></pre>
-          </td>
-          <td align="right">
-            <pre id="screenYOutput"></pre>
-          </td>
-          <td align="right">
-            <pre id="movementYOutput"></pre>
-          </td>
-          <td align="right">
-            <pre id="movementYSumOutput"></pre>
-          </td>
-          <td align="right">
-            <pre id="stateOutput"></pre>
-          </td>
-          <td align="right">
-            <pre id="coalescedCountOutput"></pre>
-          </td>
-        </tr>    
-      </table>
     </div>
   </body>
   <script>
@@ -220,6 +227,14 @@
     document.addEventListener('pointerlockerror', LockStateChange);
 
     document.addEventListener('pointerlockchange', LockStateChange);
+
+    reqFullscreen.addEventListener('click', function() {
+      document.body.requestFullscreen();
+    });
+
+    reqFullscreenContainer.addEventListener('click', function() {
+      document.querySelector('#container').requestFullscreen();
+    });
 
     reqPointerLock.addEventListener('click', function() {
       LogArea.requestPointerLock();
