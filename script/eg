@@ -74,7 +74,7 @@ sub_twa() {
 }
 
 sub_ax() {
-  path_to_checkout=~/androidx-master-dev
+  path_to_checkout=~/androidx-main
   path_to_sdk=~/more-android-sdk
   cd $path_to_checkout/frameworks/support/
   ./gradlew createArchive
