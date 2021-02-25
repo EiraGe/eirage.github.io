@@ -1,0 +1,3 @@
+[submodule "PWA"]
+	path = PWA
+	url = git@github.com:EiraGe/PWATestPages.git
