@@ -25,5 +25,21 @@
       "type": "image/png",
       "purpose": "any"
     }]
+   },
+   {
+    "name": "Very very very very long shortcut name",
+    "description": "desc",
+    "url": "./p3.html"
+   },
+   {
+    "name": "Very very very very long shortcut name 2",
+    "short_name": "short name",
+    "description": "desc",
+    "url": "./p3.html",
+    "icons": [{
+      "src": "./totoro_icon.png",
+      "type": "image/png",
+      "purpose": "any"
+   }]
   }] 
 }
