@@ -1,6 +1,6 @@
 {
-  "name": "Long Long Test Pages",
-  "short_name": "Long Long",
+  "name": "Shortcuts Test Pages",
+  "short_name": "Shortcuts",
   "icons": [{
       "src": "/images/icon-192x192.png",
       "purpose":"maskable",
