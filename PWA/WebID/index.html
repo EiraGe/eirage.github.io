@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width" />
+<meta name="google-signin-client_id" content="756916960051-7ajkfavuf3j9mk3s2eflg02kifa1t6ih.apps.googleusercontent.com">
+<link rel="manifest" href="manifest.json">
+<title>Long Long Test Page</title>
+<style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.result {
+  margin: 0 0 8px 0;
+  padding-top: 8px; padding-bottom: 8px;
+  background-color: rgba(255, 0, 0, .1);
+  display: none;
+}
+</style>
+<script src="https://apis.google.com/js/platform.js?onload=ginit" async defer></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0&appId=2842343212758598&autoLogAppEvents=1" nonce="uwuG1mgb"></script>
+
+<script src="./base.js"></script>
+<script src="./gLogin.js"></script>
+<script src="./fbLogin.js"></script>
+
+<body>
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+
+<a href="#" onclick="signOut();">Sign out</a>
+<div id="result"></div>
+<br>
+
+</body>
+
+<script>
+document.logIn = '';
+
+function signOut() {
+  if (document.logIn === 'google') {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      showResult('Google user signed out.');
+    });
+  } else if (document.logIn === 'FB') {
+    FB.logout(function(response) {
+      // Person is now logged out
+      showResult("FB logged out")
+    });
+  }
+  document.logIn = ''
+}
+</script>
+

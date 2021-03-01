@@ -1,0 +1,19 @@
+{
+  "name": "Eirage Location Test Pages",
+  "short_name": "Location",
+  "icons": [{
+      "src": "/images/icon-192x192.png",
+      "purpose":"maskable",
+      "sizes": "192x192",
+      "type": "image/png"
+    }, {
+      "src": "/images/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }],
+  "start_url": "./index.html",
+  "scope": "../Location/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF"
+}
