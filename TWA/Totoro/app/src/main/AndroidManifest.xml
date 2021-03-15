@@ -24,6 +24,8 @@
 
     
 
+    
+
     <application
         android:name="Application"
         android:allowBackup="true"
@@ -130,7 +132,7 @@
         </provider>
 
         <service
-            android:name=".DelegationService"
+            android:name="com.google.androidbrowserhelper.trusted.DelegationService"
             android:enabled="@bool/enableNotification"
             android:exported="@bool/enableNotification">
 
@@ -142,9 +144,6 @@
             </intent-filter>
         </service>
 
-        
-            <activity android:name=
-         "com.google.androidbrowserhelper.locationdelegation.PermissionRequestActivity"/>
         
     </application>
 </manifest>

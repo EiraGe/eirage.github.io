@@ -1,0 +1,262 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<!--
+3    Copyright 2019 Google Inc. All Rights Reserved.
+4
+5     Licensed under the Apache License, Version 2.0 (the "License");
+6     you may not use this file except in compliance with the License.
+7     You may obtain a copy of the License at
+8
+9         http://www.apache.org/licenses/LICENSE-2.0
+10
+11     Unless required by applicable law or agreed to in writing, software
+12     distributed under the License is distributed on an "AS IS" BASIS,
+13     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+14     See the License for the specific language governing permissions and
+15     limitations under the License.
+16-->
+17<!--
+18 The "package" attribute is rewritten by the Gradle build with the value of applicationId.
+19     It is still required here, as it is used to derive paths, for instance when referring
+20     to an Activity by ".MyActivity" instead of the full name. If more Activities are added to the
+21     application, the package attribute will need to reflect the correct path in order to use
+22     the abbreviated format.
+23-->
+24<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+25    package="com.eirage.pwa.twa"
+26    android:versionCode="2"
+27    android:versionName="2" >
+28
+29    <uses-sdk
+30        android:minSdkVersion="19"
+30-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml
+31        android:targetSdkVersion="29" />
+31-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml
+32
+33    <queries>
+33-->[com.google.androidbrowserhelper:androidbrowserhelper:2.0.0] /Users/eirage/.gradle/caches/transforms-2/files-2.1/96596b9df58358f5b9c653d432555e38/androidbrowserhelper-2.0.0/AndroidManifest.xml:26:5-34:15
+34        <intent>
+34-->[com.google.androidbrowserhelper:androidbrowserhelper:2.0.0] /Users/eirage/.gradle/caches/transforms-2/files-2.1/96596b9df58358f5b9c653d432555e38/androidbrowserhelper-2.0.0/AndroidManifest.xml:27:9-33:18
+35            <action android:name="android.intent.action.VIEW" />
+35-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:111:17-68
+35-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:111:25-66
+36
+37            <category android:name="android.intent.category.BROWSABLE" />
+37-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:113:17-77
+37-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:113:27-75
+38
+39            <data android:scheme="https" />
+39-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:114:17-115:54
+39-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:114:23-45
+40        </intent>
+41    </queries>
+42
+43    <application
+43-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:29:5-148:19
+44        android:name="com.eirage.pwa.twa.Application"
+44-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:30:9-35
+45        android:allowBackup="true"
+45-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:31:9-35
+46        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+46-->[androidx.core:core:1.1.0] /Users/eirage/.gradle/caches/transforms-2/files-2.1/03736cf4bc3669a69d502627b70a527e/core-1.1.0/AndroidManifest.xml:24:18-86
+47        android:debuggable="true"
+48        android:icon="@mipmap/ic_launcher"
+48-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:32:9-43
+49        android:label="@string/appName"
+49-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:33:9-40
+50        android:manageSpaceActivity="com.google.androidbrowserhelper.trusted.ManageDataLauncherActivity"
+50-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:35:9-105
+51        android:supportsRtl="true"
+51-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:37:9-35
+52        android:testOnly="true"
+53        android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+53-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:38:9-68
+54        <meta-data
+54-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:40:9-42:58
+55            android:name="asset_statements"
+55-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:41:13-44
+56            android:resource="@string/assetStatements" />
+56-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:42:13-55
+57        <meta-data
+57-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:45:13-47:58
+58            android:name="web_manifest_url"
+58-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:46:17-48
+59            android:value="@string/webManifestUrl" />
+59-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:47:17-55
+60        <meta-data
+60-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:50:9-52:52
+61            android:name="twa_generator"
+61-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:51:13-41
+62            android:value="@string/generatorApp" />
+62-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:52:13-49
+63
+64        <activity android:name="com.google.androidbrowserhelper.trusted.ManageDataLauncherActivity" >
+64-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:55:13-59:24
+64-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:55:23-104
+65            <meta-data
+65-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:56:13-58:53
+66                android:name="android.support.customtabs.trusted.MANAGE_SPACE_URL"
+66-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:57:17-83
+67                android:value="@string/launchUrl" />
+67-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:58:17-50
+68        </activity>
+69        <activity
+69-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:62:9-117:20
+70            android:name="com.eirage.pwa.twa.LauncherActivity"
+70-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:62:19-50
+71            android:label="@string/launcherName" >
+71-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:63:13-49
+72            <meta-data
+72-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:64:13-65:53
+73                android:name="android.support.customtabs.trusted.DEFAULT_URL"
+73-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:64:24-85
+74                android:value="@string/launchUrl" />
+74-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:65:17-50
+75            <meta-data
+75-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:67:13-69:58
+76                android:name="android.support.customtabs.trusted.STATUS_BAR_COLOR"
+76-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:68:17-83
+77                android:resource="@color/colorPrimary" />
+77-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:69:17-55
+78            <meta-data
+78-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:71:13-73:61
+79                android:name="android.support.customtabs.trusted.NAVIGATION_BAR_COLOR"
+79-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:72:17-87
+80                android:resource="@color/navigationColor" />
+80-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:73:17-58
+81            <meta-data
+81-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:75:13-77:65
+82                android:name="android.support.customtabs.trusted.NAVIGATION_BAR_COLOR_DARK"
+82-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:76:17-92
+83                android:resource="@color/navigationColorDark" />
+83-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:77:17-62
+84            <meta-data
+84-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:79:13-81:68
+85                android:name="androix.browser.trusted.NAVIGATION_BAR_DIVIDER_COLOR"
+85-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:80:17-84
+86                android:resource="@color/navigationDividerColor" />
+86-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:81:17-65
+87            <meta-data
+87-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:83:13-85:72
+88                android:name="androix.browser.trusted.NAVIGATION_BAR_DIVIDER_COLOR_DARK"
+88-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:84:17-89
+89                android:resource="@color/navigationDividerColorDark" />
+89-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:85:17-69
+90            <meta-data
+90-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:87:13-88:54
+91                android:name="android.support.customtabs.trusted.SPLASH_IMAGE_DRAWABLE"
+91-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:87:24-95
+92                android:resource="@drawable/splash" />
+92-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:88:17-52
+93            <meta-data
+93-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:90:13-91:60
+94                android:name="android.support.customtabs.trusted.SPLASH_SCREEN_BACKGROUND_COLOR"
+94-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:90:24-104
+95                android:resource="@color/backgroundColor" />
+95-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:91:17-58
+96            <meta-data
+96-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:93:13-94:71
+97                android:name="android.support.customtabs.trusted.SPLASH_SCREEN_FADE_OUT_DURATION"
+97-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:93:24-105
+98                android:value="@integer/splashScreenFadeOutDuration" />
+98-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:94:17-69
+99            <meta-data
+99-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:96:13-97:60
+100                android:name="android.support.customtabs.trusted.FILE_PROVIDER_AUTHORITY"
+100-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:96:24-97
+101                android:value="@string/providerAuthority" />
+101-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:97:17-58
+102            <meta-data
+102-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:99:13-97
+103                android:name="android.app.shortcuts"
+103-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:99:24-60
+104                android:resource="@xml/shortcuts" />
+104-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:99:61-94
+105            <meta-data
+105-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:101:13-102:56
+106                android:name="android.support.customtabs.trusted.FALLBACK_STRATEGY"
+106-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:101:24-91
+107                android:value="@string/fallbackType" />
+107-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:102:17-53
+108
+109            <intent-filter>
+109-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:105:13-108:29
+110                <action android:name="android.intent.action.MAIN" />
+110-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:106:17-69
+110-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:106:25-66
+111
+112                <category android:name="android.intent.category.LAUNCHER" />
+112-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:107:17-77
+112-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:107:27-74
+113            </intent-filter>
+114            <intent-filter android:autoVerify="true" >
+114-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:110:13-116:29
+114-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:110:28-53
+115                <action android:name="android.intent.action.VIEW" />
+115-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:111:17-68
+115-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:111:25-66
+116
+117                <category android:name="android.intent.category.DEFAULT" />
+117-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:112:17-76
+117-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:112:27-73
+118                <category android:name="android.intent.category.BROWSABLE" />
+118-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:113:17-77
+118-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:113:27-75
+119
+120                <data
+120-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:114:17-115:54
+121                    android:host="@string/hostName"
+121-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:115:21-52
+122                    android:scheme="https" />
+122-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:114:23-45
+123            </intent-filter>
+124        </activity>
+125        <activity android:name="com.google.androidbrowserhelper.trusted.FocusActivity" />
+125-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:119:9-90
+125-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:119:19-87
+126        <activity
+126-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:121:9-122:62
+127            android:name="com.google.androidbrowserhelper.trusted.WebViewFallbackActivity"
+127-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:121:19-97
+128            android:configChanges="orientation|screenSize" />
+128-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:122:13-59
+129
+130        <provider
+130-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:124:9-132:20
+131            android:name="androidx.core.content.FileProvider"
+131-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:125:13-62
+132            android:authorities="@string/providerAuthority"
+132-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:126:13-60
+133            android:exported="false"
+133-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:128:13-37
+134            android:grantUriPermissions="true" >
+134-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:127:13-47
+135            <meta-data
+135-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:129:13-131:53
+136                android:name="android.support.FILE_PROVIDER_PATHS"
+136-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:130:17-67
+137                android:resource="@xml/filepaths" />
+137-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:131:17-50
+138        </provider>
+139
+140        <service
+140-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:134:9-145:19
+141            android:name="com.google.androidbrowserhelper.trusted.DelegationService"
+141-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:135:13-85
+142            android:enabled="@bool/enableNotification"
+142-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:136:13-55
+143            android:exported="@bool/enableNotification" >
+143-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:137:13-56
+144            <intent-filter>
+144-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:141:13-144:29
+145                <action android:name="android.support.customtabs.trusted.TRUSTED_WEB_ACTIVITY_SERVICE" />
+145-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:142:17-105
+145-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:142:25-103
+146
+147                <category android:name="android.intent.category.DEFAULT" />
+147-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:112:17-76
+147-->/Users/eirage/eirage.github.io/TWA/Totoro/app/src/main/AndroidManifest.xml:112:27-73
+148            </intent-filter>
+149        </service>
+150    </application>
+151
+152</manifest>
