@@ -21,7 +21,7 @@
     "description": "desc",
     "url": "./p2.html",
     "icons": [{
-      "src": "./totoro_badge.png",
+      "src": "totoro_badge.png",
       "type": "image/png",
       "purpose": "any"
     }]
