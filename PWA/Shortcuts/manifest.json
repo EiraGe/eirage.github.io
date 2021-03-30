@@ -23,6 +23,7 @@
     "icons": [{
       "src": "./totoro_badge.png",
       "type": "image/png",
+      "sizes": "96x96",
       "purpose": "any"
     }]
    },
@@ -38,6 +39,7 @@
     "url": "./p3.html",
     "icons": [{
       "src": "./totoro_icon.png",
+      "sizes": "320x320",
       "type": "image/png",
       "purpose": "any"
    }]

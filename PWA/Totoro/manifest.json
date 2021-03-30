@@ -23,6 +23,7 @@
     "icons": [{
       "src": "totoro_badge.png",
       "type": "image/png",
+      "sizes": "96x96",
       "purpose": "any"
     }]
   }] 
