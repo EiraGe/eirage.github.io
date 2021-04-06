@@ -1,6 +1,6 @@
 {
   "packageId": "com.eirage.pwa.twa",
-  "host": "tests.peter.sh",
+  "host": "pwa.eirage.com",
   "name": "Long Long Test Pages",
   "launcherName": "Long Long",
   "display": "standalone",
@@ -11,23 +11,34 @@
   "navigationDividerColorDark": "#000000",
   "backgroundColor": "#FFFFFF",
   "enableNotifications": true,
-  "startUrl": "https://tests.peter.sh/notification-generator/",
+  "startUrl": "/Totoro/index.html",
   "iconUrl": "https://pwa.eirage.com/images/icon-512x512.png",
+  "maskableIconUrl": "https://pwa.eirage.com/images/icon-512x512.png",
   "splashScreenFadeOutDuration": 300,
   "signingKey": {
-    "path": "./android.keystore",
+    "path": "/Users/eirage/eirage.github.io/TWA/Totoro/android.keystore",
     "alias": "android"
   },
-  "appVersionName": "2",
-  "appVersionCode": 2,
-  "shortcuts": [],
+  "appVersionName": "1",
+  "appVersionCode": 1,
+  "shortcuts": [
+    {
+      "name": "Shortcut name",
+      "shortName": "Shortcut nam",
+      "url": "https://pwa.eirage.com/Totoro/p2.html",
+      "chosenIconUrl": "https://pwa.eirage.com/Totoro/totoro_badge.png"
+    }
+  ],
   "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://pwa.eirage.com/Totoro/manifest.json",
   "fallbackType": "customtabs",
-  "features": {
-    "locationDelegation": true
+  "features": {},
+  "alphaDependencies": {
+    "enabled": false
   },
   "enableSiteSettingsShortcut": true,
   "isChromeOSOnly": false,
-  "appVersion": "2"
+  "orientation": "default",
+  "fingerprints": [],
+  "appVersion": "1"
 }

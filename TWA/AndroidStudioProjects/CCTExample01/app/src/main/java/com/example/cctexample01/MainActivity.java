@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public void launchUrl(View view) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
         browserIntent.putExtra(CustomTabsIntent.EXTRA_SESSION, Bundle.EMPTY);
+        browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         //startActivity(browserIntent);
         ContextCompat.startActivity(this, browserIntent, ActivityOptionsCompat.makeCustomAnimation(this, R.anim.slide_in_left, 0).toBundle());
     }
