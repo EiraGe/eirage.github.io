@@ -28,12 +28,12 @@
     }]
    },
    {
-    "name": "Very very very very long shortcut name",
+    "name": "Very very very very very very very long shortcut name",
     "description": "desc",
     "url": "./p3.html"
    },
    {
-    "name": "Very very very very long shortcut name 2",
+    "name": "Very very very very very very very long shortcut name 2",
     "short_name": "short name",
     "description": "desc",
     "url": "./p3.html",
