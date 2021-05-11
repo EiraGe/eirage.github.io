@@ -1,13 +1,14 @@
 {
-  "name": "Long Long Icon Test Pages",
-  "short_name": "Long Long Icon",
+  "name": "Icon Test Pages",
+  "short_name": "Long Icon",
   "icons": [{
-      "src": "/images/icon-192x192.png",
-      "purpose":"any",
+      "src": "./icon-192x192.png",
+      "purpose":"maskable",
       "sizes": "192x192",
       "type": "image/png"
     }, {
-      "src": "/images/icon-512x512.png",
+      "src": "./icon-512x512.png",
+      "purpose":"maskable",
       "sizes": "512x512",
       "type": "image/png"
     }],
