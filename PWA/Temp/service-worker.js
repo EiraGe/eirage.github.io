@@ -2,6 +2,7 @@
 var cacheName = 'PWA-v16';
 
 var filesToCache = [
+  './index.html'
 ];
 
 self.addEventListener('install', event => {
