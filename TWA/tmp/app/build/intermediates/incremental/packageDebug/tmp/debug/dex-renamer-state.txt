@@ -1,0 +1,4 @@
+#Wed Jun 30 18:01:23 EDT 2021
+base.0=/Users/eirage/eirage.github.io/TWA/tmp/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
