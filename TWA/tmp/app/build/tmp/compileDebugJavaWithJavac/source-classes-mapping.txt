@@ -1,8 +1,0 @@
-com/eirage/pwa/twa/DelegationService.java
- com.eirage.pwa.twa.DelegationService
-com/eirage/pwa/twa/Application.java
- com.eirage.pwa.twa.Application
-com/eirage/pwa/twa/LauncherActivity.java
- com.eirage.pwa.twa.LauncherActivity
-com/eirage/pwa/twa/BuildConfig.java
- com.eirage.pwa.twa.BuildConfig

@@ -1,4 +1,0 @@
-#Wed Jun 30 17:59:41 EDT 2021
-base.0=/Users/eirage/eirage.github.io/TWA/tmp/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
