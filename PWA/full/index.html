@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width" />
+<link rel="manifest" href="manifest.json">
+<title>Long Long Test Page</title>
+<style>
+.body {
+  height: 100%;
+  background-color: #4CAF50; /* Green */
+}
+</style>
+<body onload="Start()">
+
+</body>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js')
+        .then((reg) => {
+          console.log('Service worker registered.', reg);
+        });
+  });
+}
+</script>
