@@ -33,29 +33,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa339d72-ffe1-4b69-8c9c-b44ab3a31be6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../tmp/local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PWA/Icon/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../PWA/Icon/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PWA/Icon/location.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PWA/Icon/notification.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PWA/Icon/p2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PWA/Icon/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../PWA/Icon/service-worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AndroidStudioProjects/CCTExample01/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidStudioProjects/CCTExample01/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AndroidStudioProjects/CCTExample01/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidStudioProjects/CCTExample01/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AndroidStudioProjects/CCTExample01/app/src/main/java/com/example/cctexample01/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidStudioProjects/CCTExample01/app/src/main/java/com/example/cctexample01/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_browser_browser_1_3_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_browser_browser_1_3_0_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_androidbrowserhelper_androidbrowserhelper_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_androidbrowserhelper_androidbrowserhelper_2_2_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/app/Totoro.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/Totoro.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/app-release.apk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/output-metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/eirage/pwa/twa/LauncherActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/eirage/pwa/twa/LauncherActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/shortcuts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/xml/shortcuts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/twa-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/twa-manifest.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@/Users/eirage/.android/avd/Pixel_4_XL_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/eirage/.android/avd/Pixel_4_XL_API_30.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -147,29 +145,8 @@
       <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
-      <Auto>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Auto>
-      <Hybrid>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Hybrid>
+      <option name="DEBUGGER_TYPE" value="Java" />
       <Java />
-      <Native>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Native>
       <Profilers>
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_PROFILING_ENABLED" value="false" />
@@ -202,29 +179,8 @@
       <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
-      <Auto>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Auto>
-      <Hybrid>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Hybrid>
+      <option name="DEBUGGER_TYPE" value="Java" />
       <Java />
-      <Native>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Native>
       <Profilers>
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_PROFILING_ENABLED" value="false" />
@@ -253,29 +209,8 @@
       <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
-      <Auto>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Auto>
-      <Hybrid>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Hybrid>
+      <option name="DEBUGGER_TYPE" value="Java" />
       <Java />
-      <Native>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Native>
       <Profilers>
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_PROFILING_ENABLED" value="false" />

@@ -19,8 +19,8 @@
     "path": "/Users/eirage/eirage.github.io/TWA/Totoro/android.keystore",
     "alias": "android"
   },
-  "appVersionName": "1",
-  "appVersionCode": 1,
+  "appVersionName": "2",
+  "appVersionCode": 2,
   "shortcuts": [
     {
       "name": "Shortcut name",
@@ -40,5 +40,5 @@
   "isChromeOSOnly": false,
   "orientation": "default",
   "fingerprints": [],
-  "appVersion": "1"
+  "appVersion": "2"
 }

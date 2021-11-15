@@ -1,0 +1,36 @@
+{
+  "packageId": "me.glitch.tasteful_silver_club.twa",
+  "host": "tasteful-silver-club.glitch.me",
+  "name": "PWA orig2",
+  "launcherName": "PWA orig2",
+  "display": "standalone",
+  "themeColor": "#FFFF00",
+  "navigationColor": "#000000",
+  "navigationColorDark": "#000000",
+  "navigationDividerColor": "#000000",
+  "navigationDividerColorDark": "#000000",
+  "backgroundColor": "#FFFFFF",
+  "enableNotifications": true,
+  "startUrl": "/",
+  "iconUrl": "https://dummyimage.com/1024x1024/f00/fff",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "/Users/eirage/eirage.github.io/TWA/icon/android.keystore",
+    "alias": "android"
+  },
+  "appVersionName": "1",
+  "appVersionCode": 1,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://tasteful-silver-club.glitch.me/manifest.json",
+  "fallbackType": "customtabs",
+  "features": {},
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "orientation": "default",
+  "fingerprints": [],
+  "appVersion": "1"
+}
