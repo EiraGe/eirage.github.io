@@ -9,8 +9,13 @@
     function Get() {
       var print = document.getElementById("output");
       print.innerHTML = "devicePixelRatio = " + window.devicePixelRatio + "<br>";
-      print.innerHTML += "innerWidth = " + window.innerWidth + "<br>";
-      print.innerHTML += "innerHeight = " + window.innerHeight + "<br>";
+      print.innerHTML += "window.innerHeight = " + window.innerHeight + "<br>";
+      print.innerHTML += "window.innerWidth = " + window.innerWidth + "<br>";
+      print.innerHTML += "document.body.clientHeight = " + document.body.clientHeight + "<br>";
+      print.innerHTML += "document.body.clientWidth = " + document.body.clientWidth + "<br>";
+      print.innerHTML += "screen.height = " + screen.height + "<br>";
+      print.innerHTML += "screen.width = " + screen.width + "<br>";
+
     }
     window.addEventListener("resize", () => {
       Get();
