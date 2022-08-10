@@ -13,14 +13,13 @@
   "enableNotifications": true,
   "startUrl": "/Totoro/index.html",
   "iconUrl": "https://pwa.eirage.com/images/icon-512x512.png",
-  "maskableIconUrl": "https://pwa.eirage.com/images/icon-512x512.png",
   "splashScreenFadeOutDuration": 300,
   "signingKey": {
     "path": "/Users/eirage/eirage.github.io/TWA/Totoro/android.keystore",
     "alias": "android"
   },
-  "appVersionName": "2",
-  "appVersionCode": 2,
+  "appVersionName": "1",
+  "appVersionCode": 1,
   "shortcuts": [
     {
       "name": "Shortcut name",
@@ -32,7 +31,11 @@
   "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://pwa.eirage.com/Totoro/manifest.json",
   "fallbackType": "customtabs",
-  "features": {},
+  "features": {
+    "locationDelegation": {
+      "enabled": true
+    }
+  },
   "alphaDependencies": {
     "enabled": false
   },
@@ -40,5 +43,6 @@
   "isChromeOSOnly": false,
   "orientation": "default",
   "fingerprints": [],
-  "appVersion": "2"
+  "additionalTrustedOrigins": [],
+  "appVersion": "1"
 }
