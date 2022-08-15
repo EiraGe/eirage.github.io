@@ -37,4 +37,14 @@
       "A3:7B:B2:18:40:4A:79:18:D4:9A:26:0A:7C:AD:BE:0B:2C:9B:DA:E7:42:55:D9:4C:BC:BA:01:06:90:23:41:26"
     ]
   }
+},
+{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.potatoh.playbilling",
+    "sha256_cert_fingerprints": [
+      "10:39:38:EE:45:37:E5:9E:8E:E7:92:F6:54:50:4F:B8:34:6F:C6:B3:46:D0:BB:C4:41:5F:C3:39:FC:FC:8E:C1"
+    ]
+  }
 }]
