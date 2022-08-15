@@ -27,4 +27,14 @@
       "E3:1B:AA:3D:3F:58:E0:56:8D:01:72:C7:B9:05:A3:27:E1:C4:2B:18:53:31:D3:4B:28:F9:0F:24:DE:DD:44:E8"
     ]
   }
+},
+{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.google.android.apps.mapslite",
+    "sha256_cert_fingerprints": [
+      "A3:7B:B2:18:40:4A:79:18:D4:9A:26:0A:7C:AD:BE:0B:2C:9B:DA:E7:42:55:D9:4C:BC:BA:01:06:90:23:41:26"
+    ]
+  }
 }]
