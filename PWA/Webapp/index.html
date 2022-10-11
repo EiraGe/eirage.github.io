@@ -2,15 +2,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width" />
 <link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="../styles/main.css">
 <script type="text/javascript" src="../scripts/main.js"></script>
-<script type="text/javascript" src="../scripts/notification.js"></script>
-<script type="text/javascript" src="../scripts/location.js"></script>
 <title>Long Long Webapp Test Page</title>
 </style>
 <body onload=Get()>
   <script>
     function Get() {
-      var print = document.getElementById("result");
+      var print = document.getElementById("output");
       print.innerHTML = "devicePixelRatio = " + window.devicePixelRatio + "<br>";
       print.innerHTML += "window.innerHeight = " + window.innerHeight + "<br>";
       print.innerHTML += "window.innerWidth = " + window.innerWidth + "<br>";
@@ -24,6 +23,7 @@
     })
   </script>
   <div><button onclick="Get()">Get</button></div>
+  <div id="output"></div>
   <div id="result"></div>
   <a href="p2.html">link</a>
 </body>
