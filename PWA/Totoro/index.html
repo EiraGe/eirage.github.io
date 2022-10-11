@@ -3,8 +3,9 @@
 <meta name="viewport" content="width=device-width" />
 <link rel="manifest" href="manifest.json">
 <title>Long Long Test Page</title>
-<script type="text/javascript" src="./notification.js"></script>
-<script type="text/javascript" src="./location.js"></script>
+<script type="text/javascript" src="../scripts/main.js"></script>
+<script type="text/javascript" src="../scripts/notification.js"></script>
+<script type="text/javascript" src="../scripts/location.js"></script>
 <style>
 .center {
   display: block;
@@ -53,12 +54,6 @@ if ('serviceWorker' in navigator) {
           console.log('Service worker registered.', reg);
         });
   });
-}
-
-function showResult(text) {
-    result = document.getElementById("result");
-    result.innerHTML += "<li>" + text + "</li>";
-    result.style.display = "block";
 }
 
 var imageIndex = 0;

@@ -1,6 +1,6 @@
 {
-  "name": "Long Long Test Pages",
-  "short_name": "Long Long",
+  "name": "Long Long Webapp Test Pages",
+  "short_name": "Long Long Webapp",
   "icons": [{
       "src": "/images/icon-192x192.png",
       "purpose":"maskable",
