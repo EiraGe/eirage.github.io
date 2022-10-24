@@ -23,8 +23,8 @@ plugins {
 
 def twaManifest = [
     applicationId: 'com.eirage.pwa.twa',
-    hostName: 'www.google.com', // The domain being opened in the TWA.
-    launchUrl: '/maps', // The start path for the TWA. Must be relative to the domain.
+    hostName: 'pwa.eirage.com', // The domain being opened in the TWA.
+    launchUrl: '/Totoro', // The start path for the TWA. Must be relative to the domain.
     name: 'Long Long Test Pages', // The application name.
     launcherName: 'Long Long', // The name shown on the Android Launcher.
     themeColor: '#FFFFFF', // The color used for the status bar.

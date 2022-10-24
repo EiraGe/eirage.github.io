@@ -11,9 +11,12 @@ function showInstallButton() {
   button.style.display = "block"
 }
 
-function installPrompt() {
+function install() {
   if (promptEvent) {
-    promptEvent.prompt;
+    promptEvent.prompt();
+    showResult("prompt");
+  } else {
+    showResult("show install prompt failed")
   }
 }
 
