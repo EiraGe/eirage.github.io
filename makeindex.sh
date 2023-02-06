@@ -5,7 +5,7 @@ find . -name '*.html' | grep -v "bug" | \
 
 
 find ./PWA/ -name '*.html' | \
-  perl -e 'print "<html><body><ul>\n"; while(<>) { $name = substr($_, 7, -1); print "<li><a href=\"https\://pwa.eirage.com/$name\">$name</a>\n"; } print "</ul></body></html>"' > PWA/index.html
+  perl -e 'print "<html><body><ul>\n"; while(<>) { $name = substr($_, 7, -1); print "<li><a href=\"https\://pwa.eirage.com/$name\">$name</a></li>\n"; } print "</ul></body></html>"' > PWA/index.html
 
 
 find ./bug/ -name '*.html' | grep -v "index" | \

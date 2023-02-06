@@ -1,13 +1,13 @@
-promptEvent = null;
+let promptEvent = null;
 
 function showResult(text) {
-    result = document.getElementById("result");
+    let result = document.getElementById("result");
     result.innerHTML += "<li>" + text + "</li>";
     result.style.display = "block";
 }
 
 function showInstallButton() {
-  button = document.getElementById("installButton");
+  let button = document.getElementById("installButton");
   button.style.display = "block"
 }
 
