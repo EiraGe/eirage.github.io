@@ -1,6 +1,6 @@
 {
-  "name": "Long Long Test Pages",
-  "short_name": "Long Long",
+  "name": "Long Long PWA Basic",
+  "short_name": "Basic PWA",
   "icons": [{
       "src": "https://dummyimage.com/192/f00/fff",
       "sizes": "192x192",
