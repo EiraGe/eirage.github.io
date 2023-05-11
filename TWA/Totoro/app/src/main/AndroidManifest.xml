@@ -127,10 +127,6 @@
                     android:host="@string/hostName"/>
             </intent-filter>
 
-            <intent-filter>
-                <action android:name="MDocCredentialProviderService" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
             
         </activity>
 
