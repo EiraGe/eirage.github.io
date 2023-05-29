@@ -1,18 +1,20 @@
 var myDynamicManifest = {
-    name: "App name",
-    short_name: "short",
-    start_url: "https://rocky-bird-hurricane.glitch.me/",
-    scope: "https://rocky-bird-hurricane.glitch.me/",
+    name: "Test App",
+    short_name: "Test",
+    start_url: ".",
+    scope: ".",
     background_color: "#000000",
     theme_color: "#0f4a73",
     display: "standalone",
-    icons: [
-      {
-        src: "https://cdn.glitch.global/47d0beff-5ce8-4100-bbba-d262d86aa082/icon.png?v=1676299860418",
-        sizes: "512x512",
-        type: "image/png"
-      }
-    ]
+    icons: [{
+      "src": "/images/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }, {
+      "src": "/images/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }],
   };
   const stringManifest = JSON.stringify(myDynamicManifest);
   const blob = new Blob([stringManifest], { type: "application/json" });
