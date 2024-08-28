@@ -47,4 +47,12 @@
       "10:39:38:EE:45:37:E5:9E:8E:E7:92:F6:54:50:4F:B8:34:6F:C6:B3:46:D0:BB:C4:41:5F:C3:39:FC:FC:8E:C1"
     ]
   }
+},
+{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.eirage.pwa.twa",
+    "sha256_cert_fingerprints": ["7E:23:B2:B4:47:5D:D0:28:09:BF:39:11:F8:DD:81:6D:D1:4A:49:64:B3:C4:7C:D6:47:F6:AF:9B:81:BA:3A:9F"]
+  }
 }]

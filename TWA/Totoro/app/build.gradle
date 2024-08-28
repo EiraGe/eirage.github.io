@@ -24,7 +24,7 @@ plugins {
 def twaManifest = [
     applicationId: 'com.eirage.pwa.twa',
     hostName: 'pwa.eirage.com', // The domain being opened in the TWA.
-    launchUrl: '/Totoro/index.html', // The start path for the TWA. Must be relative to the domain.
+    launchUrl: '/index.html', // The start path for the TWA. Must be relative to the domain.
     name: 'Long Long Test Pages', // The application name.
     launcherName: 'Long Long', // The name shown on the Android Launcher.
     themeColor: '#FFFFFF', // The color used for the status bar.
@@ -51,11 +51,11 @@ def twaManifest = [
 ]
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 34
     defaultConfig {
         applicationId "com.eirage.pwa.twa"
-        minSdkVersion 19
-        targetSdkVersion 31
+        minSdkVersion 21
+        targetSdkVersion 34
         versionCode 2
         versionName "2"
 
